@@ -14,6 +14,10 @@ import {
 	Link,
 } from '@material-ui/core';
 import useStyles from './App_Style';
+import KeyboardArrowDownOutlinedIcon from '@material-ui/icons/KeyboardArrowDownOutlined';
+import FacebookIcon from '@material-ui/icons/Facebook';
+import InstagramIcon from '@material-ui/icons/Instagram';
+import TwitterIcon from '@material-ui/icons/Twitter';
 
 function Matfooter() {
 	return (
@@ -102,7 +106,11 @@ function App() {
 							<Grid container spacing={2} justify="center">
 								<Grid item>
 									<Button variant="outlined" color="primary">
-										Explore the World!
+										<a
+											href="#seeThis"
+											className={classes.seeThisLink}>
+											Explore More
+										</a>
 									</Button>
 								</Grid>
 							</Grid>
@@ -110,7 +118,10 @@ function App() {
 					</div>
 				</div>
 
-				<div className={classes.cardGrid} maxWidth="lg">
+				<Container
+					className={classes.cardGrid}
+					id="seeThis"
+					maxWidth="lg">
 					<Grid container spacing={2} justify="center">
 						<Grid item>
 							<Typography
@@ -192,18 +203,25 @@ function App() {
 									color="default"
 									size="small"
 									className={classes.btnMoreCon}>
-									`See more open contests${ >} `
+									See more open contests >
 								</Button>
 							</Grid>
 						</Grid>
 					</div>
-				</div>
+				</Container>
 			</main>
 			{/* Footer */}
-			<footer className={(classes.footer, classes.main)}>
+			<footer className={classes.footer}>
 				<Typography variant="h6" align="center" gutterBottom>
-					Footer
+					Follow Us On
 				</Typography>
+				<Grid container spacing={4} justify="center">
+					<Grid item>
+						<FacebookIcon />
+						<InstagramIcon />
+						<TwitterIcon />
+					</Grid>
+				</Grid>
 				<Typography
 					variant="subtitle1"
 					align="center"

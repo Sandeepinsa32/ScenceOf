@@ -44,8 +44,13 @@ const useStyles = makeStyles((theme) => ({
 		flexGrow: '1',
 	},
 	footer: {
-		backgroundColor: theme.palette.background.paper,
-		padding: theme.spacing(6),
+		maxHeight: '60vh',
+		background: `url('${imgSrc}') no-repeat  fixed red`,
+	},
+	seeThisLink: {
+		textDecoration: 'none',
+		color: '#3dad4b',
+		borderColor: '#3dad4b',
 	},
 	navbarLogo: {
 		marginTop: '20px',
