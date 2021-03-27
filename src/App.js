@@ -12,7 +12,6 @@ import {
 	Typography,
 	Container,
 	Link,
-	spacing,
 	Menu,
 	MenuItem,
 	IconButton,
@@ -20,6 +19,7 @@ import {
 	Paper,
 	CardActionArea,
 } from '@material-ui/core';
+
 import useStyles from './App_Style';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import InstagramIcon from '@material-ui/icons/Instagram';
@@ -74,6 +74,15 @@ function App() {
 						</Grid>
 
 						<Grid item>
+							<FacebookIcon
+								variant="contained"
+								color="primary"
+								align="right"
+								className={classes.mainHeading}
+							/>
+							<InstagramIcon className={classes.mainHeading} />
+							<TwitterIcon className={classes.mainHeading} />
+
 							<Button
 								variant="contained"
 								size="small"
@@ -119,38 +128,34 @@ function App() {
 									className={classes.link}>
 									About
 								</Link>
-
-								<Link
-									variant="button"
-									color="primary"
-									href="#"
-									className={classes.link}>
-									<Button
-										aria-controls="simple-menu"
-										aria-haspopup="true"
-										onClick={handleClick}
-										className={classes.link}>
+								<Link>
+									<a
+									// className={classes.link}
+									// aria-controls="simple-menu"
+									// aria-haspopup="true"
+									// onMouseOver={handleClick}
+									>
 										Contests
-									</Button>
-									<Menu
-										id="simple-menu"
-										anchorEl={anchorEl}
-										keepMounted
-										open={Boolean(anchorEl)}
-										onClose={handleClose}>
-										<MenuItem onClick={handleClose}>
-											categories
-										</MenuItem>
-										<MenuItem onClick={handleClose}>
-											Ending Soon
-										</MenuItem>
-										<MenuItem onClick={handleClose}>
-											Popular
-										</MenuItem>
-										<MenuItem onClick={handleClose}>
-											Winner
-										</MenuItem>
-									</Menu>
+										<Menu
+											id="simple-menu"
+											anchorEl={anchorEl}
+											keepMounted
+											open={Boolean(anchorEl)}
+											onClose={handleClose}>
+											<MenuItem onClick={handleClose}>
+												categories
+											</MenuItem>
+											<MenuItem onClick={handleClose}>
+												Ending Soon
+											</MenuItem>
+											<MenuItem onClick={handleClose}>
+												Popular
+											</MenuItem>
+											<MenuItem onClick={handleClose}>
+												Winner
+											</MenuItem>
+										</Menu>
+									</a>
 								</Link>
 								<Link
 									variant="button"
@@ -195,12 +200,12 @@ function App() {
 							</Typography>
 
 							<Grid
-								justify="center" // Add it here :)
-								container
-								spacing={24}>
+								align="center" // Add it here :)
+								spacing={2}>
 								<Grid item>
 									<Paper
 										component="form"
+										align="center"
 										className={classes.rootD}>
 										<InputBase
 											className={classes.input}
@@ -238,7 +243,7 @@ function App() {
 								gutterBottom
 								variant="h4"
 								component="h4">
-								Enter a contest for free now
+								Active Contest
 							</Typography>
 						</Grid>
 					</Grid>
@@ -322,6 +327,14 @@ function App() {
 
 				{/* testimonial */}
 				<Container className={classes.cardGrid} maxWidth="lg">
+					<Typography
+						gutterBottom
+						variant="h4"
+						component="h4"
+						align="center">
+						Let us know what you think!
+					</Typography>
+
 					<Grid container>
 						{test.map((card) => (
 							<Card
@@ -365,6 +378,19 @@ function App() {
 							</Card>
 						))}
 					</Grid>
+					<div className={classes.btnExplore}>
+						<Grid container spacing={2} justify="center">
+							<Grid item>
+								<Button
+									variant="contained"
+									color="default"
+									size="small"
+									className={classes.btnMoreCon}>
+									Let Us Know
+								</Button>
+							</Grid>
+						</Grid>
+					</div>
 				</Container>
 				{/* testimonial end */}
 			</main>
