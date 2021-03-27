@@ -19,12 +19,13 @@ import {
 	Paper,
 	CardActionArea,
 } from '@material-ui/core';
-
+import './CardCarousel.css';
 import useStyles from './App_Style';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import InstagramIcon from '@material-ui/icons/Instagram';
 import TwitterIcon from '@material-ui/icons/Twitter';
 import SearchIcon from '@material-ui/icons/Search';
+import Dpp from './CardCarousel.js';
 
 function Matfooter() {
 	return (
@@ -41,7 +42,8 @@ function Matfooter() {
 
 const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 const test = [1, 2, 3];
-
+const imageUrlForCards =
+	'https://static.photocrowd.com/photos/3254787-f3ee9574acbd976f72f925c00cc96a91ed06132a-h810.jpeg';
 function App() {
 	const classes = useStyles();
 	const [anchorEl, setAnchorEl] = React.useState(null);
@@ -104,7 +106,6 @@ function App() {
 					</Grid>
 				</Toolbar>
 			</AppBar>
-
 			<main>
 				<div className={classes.herContent}>
 					<div maxWidth="md" className={classes.main}>
@@ -130,10 +131,10 @@ function App() {
 								</Link>
 								<Link>
 									<a
-									// className={classes.link}
-									// aria-controls="simple-menu"
-									// aria-haspopup="true"
-									// onMouseOver={handleClick}
+										className={classes.link}
+										// aria-controls="simple-menu"
+										// aria-haspopup="true"
+										// onMouseOver={handleClick}
 									>
 										Contests
 										<Menu
@@ -255,7 +256,7 @@ function App() {
 								<Card className={classes.card}>
 									<CardMedia
 										className={classes.cardMedia}
-										image="https://source.unsplash.com/random"
+										image={imageUrlForCards}
 										title="Image title"
 									/>
 									<CardContent
@@ -292,7 +293,8 @@ function App() {
 										<Grid
 											container
 											spacing={2}
-											justify="center">
+											justify="center"
+											className={classes.CardContent}>
 											<Grid item>
 												<Button
 													size="small"
@@ -393,6 +395,11 @@ function App() {
 					</div>
 				</Container>
 				{/* testimonial end */}
+				<Container maxWidth="lg">
+					<Grid>
+						<Dpp sm={6} />
+					</Grid>
+				</Container>
 			</main>
 			{/* Footer */}
 			<footer className={classes.footer}>
@@ -422,6 +429,7 @@ function App() {
 				</Typography>
 				<Matfooter />
 			</footer>
+
 			{/* End footer */}
 		</React.Fragment>
 	);

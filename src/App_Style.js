@@ -1,8 +1,8 @@
 import { makeStyles } from '@material-ui/core/styles';
-
 const imgSrc =
 	'https://images.unsplash.com/photo-1564475228765-f0c3292f2dec?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1956&q=80';
 // 'https://images.unsplash.com/photo-1548195667-1d329af0a472?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1782&q=80';
+
 const useStyles = makeStyles((theme) => ({
 	rootD: {
 		padding: '2px 4px',
@@ -78,6 +78,8 @@ const useStyles = makeStyles((theme) => ({
 	},
 	cardContent: {
 		flexGrow: '1',
+		backgroundColor: '#e5e5e5',
+		color: '#484848',
 	},
 	footer: {
 		maxHeight: '60vh',
@@ -110,6 +112,12 @@ const useStyles = makeStyles((theme) => ({
 	btnJoinCon: {
 		paddingLeft: '20px',
 		paddingRight: '20px',
+		backgroundColor: '#fff',
+	},
+	// #a1a1a1#c8c8c8
+
+	CardContent: {
+		backgroundColor: '#c8c8c8',
 	},
 	btnMoreCon: {
 		color: '#fff',
