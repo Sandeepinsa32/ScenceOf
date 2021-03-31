@@ -5,9 +5,11 @@ body {
 		'Helvetica Neue', sans-serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-	background-color: #212121;
+	/* background-color: #212121; */
+	background-color: #fff;
+	color: #212121;
 	text-align: center;
-	color: white;
+	/* color: white; */
 }
 
 code {

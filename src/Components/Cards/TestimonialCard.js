@@ -13,24 +13,24 @@ import {
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
-	cardGrid: {
+	CardOutterDiv: {
 		paddingTop: theme.spacing(8),
 		paddingBottom: theme.spacing(8),
 	},
-	root: {
+	CardMainDiv: {
 		maxWidth: '400px',
 		margin: '10px auto',
 		borderRadius: '20px',
 	},
-	media: {
+	CardMedia: {
 		height: '80px',
 		width: '80px',
 		borderRadius: '50%',
 	},
-	btnExplore: {
+	cardExploreMorediv: {
 		marginTop: theme.spacing(4),
 	},
-	btnMoreCon: {
+	cardExploreMoreBtn: {
 		color: '#fff',
 		fontSize: '12px',
 		padding: '10px',
@@ -42,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-const test = [1, 2, 3];
+const NoOfCard = [1, 2, 3];
 
 function TestimononialCard() {
 	const classes = useStyles();
@@ -50,7 +50,7 @@ function TestimononialCard() {
 	return (
 		<>
 			<CssBaseline />
-			<Container className={classes.cardGrid} maxWidth="lg">
+			<Container className={classes.CardOutterDiv} maxWidth="lg">
 				<Typography
 					gutterBottom
 					variant="h4"
@@ -60,9 +60,9 @@ function TestimononialCard() {
 				</Typography>
 
 				<Grid container>
-					{test.map((card) => (
+					{NoOfCard.map((card) => (
 						<Card
-							className={classes.root}
+							className={classes.CardMainDiv}
 							key={card}
 							xs={12}
 							sm={4}
@@ -75,7 +75,7 @@ function TestimononialCard() {
 										justify="center">
 										<Grid item>
 											<CardMedia
-												className={classes.media}
+												className={classes.CardMedia}
 												image="https://scenesofnewengland.com/wp-content/uploads/2020/07/pexels-photo-220453.png"
 											/>
 										</Grid>
@@ -102,14 +102,14 @@ function TestimononialCard() {
 						</Card>
 					))}
 				</Grid>
-				<div className={classes.btnExplore}>
+				<div className={classes.cardExploreMorediv}>
 					<Grid container spacing={2} justify="center">
 						<Grid item>
 							<Button
 								variant="contained"
 								color="default"
 								size="small"
-								className={classes.btnMoreCon}>
+								className={classes.cardExploreMoreBtn}>
 								Let Us Know
 							</Button>
 						</Grid>

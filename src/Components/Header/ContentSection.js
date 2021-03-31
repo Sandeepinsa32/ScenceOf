@@ -1,7 +1,7 @@
 import React from 'react';
 import {
-	Grid,
 	CssBaseline,
+	Grid,
 	Typography,
 	IconButton,
 	InputBase,
@@ -11,25 +11,26 @@ import { makeStyles } from '@material-ui/core/styles';
 import SearchIcon from '@material-ui/icons/Search';
 
 const useStyles = makeStyles((theme) => ({
-	headingDiv: {
+	SectionHeadingDiv: {
 		marginTop: '10vh',
-	},
-	mainHeading: {
 		color: '#FFF',
 	},
-	rootD: {
+	SectionHeading: {
+		color: '#FFF',
+	},
+	SectionSearchPaper: {
 		padding: '2px 4px',
 		display: 'flex',
 		alignItems: 'center',
 		width: '70vw',
 	},
-	input: {
+	SectionSearchInput: {
 		marginLeft: theme.spacing(1),
 		flex: 1,
 	},
-	iconButton: {
+	SearchIcon: {
 		padding: 10,
-		color: '#FD9B28',
+		color: '#FD9B28', //Yellow Shade
 	},
 }));
 
@@ -39,14 +40,14 @@ function ContentSection() {
 	return (
 		<>
 			<CssBaseline />
-			<div className={classes.headingDiv}>
+			<div className={classes.SectionHeadingDiv}>
 				<Typography
 					component="h3"
 					variant="h3"
 					p={1}
 					align="center"
 					color="textPrimary"
-					className={classes.mainHeading}
+					className={classes.SectionHeading}
 					gutterBottom>
 					Capture, Share, Explore.
 				</Typography>
@@ -56,14 +57,14 @@ function ContentSection() {
 						<Paper
 							component="form"
 							align="center"
-							className={classes.rootD}>
+							className={classes.SectionSearchPaper}>
 							<InputBase
-								className={classes.input}
+								className={classes.SectionSearchInput}
 								placeholder="Search a Content"
 							/>
 							<IconButton
 								type="submit"
-								className={classes.iconButton}
+								className={classes.SearchIcon}
 								aria-label="search">
 								<SearchIcon />
 							</IconButton>

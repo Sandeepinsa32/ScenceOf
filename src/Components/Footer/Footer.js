@@ -5,16 +5,17 @@ import InstagramIcon from '@material-ui/icons/Instagram';
 import TwitterIcon from '@material-ui/icons/Twitter';
 import FacebookIcon from '@material-ui/icons/Facebook';
 
-const imgSrc =
+const BackgroundImg =
 	'https://images.unsplash.com/photo-1564475228765-f0c3292f2dec?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1956&q=80';
 
 const useStyles = makeStyles((theme) => ({
-	footer: {
+	footerMainDiv: {
 		maxHeight: '60vh',
-		background: `url('${imgSrc}') no-repeat  fixed red`,
+		background: `url('${BackgroundImg}') no-repeat  fixed #212121`,
 		marginTop: '10vh',
+		color: '#FFF',
 	},
-	mainHeading: {
+	footerText: {
 		color: '#FFF',
 	},
 }));
@@ -24,20 +25,20 @@ function Footer() {
 	return (
 		<>
 			<CssBaseline />
-			<footer className={classes.footer}>
+			<footer className={classes.footerMainDiv}>
 				<Typography
 					variant="h6"
 					align="center"
-					className={classes.mainHeading}
+					className={classes.footerText}
 					gutterBottom>
 					Follow Us On
 				</Typography>
 
 				<Grid spacing={2} align="center">
 					<Grid item>
-						<FacebookIcon className={classes.mainHeading} />
-						<InstagramIcon className={classes.mainHeading} />
-						<TwitterIcon className={classes.mainHeading} />
+						<FacebookIcon className={classes.footerText} />
+						<InstagramIcon className={classes.footerText} />
+						<TwitterIcon className={classes.footerText} />
 					</Grid>
 				</Grid>
 
@@ -46,13 +47,13 @@ function Footer() {
 					align="center"
 					color="textSecondary"
 					component="p"
-					className={classes.mainHeading}>
+					className={classes.footerText}>
 					Something here to give the footer a purpose!
 				</Typography>
 				<Typography
 					variant="body2"
 					color="textSecondary"
-					className={classes.mainHeading}
+					className={classes.footerText}
 					align="center">
 					{'Copyright © '}
 					<Link color="inherit" href="https://material-ui.com/">

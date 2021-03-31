@@ -1,9 +1,9 @@
 import React from 'react';
-import { Grid, CssBaseline, Link, Menu, MenuItem } from '@material-ui/core';
+import { CssBaseline, Grid, Link, Menu, MenuItem } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
-	link: {
+	NavbarLink: {
 		color: '#fff',
 		fontSize: '16px',
 		textDecoration: 'auto',
@@ -33,7 +33,7 @@ function Navbar() {
 						variant="button"
 						color="primary"
 						href="#"
-						className={classes.link}>
+						className={classes.NavbarLink}>
 						Home
 					</Link>
 
@@ -41,12 +41,12 @@ function Navbar() {
 						variant="button"
 						color="primary"
 						href="#"
-						className={classes.link}>
+						className={classes.NavbarLink}>
 						About
 					</Link>
 					<Link>
 						<a
-							className={classes.link}
+							className={classes.NavbarLink}
 							// aria-controls="simple-menu"
 							// aria-haspopup="true"
 							// onMouseOver={handleClick}
@@ -77,28 +77,28 @@ function Navbar() {
 						variant="button"
 						color="primary"
 						href="#"
-						className={classes.link}>
+						className={classes.NavbarLink}>
 						Calender
 					</Link>
 					<Link
 						variant="button"
 						color="primary"
 						href="#"
-						className={classes.link}>
+						className={classes.NavbarLink}>
 						Directory
 					</Link>
 					<Link
 						variant="button"
 						color="primary"
 						href="#"
-						className={classes.link}>
+						className={classes.NavbarLink}>
 						Sponsor
 					</Link>
 					<Link
 						variant="button"
 						color="primary"
 						href="#"
-						className={classes.link}>
+						className={classes.NavbarLink}>
 						Blog
 					</Link>
 				</Grid>
