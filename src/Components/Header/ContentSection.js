@@ -12,7 +12,7 @@ import SearchIcon from '@material-ui/icons/Search';
 
 const useStyles = makeStyles((theme) => ({
 	SectionHeadingDiv: {
-		marginTop: '10vh',
+		marginTop: '30vh',
 		color: '#FFF',
 	},
 	SectionHeading: {

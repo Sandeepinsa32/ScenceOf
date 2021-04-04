@@ -24,6 +24,7 @@ function Navbar() {
 	return (
 		<>
 			<CssBaseline />
+
 			<nav>
 				<Grid
 					justify="space-evenly" // Add it here :)
@@ -32,7 +33,7 @@ function Navbar() {
 					<Link
 						variant="button"
 						color="primary"
-						href="#"
+						href="/"
 						className={classes.NavbarLink}>
 						Home
 					</Link>
