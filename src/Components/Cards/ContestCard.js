@@ -53,7 +53,7 @@ const useStyles = makeStyles((theme) => ({
 // 	},
 // ];
 
-const NoOfCards = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+const NoOfCards = [1, 2, 3, 4, 5, 6];
 
 const ContestCardImg =
 	'https://static.photocrowd.com/photos/3254787-f3ee9574acbd976f72f925c00cc96a91ed06132a-h810.jpeg';

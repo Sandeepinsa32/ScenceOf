@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
+import { Link } from 'react-router-dom';
 import './Navbar.css';
+
 const logoImg =
 	'https://whatpageareyouon.com/scenesof/wp-content/uploads/2020/07/logo.png';
 function Navbar() {
@@ -22,9 +24,7 @@ function Navbar() {
 						onClick={() => {
 							burgerToggle();
 							handleToggle();
-						}}>
-						ham
-					</i>
+						}}></i>
 				</button>
 				<div class="brand">
 					<img
@@ -37,16 +37,16 @@ function Navbar() {
 				<div className="narrowLinks">
 					<ul class="navbar">
 						<li>
-							<a href="#home">Home</a>
+							<Link to="/">Home</Link>
 						</li>
 						<li>
-							<a href="#about">About</a>
+							<Link to="/about-us">About</Link>
 						</li>
 						<li>
-							<a href="#services">Services</a>
+							<Link to="/404">Services</Link>
 						</li>
 						<li>
-							<a href="#contact">Contact</a>
+							<Link to="/404">Contact</Link>
 						</li>
 
 						<li
@@ -58,43 +58,47 @@ function Navbar() {
 							class={`Social-icons ${
 								isDisplay ? '' : 'display'
 							}`}>
-							<a href="#" class="social-icon">
+							<Link to="/404" class="social-icon">
 								<i class="fa fa-facebook"></i>
-							</a>
+							</Link>
 						</li>
 						<li
 							class={`Social-icons ${
 								isDisplay ? '' : 'display'
 							}`}>
-							<a href="#" class="social-icon">
+							<Link to="/404" class="social-icon">
 								<i class="fa fa-twitter"></i>
-							</a>
+							</Link>
 						</li>
 
 						<li
 							class={`Social-icons ${
 								isDisplay ? '' : 'display'
 							}`}>
-							<a href="#" class="social-icon">
+							<Link to="/404" class="social-icon">
 								<i class="fa fa-linkedin"></i>
-							</a>
+							</Link>
 						</li>
 
 						<li>
 							<div class="button-wrapper">
-								<button class="modalButton Sign-btn  ">
-									Sign In
-								</button>
+								<Link to="/login">
+									<button class="modalButton Sign-btn  ">
+										Sign In
+									</button>
+								</Link>
 							</div>
 						</li>
 
 						<li>
 							<div class="button-wrapper">
-								<button
-									class="modalButton join-btn"
-									data-popup="accept">
-									Join
-								</button>
+								<Link to="/join">
+									<button
+										class="modalButton join-btn"
+										data-popup="accept">
+										Join
+									</button>
+								</Link>
 							</div>
 						</li>
 					</ul>

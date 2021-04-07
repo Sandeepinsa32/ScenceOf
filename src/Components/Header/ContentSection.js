@@ -17,6 +17,9 @@ const useStyles = makeStyles((theme) => ({
 	},
 	SectionHeading: {
 		color: '#FFF',
+		[theme.breakpoints.down('sm')]: {
+			fontSize: '2rem',
+		},
 	},
 	SectionSearchPaper: {
 		padding: '2px 4px',

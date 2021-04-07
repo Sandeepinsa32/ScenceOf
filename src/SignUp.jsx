@@ -17,7 +17,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 
 //Import diff components
-import Header from './Components/Header/Header';
+import Navbar from './Components/Header/Navbar';
 const BackgroundImg =
 	'https://static.photocrowd.com/img/registration_bg_2019.jpg';
 //'https://images.unsplash.com/photo-1564475228765-f0c3292f2dec?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1956&q=80';
@@ -37,6 +37,10 @@ const useStyles = makeStyles((theme) => ({
 		borderRadius: '15px',
 		boxShadow: '0px 0px 8px 0px rgba(0,0,0,0.51)',
 		margin: 0,
+		height: '120vh',
+		[theme.breakpoints.down('sm')]: {
+			height: '125vh',
+		},
 	},
 	SectionHeadingDiv: {
 		margin: '20px',
@@ -50,6 +54,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 	innerDiv: {
 		padding: '0',
+		marginTop: '10vh',
 	},
 	paper: {
 		marginTop: theme.spacing(8),
@@ -77,7 +82,7 @@ function SignUp() {
 		<>
 			<CssBaseline />
 			{/* header */}
-			<Header />
+			{/* <Navbar /> */}
 			<main className={classes.mainDiv}>
 				<Container component="div" className={classes.innerDiv}>
 					<Typography
@@ -85,6 +90,7 @@ function SignUp() {
 						variant="h4"
 						color="textSecondary"
 						className={classes.SectionHeading}
+						style={{ marginTop: '15vh' }}
 						gutterBottom>
 						A world of great photo contests and awards, in one place
 					</Typography>

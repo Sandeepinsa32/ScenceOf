@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
 	footerMainDiv: {
 		maxHeight: '60vh',
 		background: `url('${BackgroundImg}') no-repeat  fixed #212121`,
-		marginTop: '10vh',
+		// marginTop: '10vh',
 		color: '#FFF',
 	},
 	footerText: {
@@ -57,7 +57,7 @@ function Footer() {
 					align="center">
 					{'Copyright © '}
 					<Link color="inherit" href="https://material-ui.com/">
-						Your Website
+						ScenesOfNewEngland.Com
 					</Link>{' '}
 					{new Date().getFullYear()}
 					{'.'}
