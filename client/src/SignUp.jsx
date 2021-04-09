@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
+import Axios from 'axios';
 import {
 	CssBaseline,
 	Grid,
 	Typography,
 	TextField,
-	Box,
-	Paper,
 	Link,
 	Checkbox,
 	Button,
@@ -14,10 +13,9 @@ import {
 	Container,
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 
 //Import diff components
-import Navbar from './Components/Header/Navbar';
+// import Navbar from './Components/Header/Navbar';
 const BackgroundImg =
 	'https://static.photocrowd.com/img/registration_bg_2019.jpg';
 //'https://images.unsplash.com/photo-1564475228765-f0c3292f2dec?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1956&q=80';
@@ -77,9 +75,19 @@ const useStyles = makeStyles((theme) => ({
 
 function SignUp() {
 	const classes = useStyles();
+	const [nameReg, SetUsernameReg] = useState('');
+	const [usernameReg, SetNameReg] = useState('');
+	const [passwordReg, SetPasswordReg] = useState('');
 
-	const [usernameReg, SetUsernameReg] = useState('');
-	const [password, SetPasswordReg] = useState('');
+	const Register = () => {
+		Axios.post('http://localhost:3000/users/create/', {
+			name: nameReg,
+			email: usernameReg,
+			password: passwordReg,
+		}).then((response) => {
+			console.log(response);
+		});
+	};
 
 	return (
 		<>
@@ -128,6 +136,9 @@ function SignUp() {
 											required
 											fullWidth
 											id="firstName"
+											OnChange={(e) => {
+												SetNameReg(e.target.value);
+											}}
 											label="First Name"
 											autoFocus
 										/>
@@ -214,7 +225,8 @@ function SignUp() {
 									fullWidth
 									variant="contained"
 									color="primary"
-									className={classes.submit}>
+									className={classes.submit}
+									onClick={Register}>
 									Sign Up
 								</Button>
 								<Grid

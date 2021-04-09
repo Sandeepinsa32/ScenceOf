@@ -1,23 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
+import Axios from 'axios';
 import {
 	CssBaseline,
 	Grid,
 	Typography,
 	TextField,
-	Box,
-	Paper,
 	Link,
-	Checkbox,
 	Button,
 	Avatar,
-	FormControlLabel,
 	Container,
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 
 //Import diff components
-import Navbar from './Components/Header/Navbar';
+// import Navbar from './Components/Header/Navbar';
 const BackgroundImg =
 	'https://static.photocrowd.com/img/registration_bg_2019.jpg';
 //'https://images.unsplash.com/photo-1564475228765-f0c3292f2dec?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1956&q=80';
@@ -75,6 +71,12 @@ const useStyles = makeStyles((theme) => ({
 
 function SignIn() {
 	const classes = useStyles();
+	const [usernameLog, SetUsernameLog] = useState('');
+	const [passwordLog, SetPasswordLog] = useState('');
+
+	const Login = () => {
+		Axios.get('http://localhost:3000/users/');
+	};
 
 	return (
 		<>
@@ -124,6 +126,10 @@ function SignIn() {
 									name="email"
 									autoComplete="email"
 									autoFocus
+									onChange={(e) => {
+										SetUsernameLog(e.target.value);
+										console.log(e.target.value);
+									}}
 								/>
 								<TextField
 									variant="outlined"
@@ -135,6 +141,10 @@ function SignIn() {
 									type="password"
 									id="password"
 									autoComplete="current-password"
+									onChange={(e) => {
+										SetPasswordLog(e.target.value);
+										console.log(e.target.value);
+									}}
 								/>
 								{/* <FormControlLabel
 									control={
