@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
 	CssBaseline,
 	Grid,
@@ -77,6 +77,9 @@ const useStyles = makeStyles((theme) => ({
 
 function SignUp() {
 	const classes = useStyles();
+
+	const [usernameReg, SetUsernameReg] = useState('');
+	const [password, SetPasswordReg] = useState('');
 
 	return (
 		<>
@@ -157,6 +160,10 @@ function SignUp() {
 											required
 											fullWidth
 											id="email"
+											OnChange={(e) => {
+												SetUsernameReg(e.target.value);
+											}}
+											type="text"
 											label="Username"
 											name="email"
 											autoComplete="username"
@@ -184,6 +191,9 @@ function SignUp() {
 											type="password"
 											id="password"
 											autoComplete="current-password"
+											OnChange={(e) => {
+												SetPasswordReg(e.target.value);
+											}}
 										/>
 									</Grid>
 									<Grid item xs={12}>
