@@ -75,18 +75,33 @@ const useStyles = makeStyles((theme) => ({
 
 function SignUp() {
 	const classes = useStyles();
-	const [nameReg, SetUsernameReg] = useState('');
-	const [usernameReg, SetNameReg] = useState('');
-	const [passwordReg, SetPasswordReg] = useState('');
+	const [nameReg, SetNameReg] = useState();
+	const [usernameReg, SetUsernameReg] = useState();
+	const [passwordReg, SetPasswordReg] = useState();
+
+	const config = {
+		headers: {
+			'Access-Control-Allow-Origin': '*',
+			'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+			'Content-Type': 'application/x-www-form-urlencoded',
+		},
+	};
+	const data = {
+		name: nameReg,
+		email: usernameReg,
+		password: passwordReg,
+	};
 
 	const Register = () => {
-		Axios.post('http://localhost:3000/users/create/', {
-			name: nameReg,
-			email: usernameReg,
-			password: passwordReg,
-		}).then((response) => {
-			console.log(response);
-		});
+		Axios.post('http://localhost:3000/users/create/', data, config)
+			.then((response) => {
+				console.log(response);
+				console.log('done');
+			})
+			.catch((err) => {
+				console.log(err);
+				console.log('error');
+			});
 	};
 
 	return (
@@ -136,9 +151,9 @@ function SignUp() {
 											required
 											fullWidth
 											id="firstName"
-											OnChange={(e) => {
-												SetNameReg(e.target.value);
-											}}
+											onChange={(event) =>
+												SetNameReg(event.target.value)
+											}
 											label="First Name"
 											autoFocus
 										/>
@@ -170,13 +185,14 @@ function SignUp() {
 											variant="outlined"
 											required
 											fullWidth
-											id="email"
-											OnChange={(e) => {
-												SetUsernameReg(e.target.value);
-											}}
+											onChange={(event) =>
+												SetUsernameReg(
+													event.target.value
+												)
+											}
 											type="text"
 											label="Username"
-											name="email"
+											name="username"
 											autoComplete="username"
 										/>
 									</Grid>
@@ -188,6 +204,11 @@ function SignUp() {
 											name="password"
 											label="Password"
 											type="password"
+											onChange={(event) =>
+												SetPasswordReg(
+													event.target.value
+												)
+											}
 											id="password"
 											autoComplete="current-password"
 										/>
@@ -200,11 +221,8 @@ function SignUp() {
 											name="Password"
 											label="Re-Password"
 											type="password"
-											id="password"
+											id="Re-password"
 											autoComplete="current-password"
-											OnChange={(e) => {
-												SetPasswordReg(e.target.value);
-											}}
 										/>
 									</Grid>
 									<Grid item xs={12}>

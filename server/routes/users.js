@@ -7,7 +7,7 @@ router.use(bodyParser.json());
 
 // Create application/x-www-form-urlencoded parser
 var urlencodedParser = bodyParser.urlencoded({
-	extended: false,
+	extended: true,
 });
 
 /* GET users listing. */
@@ -18,7 +18,9 @@ router.get('/', function (req, res, next) {
 /*post method for create user*/
 router.post('/create', function (req, res, next) {
 	console.log(req.body);
-	var name = req.body.name;
+	console.log(`req.body= $req.body.name`);
+
+	var name = req.body.data.name;
 	var email = req.body.email;
 	var password = req.body.password;
 

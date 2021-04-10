@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Axios from 'axios';
+// import Axios from 'axios';
 import {
 	CssBaseline,
 	Grid,
@@ -74,9 +74,9 @@ function SignIn() {
 	const [usernameLog, SetUsernameLog] = useState('');
 	const [passwordLog, SetPasswordLog] = useState('');
 
-	const Login = () => {
-		Axios.get('http://localhost:3000/users/');
-	};
+	// const Login = () => {
+	// 	Axios.get('http://localhost:3000/users/');
+	// };
 
 	return (
 		<>

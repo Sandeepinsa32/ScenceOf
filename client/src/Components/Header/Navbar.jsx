@@ -52,7 +52,7 @@ function Navbar() {
 						<li
 							className="dropdown-icon"
 							onClick={() => DisplayToggle()}>
-							<a>Follow us on</a>
+							<a href="_blank">Follow us on</a>
 						</li>
 						<li
 							class={`Social-icons ${
