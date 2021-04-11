@@ -5,14 +5,14 @@ import InstagramIcon from '@material-ui/icons/Instagram';
 import TwitterIcon from '@material-ui/icons/Twitter';
 import FacebookIcon from '@material-ui/icons/Facebook';
 
-const BackgroundImg =
-	'https://images.unsplash.com/photo-1564475228765-f0c3292f2dec?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1956&q=80';
+const BackgroundImg = 'https://cdn.fs.teachablecdn.com/RD4lJ0jZTq6k6zfSQ8de';
+// 'https://images.unsplash.com/photo-1564475228765-f0c3292f2dec?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1956&q=80';
 
 const useStyles = makeStyles((theme) => ({
 	footerMainDiv: {
 		maxHeight: '60vh',
-		background: `url('${BackgroundImg}') no-repeat  fixed #212121`,
-		// marginTop: '10vh',
+		background: `url('${BackgroundImg}')  #212121`,
+		marginTop: '10vh',
 		color: '#FFF',
 	},
 	footerText: {

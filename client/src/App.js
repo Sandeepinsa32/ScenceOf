@@ -7,6 +7,7 @@ import SignIn from './SignIn';
 import SignUp from './SignUp';
 import AboutUs from './AboutUs';
 import NotFound from './Notfound';
+import NewCalendar from './Components/NewCalendar';
 
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
@@ -14,9 +15,11 @@ function App() {
 	return (
 		<>
 			<Router>
-				<Navbar />
-				{/* <Homepage /> */}
+				<Navbar style={{ marginBottom: '10vh' }} />
 				<Switch>
+					<Route path="/calendar" exact>
+						<NewCalendar />
+					</Route>
 					<Route path="/" exact>
 						<Homepage />
 					</Route>

@@ -4,11 +4,19 @@ var db = require('../db');
 var bodyParser = require('body-parser');
 
 router.use(bodyParser.json());
-
 // Create application/x-www-form-urlencoded parser
-var urlencodedParser = bodyParser.urlencoded({
-	extended: true,
-});
+router.use(
+	bodyParser.urlencoded({
+		extended: true,
+	})
+);
+
+router.use(express.json());
+router.use(
+	express.urlencoded({
+		extended: true,
+	})
+);
 
 /* GET users listing. */
 router.get('/', function (req, res, next) {
@@ -18,9 +26,7 @@ router.get('/', function (req, res, next) {
 /*post method for create user*/
 router.post('/create', function (req, res, next) {
 	console.log(req.body);
-	console.log(`req.body= $req.body.name`);
-
-	var name = req.body.data.name;
+	var name = req.body.name;
 	var email = req.body.email;
 	var password = req.body.password;
 
@@ -43,8 +49,13 @@ router.post('/login', function (req, res, next) {
 	db.query(sql, function (err, result) {
 		if (err) {
 			res.status(500).send({error: 'Something failed!'});
+		} else {
+			if (result) {
+				res.json({status: 'success', user: result});
+			} else {
+				res.send({message: '`Oops! Wrong Username/Password'});
+			}
 		}
-		res.json({status: 'success', user: result});
 	});
 });
 

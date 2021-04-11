@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import Axios from 'axios';
+import qs from 'qs';
+import axios from 'axios';
 import {
 	CssBaseline,
 	Grid,
@@ -16,17 +17,17 @@ import { makeStyles } from '@material-ui/core/styles';
 
 //Import diff components
 // import Navbar from './Components/Header/Navbar';
-const BackgroundImg =
-	'https://static.photocrowd.com/img/registration_bg_2019.jpg';
+const BackgroundImg = 'https://cdn.fs.teachablecdn.com/RD4lJ0jZTq6k6zfSQ8de';
+// 'https://static.photocrowd.com/img/registration_bg_2019.jpg';
 //'https://images.unsplash.com/photo-1564475228765-f0c3292f2dec?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1956&q=80';
 
 const useStyles = makeStyles((theme) => ({
 	mainDiv: {
 		minHeight: '100vh',
 		padding: '25px 5px',
-		background: `url('${BackgroundImg}') no-repeat #212121`,
-		backgroundPosition: 'center',
-		backgroundSize: 'cover',
+		background: `url('${BackgroundImg}') #212121`,
+		// backgroundPosition: 'center',
+		// backgroundSize: 'cover',
 		// backgroundColor: '#fff',
 	},
 	outterDiv: {
@@ -83,17 +84,22 @@ function SignUp() {
 		headers: {
 			'Access-Control-Allow-Origin': '*',
 			'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
-			'Content-Type': 'application/x-www-form-urlencoded',
+			'content-type': 'application/x-www-form-urlencoded;charset=utf-8',
 		},
 	};
-	const data = {
+	const data = qs.stringify({
 		name: nameReg,
 		email: usernameReg,
 		password: passwordReg,
-	};
+	});
 
 	const Register = () => {
-		Axios.post('http://localhost:3000/users/create/', data, config)
+		axios({
+			method: 'post',
+			url: 'http://localhost:3000/users/create',
+			data,
+			config,
+		})
 			.then((response) => {
 				console.log(response);
 				console.log('done');
@@ -239,7 +245,6 @@ function SignUp() {
 									</Grid>
 								</Grid>
 								<Button
-									type="submit"
 									fullWidth
 									variant="contained"
 									color="primary"

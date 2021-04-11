@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-// import Axios from 'axios';
+import qs from 'qs';
+import axios from 'axios';
 import {
 	CssBaseline,
 	Grid,
@@ -14,17 +15,16 @@ import { makeStyles } from '@material-ui/core/styles';
 
 //Import diff components
 // import Navbar from './Components/Header/Navbar';
-const BackgroundImg =
-	'https://static.photocrowd.com/img/registration_bg_2019.jpg';
-//'https://images.unsplash.com/photo-1564475228765-f0c3292f2dec?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1956&q=80';
+const BackgroundImg = 'https://cdn.fs.teachablecdn.com/RD4lJ0jZTq6k6zfSQ8de';
+// 'https://static.photocrowd.com/img/registration_bg_2019.jpg';
 
 const useStyles = makeStyles((theme) => ({
 	mainDiv: {
 		minHeight: '100vh',
 		padding: '25px 5px',
-		background: `url('${BackgroundImg}') no-repeat #212121`,
-		backgroundPosition: 'center',
-		backgroundSize: 'cover',
+		background: `url('${BackgroundImg}')  #212121`,
+		// backgroundPosition: 'center',
+		// backgroundSize: 'cover',
 		// backgroundColor: '#fff',
 	},
 	outterDiv: {
@@ -73,11 +73,44 @@ function SignIn() {
 	const classes = useStyles();
 	const [usernameLog, SetUsernameLog] = useState('');
 	const [passwordLog, SetPasswordLog] = useState('');
+	const [loginStatus, SetLoginStatus] = useState('Sign In');
 
-	// const Login = () => {
-	// 	Axios.get('http://localhost:3000/users/');
-	// };
+	const config = {
+		headers: {
+			// 'Access-Control-Allow-Origin': '*',
+			// 'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+			'content-type': 'application/x-www-form-urlencoded;charset=utf-8',
+		},
+	};
 
+	const data = qs.stringify({
+		email: usernameLog,
+		password: passwordLog,
+	});
+
+	const Login = () => {
+		axios({
+			method: 'Post',
+			url: 'http://localhost:3000/users/login',
+			data,
+			config,
+		})
+			.then((response) => {
+				if (response.data.user[0]) {
+					SetLoginStatus(`welcome ${response.data.user[0].name}`);
+					console.log('User found');
+				} else {
+					SetLoginStatus(`Oops! Wrong Username/Password`);
+					console.log('User Not Exist');
+				}
+
+				console.log(response);
+			})
+			.catch((err) => {
+				console.log(err);
+				console.log('error');
+			});
+	};
 	return (
 		<>
 			<CssBaseline />
@@ -94,12 +127,19 @@ function SignIn() {
 						gutterBottom>
 						A world of great photo contests and awards, in one place
 					</Typography>
-					<Typography
+					{/* <Typography
 						component="h1"
 						variant="h5"
 						className={classes.SectionHeading}
 						gutterBottom>
 						~Sign in Now
+					</Typography> */}
+					<Typography
+						component="h1"
+						variant="h5"
+						className={classes.SectionHeading}
+						gutterBottom>
+						{` ${loginStatus}`}
 					</Typography>
 				</Container>
 
@@ -128,7 +168,6 @@ function SignIn() {
 									autoFocus
 									onChange={(e) => {
 										SetUsernameLog(e.target.value);
-										console.log(e.target.value);
 									}}
 								/>
 								<TextField
@@ -143,23 +182,14 @@ function SignIn() {
 									autoComplete="current-password"
 									onChange={(e) => {
 										SetPasswordLog(e.target.value);
-										console.log(e.target.value);
 									}}
 								/>
-								{/* <FormControlLabel
-									control={
-										<Checkbox
-											value="remember"
-											color="primary"
-										/>
-									}
-									label="Remember me"
-								/> */}
+
 								<Button
-									type="submit"
 									fullWidth
 									variant="contained"
 									color="primary"
+									onClick={Login}
 									className={classes.submit}>
 									Sign In
 								</Button>

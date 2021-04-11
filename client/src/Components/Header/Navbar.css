@@ -19,7 +19,9 @@ body {
 }
 
 .nav {
-	background-color: #212121;
+	/* background-color: #212121; */
+	background: url('https://cdn.fs.teachablecdn.com/RD4lJ0jZTq6k6zfSQ8de')
+		fixed;
 	color: #fff;
 	transition: all 0.5s ease;
 	font-size: 12px;
@@ -38,7 +40,7 @@ body {
 	transition-timing-function: cubic-bezier(0.78, 0.13, 0.15, 0.86);
 	-webkit-transition-duration: 0.3s;
 	transition-duration: 0.3s;
-	height: 15vh;
+	height: 12vh;
 	/*max-height: auto; */
 }
 .nav .brand {
@@ -265,13 +267,13 @@ body {
 
 /* btnss */
 
-.button-wrapper {
+/* .button-wrapper {
 	height: 100%;
 	width: 100%;
 	display: flex;
 	justify-content: center;
 	align-items: center;
-}
+} */
 
 button.modalButton {
 	margin: 0 -10px;
@@ -289,9 +291,12 @@ button.modalButton.join-btn {
 	background: #2e8b57;
 }
 
-button.modalButton.Sign-btn {
-	background-color: transparent;
-	border: 1px solid grey;
+.Sign-btn {
+	/* background-color: transparent; */
+	/* border: 1px solid grey; */
+	text-transform: none;
+	font-size: 22px;
+	font-family: 'Roboto';
 }
 .fa-facebook {
 	padding: 10px 14px;

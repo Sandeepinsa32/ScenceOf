@@ -46,7 +46,7 @@ function Navbar() {
 							<Link to="/404">Services</Link>
 						</li>
 						<li>
-							<Link to="/404">Contact</Link>
+							<Link to="/calendar">Calendar</Link>
 						</li>
 
 						<li
@@ -81,13 +81,11 @@ function Navbar() {
 						</li>
 
 						<li>
-							<div class="button-wrapper">
-								<Link to="/login">
-									<button class="modalButton Sign-btn  ">
-										Sign In
-									</button>
-								</Link>
-							</div>
+							{/* <div class="button-wrapper"> */}
+							<Link to="/login" class="modalButton Sign-btn  ">
+								Sign in
+							</Link>
+							{/* </div> */}
 						</li>
 
 						<li>
