@@ -10,7 +10,7 @@ const BackgroundImg = 'https://cdn.fs.teachablecdn.com/RD4lJ0jZTq6k6zfSQ8de';
 
 const useStyles = makeStyles((theme) => ({
 	footerMainDiv: {
-		maxHeight: '60vh',
+		// Height: '60vh',
 		background: `url('${BackgroundImg}')  #212121`,
 		marginTop: '10vh',
 		color: '#FFF',
@@ -25,44 +25,46 @@ function Footer() {
 	return (
 		<>
 			<CssBaseline />
-			<footer className={classes.footerMainDiv}>
-				<Typography
-					variant="h6"
-					align="center"
-					className={classes.footerText}
-					gutterBottom>
-					Follow Us On
-				</Typography>
+			<div>
+				<footer className={classes.footerMainDiv}>
+					<Typography
+						variant="h6"
+						align="center"
+						className={classes.footerText}
+						gutterBottom>
+						Follow Us On
+					</Typography>
 
-				<Grid spacing={2} align="center">
-					<Grid item>
-						<FacebookIcon className={classes.footerText} />
-						<InstagramIcon className={classes.footerText} />
-						<TwitterIcon className={classes.footerText} />
+					<Grid spacing={2} align="center">
+						<Grid item>
+							<FacebookIcon className={classes.footerText} />
+							<InstagramIcon className={classes.footerText} />
+							<TwitterIcon className={classes.footerText} />
+						</Grid>
 					</Grid>
-				</Grid>
 
-				<Typography
-					variant="subtitle1"
-					align="center"
-					color="textSecondary"
-					component="p"
-					className={classes.footerText}>
-					Something here to give the footer a purpose!
-				</Typography>
-				<Typography
-					variant="body2"
-					color="textSecondary"
-					className={classes.footerText}
-					align="center">
-					{'Copyright © '}
-					<Link color="inherit" href="https://material-ui.com/">
-						ScenesOfNewEngland.Com
-					</Link>{' '}
-					{new Date().getFullYear()}
-					{'.'}
-				</Typography>
-			</footer>
+					<Typography
+						variant="subtitle1"
+						align="center"
+						color="textSecondary"
+						component="p"
+						className={classes.footerText}>
+						Something here to give the footer a purpose!
+					</Typography>
+					<Typography
+						variant="body2"
+						color="textSecondary"
+						className={classes.footerText}
+						align="center">
+						{'Copyright © '}
+						<Link color="inherit" href="https://material-ui.com/">
+							ScenesOfNewEngland.Com
+						</Link>{' '}
+						{new Date().getFullYear()}
+						{'.'}
+					</Typography>
+				</footer>
+			</div>
 		</>
 	);
 }

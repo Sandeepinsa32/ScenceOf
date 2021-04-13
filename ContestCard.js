@@ -35,13 +35,11 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-const NoOfCards = [1, 2, 3, 4, 5, 6];
-
-const ContestCardImg =
-	'https://static.photocrowd.com/photos/3254787-f3ee9574acbd976f72f925c00cc96a91ed06132a-h810.jpeg';
-
 function ContestCard(props) {
 	const classes = useStyles();
+	// console.log(props.data);
+	const contextList = props.data;
+	// console.log(contextList[0].name);
 	return (
 		<>
 			<CssBaseline />
@@ -55,12 +53,12 @@ function ContestCard(props) {
 				</Grid>
 
 				<Grid md={12}>
-					{props.numOfCards.map((figure) => (
+					{contextList.map((figure) => (
 						<figure className="snip1584" key={figure}>
-							<img alt="card" src={ContestCardImg} />
+							<img alt="card" src={figure.image} />
 							<figcaption>
-								<h3>Contest title</h3>
-								<h5>Sponsers</h5>
+								<h3>{figure.name}</h3>
+								<h5>{figure.sponser}</h5>
 								{/* <a href="#"></a> */}
 							</figcaption>
 						</figure>

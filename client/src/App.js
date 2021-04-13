@@ -8,6 +8,9 @@ import SignUp from './SignUp';
 import AboutUs from './AboutUs';
 import NotFound from './Notfound';
 import NewCalendar from './Components/NewCalendar';
+import Contest from './Contest';
+import Blog from './blog';
+import Portfolio from './Portfolio';
 
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
@@ -17,23 +20,40 @@ function App() {
 			<Router>
 				<Navbar style={{ marginBottom: '10vh' }} />
 				<Switch>
-					<Route path="/calendar" exact>
-						<NewCalendar />
-					</Route>
 					<Route path="/" exact>
 						<Homepage />
 					</Route>
+
+					<Route path="/calendar" exact>
+						<NewCalendar />
+					</Route>
+
+					<Route path="/active-contest" exact>
+						<Contest />
+					</Route>
+
 					<Route path="/about-us" exact>
 						<AboutUs />
 					</Route>
-					<Route path="/404" exact>
-						<NotFound />
+
+					<Route path="/blog" exact>
+						<Blog />
 					</Route>
+
+					<Route path="/portfolio" exact>
+						<Portfolio />
+					</Route>
+
 					<Route path="/join" exact>
 						<SignUp />
 					</Route>
+
 					<Route path="/login" exact>
 						<SignIn />
+					</Route>
+
+					<Route path="/404" exact>
+						<NotFound />
 					</Route>
 				</Switch>
 			</Router>

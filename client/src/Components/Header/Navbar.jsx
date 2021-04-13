@@ -1,11 +1,22 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import './Navbar.css';
+import { makeStyles } from '@material-ui/core/styles';
 
 const logoImg =
 	'https://whatpageareyouon.com/scenesof/wp-content/uploads/2020/07/logo.png';
+
+const useStyles = makeStyles((theme) => ({
+	activeLink: {
+		color: '#3dad4b !important',
+		borderBottom: ' 1px solid #3dad4b !important',
+		fontWeight: '600',
+	},
+}));
+
 function Navbar() {
+	const classes = useStyles();
 	const [isActive, setActive] = useState('false');
 	const [isDisplay, setDisplay] = useState('false');
 
@@ -37,16 +48,53 @@ function Navbar() {
 				<div className="narrowLinks">
 					<ul class="navbar">
 						<li>
-							<Link to="/">Home</Link>
+							<NavLink
+								to="/"
+								exact
+								activeClassName={classes.activeLink}>
+								Home
+							</NavLink>
+						</li>
+
+						<li>
+							<NavLink
+								to="/calendar"
+								exact
+								activeClassName={classes.activeLink}>
+								Calendar
+							</NavLink>
 						</li>
 						<li>
-							<Link to="/about-us">About</Link>
+							<NavLink
+								to="/active-contest"
+								exact
+								activeClassName={classes.activeLink}>
+								Contest
+							</NavLink>
 						</li>
 						<li>
-							<Link to="/404">Services</Link>
+							<NavLink
+								to="/about-us"
+								exact
+								activeClassName={classes.activeLink}>
+								About
+							</NavLink>
 						</li>
 						<li>
-							<Link to="/calendar">Calendar</Link>
+							<NavLink
+								to="/blog"
+								exact
+								activeClassName={classes.activeLink}>
+								Blog
+							</NavLink>
+						</li>
+						<li>
+							<NavLink
+								to="/portfolio"
+								exact
+								activeClassName={classes.activeLink}>
+								Portfolio
+							</NavLink>
 						</li>
 
 						<li
@@ -58,45 +106,49 @@ function Navbar() {
 							class={`Social-icons ${
 								isDisplay ? '' : 'display'
 							}`}>
-							<Link to="/404" class="social-icon">
+							<NavLink to="/404" class="social-icon">
 								<i class="fa fa-facebook"></i>
-							</Link>
+							</NavLink>
 						</li>
 						<li
 							class={`Social-icons ${
 								isDisplay ? '' : 'display'
 							}`}>
-							<Link to="/404" class="social-icon">
+							<NavLink to="/404" class="social-icon">
 								<i class="fa fa-twitter"></i>
-							</Link>
+							</NavLink>
 						</li>
 
 						<li
 							class={`Social-icons ${
 								isDisplay ? '' : 'display'
 							}`}>
-							<Link to="/404" class="social-icon">
+							<NavLink to="/404" class="social-icon">
 								<i class="fa fa-linkedin"></i>
-							</Link>
+							</NavLink>
 						</li>
 
 						<li>
 							{/* <div class="button-wrapper"> */}
-							<Link to="/login" class="modalButton Sign-btn  ">
+							<NavLink
+								to="/login"
+								exact
+								activeClassName={classes.activeLink}
+								class="modalButton Sign-btn ">
 								Sign in
-							</Link>
+							</NavLink>
 							{/* </div> */}
 						</li>
 
 						<li>
 							<div class="button-wrapper">
-								<Link to="/join">
+								<NavLink to="/join" exact>
 									<button
 										class="modalButton join-btn"
 										data-popup="accept">
 										Join
 									</button>
-								</Link>
+								</NavLink>
 							</div>
 						</li>
 					</ul>
