@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import { CssBaseline } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -9,20 +10,17 @@ import OldNavbar from './Components/others/oldNavbar';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import ContestCard from './Components/Cards/ContestCard';
-// import Slider from 'infinite-react-carousel';
 
-const BackgroundImg = 'https://cdn.fs.teachablecdn.com/RD4lJ0jZTq6k6zfSQ8de';
+// const BackgroundImg = 'https://cdn.fs.teachablecdn.com/RD4lJ0jZTq6k6zfSQ8de';
 
 const useStyles = makeStyles((theme) => ({
 	mainDiv: {
 		minHeight: '100vh',
 		padding: '1px 0px',
-		// marginTop: '15vh',
-		// background: `url('${BackgroundImg}')   #fff`,
 	},
 }));
 const numOfCards = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
-// console.clear();
+
 function Homepage() {
 	const classes = useStyles();
 
@@ -62,36 +60,72 @@ function Homepage() {
 }
 
 function Sponsored() {
+	const [contest, setContest] = useState([]);
+	useEffect(() => {
+		axios
+			.get('http://localhost:3000/contest/limit?limit=10&start=0')
+			.then((res) => {
+				const alldata = res.data;
+				setContest(alldata);
+			});
+	}, []);
 	return (
 		<>
 			<h2>Sponsored ONe!!</h2>
-			<ContestCard numOfCards={numOfCards} />
+			<ContestCard numOfCards={numOfCards} data={contest} />
 		</>
 	);
 }
 function AllCard() {
+	const [contest, setContest] = useState([]);
+	useEffect(() => {
+		axios
+			.get('http://localhost:3000/contest/limit?limit=10&start=0')
+			.then((res) => {
+				const alldata = res.data;
+				setContest(alldata);
+			});
+	}, []);
 	return (
 		<>
 			<h2>All ONe!!</h2>
-			<ContestCard numOfCards={numOfCards} />
+			<ContestCard numOfCards={numOfCards} data={contest} />
 		</>
 	);
 }
 
 function Free() {
+	const [contest, setContest] = useState([]);
+	useEffect(() => {
+		axios
+			.get('http://localhost:3000/contest/limit?limit=10&start=0')
+			.then((res) => {
+				const alldata = res.data;
+				setContest(alldata);
+			});
+	}, []);
 	return (
 		<>
 			<h2>Free ONe!!</h2>
-			<ContestCard numOfCards={numOfCards} />
+			<ContestCard numOfCards={numOfCards} data={contest} />
 		</>
 	);
 }
 
 function Premium() {
+	const [contest, setContest] = useState([]);
+	useEffect(() => {
+		axios
+			.get('http://localhost:3000/contest/limit?limit=10&start=0')
+			.then((res) => {
+				const alldata = res.data;
+				setContest(alldata);
+			});
+	}, []);
 	return (
 		<>
 			<h2>Premium ONe!!</h2>
-			<ContestCard numOfCards={numOfCards} />
+			<ContestCard numOfCards={numOfCards} data={contest} />
 		</>
 	);
 }
