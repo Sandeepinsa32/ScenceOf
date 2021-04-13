@@ -81,6 +81,12 @@ const useStyles = makeStyles((theme) => ({
 
 function SignIn() {
 	const classes = useStyles();
+
+	const [usernameLog, SetUsernameLog] = useState('');
+	const [passwordLog, SetPasswordLog] = useState('');
+
+	const history = useHistory();
+
 	const [values, setValues] = useState({
 		amount: '',
 		password: '',
@@ -93,15 +99,12 @@ function SignIn() {
 	};
 	const handleChange = (prop) => (event) => {
 		setValues({ ...values, [prop]: event.target.value });
+		SetPasswordLog(event.target.value);
 	};
 
 	const handleClickShowPassword = () => {
 		setValues({ ...values, showPassword: !values.showPassword });
 	};
-	const [usernameLog, SetUsernameLog] = useState('');
-	const [passwordLog, SetPasswordLog] = useState('');
-
-	const history = useHistory();
 
 	const Login = () => {
 		axios({
@@ -119,7 +122,7 @@ function SignIn() {
 			.then((response) => {
 				console.log(response);
 				alert(response.data.msg);
-				if ('Login Success' == response.data.msg) {
+				if ('Login Success' === response.data.msg) {
 					history.push('/');
 				}
 			})
@@ -170,9 +173,7 @@ function SignIn() {
 								margin="normal"
 								required
 								fullWidth
-								id="email"
-								label="Email Address"
-								name="email"
+								label="Enter Username"
 								autoComplete="email"
 								autoFocus
 								onChange={(e) => {
@@ -189,17 +190,13 @@ function SignIn() {
 									fullWidth
 									label="Password"
 									id="standard-adornment-password"
-									onChange={(e) => {
-										handleChange('password');
-										SetPasswordLog(e.target.value);
-									}}
+									onChange={handleChange('password')}
 									type={
 										values.showPassword
 											? 'text'
 											: 'password'
 									}
 									value={values.password}
-									// onChange={handleChange('password')}
 									endAdornment={
 										<InputAdornment position="end">
 											<IconButton

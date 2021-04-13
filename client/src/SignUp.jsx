@@ -237,18 +237,6 @@ function SignUp() {
 									</Grid>
 
 									<Grid item xs={12}>
-										{/* 	<TextField
-											variant="outlined"
-											required
-											fullWidth
-											name="password"
-											label="Password"
-											type="password"
-											
-											}
-											id="password"
-											autoComplete="current-password"
-										/> */}
 										<FormControl style={{ width: '100%' }}>
 											<InputLabel htmlFor="standard-adornment-password">
 												Password
