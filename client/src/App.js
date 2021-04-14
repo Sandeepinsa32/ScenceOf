@@ -11,6 +11,7 @@ import NewCalendar from './Components/NewCalendar';
 import Contest from './Contest';
 import Blog from './blog';
 import Portfolio from './Portfolio';
+import EnterContest from './EnterContest';
 
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
@@ -54,6 +55,9 @@ function App() {
 
 					<Route path="/404" exact>
 						<NotFound />
+					</Route>
+					<Route path="/enter-a-contest" exact>
+						<EnterContest />
 					</Route>
 				</Switch>
 			</Router>
