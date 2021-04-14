@@ -1,15 +1,9 @@
 import React from 'react';
-import {
-	CssBaseline,
-	Container,
-	Grid,
-	IconButton,
-	Typography,
-	Button,
-} from '@material-ui/core';
+import { CssBaseline, Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import PhotoCamera from '@material-ui/icons/PhotoCamera';
-
+//Import diff components
+import Navbar from './Components/Header/Navbar';
 const BackgroundImg = '';
 // 'https://images.unsplash.com/photo-1564475228765-f0c3292f2dec?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1956&q=80';
 
@@ -31,6 +25,7 @@ function EnterContest(props) {
 	return (
 		<>
 			<CssBaseline />
+			<Navbar />
 			<div maxWidth="md" className={classes.mainDiv}>
 				<div
 					style={{ marginTop: '12vh', height: '100%' }}

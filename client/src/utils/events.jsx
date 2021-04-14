@@ -2,7 +2,7 @@ const now = new Date();
 
 //(year, MONTH[0-11], day ,hour, min, Sec , milli-Sec )
 
-export default [
+const events = [
 	{
 		id: 0,
 		title: 'All Day Event very long title',
@@ -180,3 +180,4 @@ export default [
 		end: new Date(2021, 3, 14, 20, 0, 0),
 	},
 ];
+export default events;

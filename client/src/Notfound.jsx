@@ -2,7 +2,8 @@ import React from 'react';
 import { CssBaseline } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import Footer from './Components/Footer/Footer';
-import './Notfound.css';
+import Navbar from './Components/Header/Navbar';
+import './css/Notfound.css';
 const BackgroundImg = '';
 // 'https://images.unsplash.com/photo-1564475228765-f0c3292f2dec?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1956&q=80';
 
@@ -21,13 +22,13 @@ function NotFound() {
 	return (
 		<>
 			<CssBaseline />
-			{/* <Navbar /> */}
+			<Navbar />
 
 			<main>
 				<div maxWidth="md" className={classes.mainDiv}>
 					<div id="main">
 						<div class="fof">
-							<h1>Coming soon...</h1>
+							<h1> Oops! Wrong URL...</h1>
 						</div>
 					</div>
 				</div>

@@ -5,7 +5,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import axios from 'axios';
 
 //Import diff components
-// import Navbar from './Components/Header/Navbar';
+import Navbar from './Components/Header/Navbar';
 import ContentSection from './Components/Header/ContentSection';
 import ContestCard from './Components/Cards/ContestCard';
 import WinnerCards from './Components/Cards/WinnerCards';
@@ -42,7 +42,7 @@ function Homepage() {
 	return (
 		<>
 			<CssBaseline />
-			{/* <Navbar /> */}
+			<Navbar />
 
 			<main>
 				<div maxWidth="md" className={classes.mainDiv}>

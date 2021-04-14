@@ -1,10 +1,10 @@
 import React from 'react';
 import { CssBaseline } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import Footer from './Footer/Footer';
+import Footer from './Components/Footer/Footer';
 import { Calendar, Views, momentLocalizer } from 'react-big-calendar';
-import events from '../events';
-// import Navbar from './Header/Navbar';
+import events from './utils/events';
+import Navbar from './Components/Header/Navbar';
 import moment from 'moment';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 
@@ -41,7 +41,7 @@ function NewCalendar() {
 	return (
 		<>
 			<CssBaseline />
-			{/* <Navbar /> */}
+			<Navbar />
 			<div className={classes.mainDiv}>
 				<Calendar
 					events={events}

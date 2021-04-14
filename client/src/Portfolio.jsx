@@ -3,9 +3,9 @@ import { CssBaseline } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 //Import diff components
-// import Navbar from './Components/Header/Navbar';
+import Navbar from './Components/Header/Navbar';
 import Footer from './Components/Footer/Footer';
-import Imageapi from './Imageapi';
+import Imageapi from './utils/Imageapi';
 import Gallery from 'react-grid-gallery';
 
 const BackgroundImg = 'https://cdn.fs.teachablecdn.com/RD4lJ0jZTq6k6zfSQ8de';
@@ -25,7 +25,7 @@ function Portfolio() {
 	return (
 		<>
 			<CssBaseline />
-			{/* <Navbar /> */}
+			<Navbar />
 			<main maxWidth="md" className={classes.mainDiv}>
 				<div
 					style={{ marginTop: '12vh', height: '100%' }}

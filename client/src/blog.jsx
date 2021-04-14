@@ -1,12 +1,12 @@
 import React from 'react';
 import { CssBaseline, Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import './Blog.css';
+import './css/Blog.css';
 //Import diff components
-// import Navbar from './Components/Header/Navbar';
+import Navbar from './Components/Header/Navbar';
 import Footer from './Components/Footer/Footer';
 
-const BackgroundImg = 'https://cdn.fs.teachablecdn.com/RD4lJ0jZTq6k6zfSQ8de';
+// const BackgroundImg = 'https://cdn.fs.teachablecdn.com/RD4lJ0jZTq6k6zfSQ8de';
 
 const useStyles = makeStyles((theme) => ({
 	mainDiv: {
@@ -89,7 +89,7 @@ function Blog() {
 	return (
 		<>
 			<CssBaseline />
-			{/* <Navbar /> */}
+			<Navbar />
 			<main className={classes.mainDiv}>
 				<div maxWidth="md" className="site-main">
 					<BlogPost />
@@ -100,7 +100,6 @@ function Blog() {
 		</>
 	);
 }
-console.log(BlogDesc[0].imgSrc);
 function BlogPost(props) {
 	return (
 		<>

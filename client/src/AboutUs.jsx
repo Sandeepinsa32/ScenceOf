@@ -3,7 +3,7 @@ import { CssBaseline, Grid, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 //Import diff components
-// import Navbar from './Components/Header/Navbar';
+import Navbar from './Components/Header/Navbar';
 import Footer from './Components/Footer/Footer';
 
 const BackgroundImg = './png/Bg_black.gif';
@@ -71,7 +71,7 @@ function AboutUs() {
 	return (
 		<>
 			<CssBaseline />
-			{/* <Navbar /> */}
+			<Navbar />
 
 			<main>
 				<div maxWidth="md" className={classes.mainDiv}>

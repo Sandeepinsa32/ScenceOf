@@ -4,6 +4,8 @@ import { NavLink } from 'react-router-dom';
 import './Navbar.css';
 import { makeStyles } from '@material-ui/core/styles';
 
+import { useHistory } from 'react-router-dom';
+
 const logoImg =
 	'https://whatpageareyouon.com/scenesof/wp-content/uploads/2020/07/logo.png';
 
@@ -12,6 +14,10 @@ const useStyles = makeStyles((theme) => ({
 		color: '#3dad4b !important',
 		borderBottom: ' 1px solid #3dad4b !important',
 		fontWeight: '600',
+		'&:hover': {
+			textDecoration: 'none',
+			cursor: 'pointer',
+		},
 	},
 }));
 
@@ -20,24 +26,37 @@ function Navbar() {
 	const [isActive, setActive] = useState('false');
 	const [isDisplay, setDisplay] = useState('false');
 
+	const history = useHistory();
+
 	const handleToggle = () => {
 		setActive(!isActive);
 	};
 	const DisplayToggle = () => {
 		setDisplay(!isDisplay);
 	};
+
+	const loggedInUser = localStorage.getItem('user');
+	const Username = localStorage.getItem('username');
+	// const login = localStorage.getItem('IsUserAuth');
+	// console.log(login);
+	const [auth, setAuth] = useState(loggedInUser);
+
+	// const [isLogin, setIsLogin] = useState(false);
+
+	// if (login === 'success') {
+	// }
 	return (
 		<>
-			<nav class={`nav ${isActive ? '' : 'open'}`}>
-				<button class="menu">
+			<nav className={`nav ${isActive ? '' : 'open'}`}>
+				<button className="menu">
 					<i
-						class="hamburger"
+						className="hamburger"
 						onClick={() => {
 							burgerToggle();
 							handleToggle();
 						}}></i>
 				</button>
-				<div class="brand">
+				<div className="brand">
 					<img
 						src={logoImg}
 						alt="image_logo"
@@ -46,7 +65,7 @@ function Navbar() {
 					{/* <a href="#">Brand</a> */}
 				</div>
 				<div className="narrowLinks">
-					<ul class="navbar">
+					<ul className="navbar">
 						<li>
 							<NavLink
 								to="/"
@@ -103,54 +122,76 @@ function Navbar() {
 							<a href="_blank">Follow us on</a>
 						</li>
 						<li
-							class={`Social-icons ${
+							className={`Social-icons ${
 								isDisplay ? '' : 'display'
 							}`}>
-							<NavLink to="/404" class="social-icon">
-								<i class="fa fa-facebook"></i>
+							<NavLink to="/404" className="social-icon">
+								<i className="fa fa-facebook"></i>
 							</NavLink>
 						</li>
 						<li
-							class={`Social-icons ${
+							className={`Social-icons ${
 								isDisplay ? '' : 'display'
 							}`}>
-							<NavLink to="/404" class="social-icon">
-								<i class="fa fa-twitter"></i>
+							<NavLink to="/404" className="social-icon">
+								<i className="fa fa-twitter"></i>
 							</NavLink>
 						</li>
 
 						<li
-							class={`Social-icons ${
+							className={`Social-icons ${
 								isDisplay ? '' : 'display'
 							}`}>
-							<NavLink to="/404" class="social-icon">
-								<i class="fa fa-linkedin"></i>
+							<NavLink to="/404" className="social-icon">
+								<i className="fa fa-linkedin"></i>
 							</NavLink>
 						</li>
-
-						<li>
-							{/* <div class="button-wrapper"> */}
-							<NavLink
-								to="/login"
-								exact
-								activeClassName={classes.activeLink}
-								class="modalButton Sign-btn ">
-								Sign in
-							</NavLink>
-							{/* </div> */}
-						</li>
-
-						<li>
-							<div class="button-wrapper">
-								<NavLink to="/join" exact>
-									<button
-										class="modalButton join-btn"
-										data-popup="accept">
-										Join
-									</button>
+						{!auth && (
+							<li>
+								{/* <div className="button-wrapper"> */}
+								<NavLink
+									to="/login"
+									exact
+									activeClassName={classes.activeLink}
+									className="modalButton Sign-btn ">
+									Sign in
 								</NavLink>
-							</div>
-						</li>
+								{/* </div> */}
+							</li>
+						)}
+						{!auth && (
+							<li>
+								<div className="button-wrapper">
+									<NavLink to="/join" exact>
+										<button
+											className="modalButton join-btn"
+											data-popup="accept">
+											Join
+										</button>
+									</NavLink>
+								</div>
+							</li>
+						)}
+						{auth && <li>{Username}</li>}
+						{auth && (
+							<li>
+								<div className="button-wrapper">
+									<button
+										className="modalButton join-btn"
+										data-popup="accept"
+										onClick={() => {
+											setAuth(
+												localStorage.removeItem('user')
+											);
+											// setIsLogin(true);
+											// setIsLogin(false);
+											history.push('/login');
+										}}>
+										LogOut
+									</button>
+								</div>
+							</li>
+						)}
 					</ul>
 				</div>
 			</nav>

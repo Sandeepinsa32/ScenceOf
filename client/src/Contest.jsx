@@ -4,7 +4,7 @@ import { CssBaseline } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 //Import diff components
-// import Navbar from './Components/Header/Navbar';
+import Navbar from './Components/Header/Navbar';
 import Footer from './Components/Footer/Footer';
 import OldNavbar from './Components/others/oldNavbar';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
@@ -26,7 +26,7 @@ function Homepage() {
 	return (
 		<>
 			<CssBaseline />
-			{/* <Navbar /> */}
+			<Navbar />
 			<main maxWidth="md" className={classes.mainDiv}>
 				<div style={{ marginTop: '12vh' }} maxWidth="md">
 					<Router>
@@ -58,23 +58,6 @@ function Homepage() {
 	);
 }
 
-function Sponsored() {
-	const [contest, setContest] = useState([]);
-	useEffect(() => {
-		axios
-			.get('http://localhost:3000/contest/sponsored?limit=10&start=0')
-			.then((res) => {
-				const alldata = res.data;
-				setContest(alldata);
-			});
-	}, []);
-	return (
-		<>
-			<h2>Sponsored ONe!!</h2>
-			<ContestCard data={contest} />
-		</>
-	);
-}
 function AllCard() {
 	const [contest, setContest] = useState([]);
 	useEffect(() => {
@@ -92,7 +75,6 @@ function AllCard() {
 		</>
 	);
 }
-
 function Free() {
 	const [contest, setContest] = useState([]);
 	useEffect(() => {
@@ -110,7 +92,6 @@ function Free() {
 		</>
 	);
 }
-
 function Premium() {
 	const [contest, setContest] = useState([]);
 	useEffect(() => {
@@ -124,6 +105,23 @@ function Premium() {
 	return (
 		<>
 			<h2>Premium ONe!!</h2>
+			<ContestCard data={contest} />
+		</>
+	);
+}
+function Sponsored() {
+	const [contest, setContest] = useState([]);
+	useEffect(() => {
+		axios
+			.get('http://localhost:3000/contest/sponsored?limit=10&start=0')
+			.then((res) => {
+				const alldata = res.data;
+				setContest(alldata);
+			});
+	}, []);
+	return (
+		<>
+			<h2>Sponsored ONe!!</h2>
 			<ContestCard data={contest} />
 		</>
 	);

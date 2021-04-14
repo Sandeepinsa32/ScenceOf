@@ -55,7 +55,7 @@ router.post('/login', function (req, res, next) {
 	var email = req.body.email;
 	var password = req.body.password;
 
-	var sql = `SELECT * FROM users WHERE email="${email}" AND password="${password}"`;
+	var sql = `SELECT * FROM users WHERE username="${email}" AND password="${password}"`;
 	db.query(sql, function (err, result) {
 		if (err) {
 			res.status(500).send({error: err});
@@ -63,8 +63,9 @@ router.post('/login', function (req, res, next) {
 		if (result.length > 0) {
 			req.session.loggedin = true;
 			req.session.username = email;
-			// console.log(req.session.username);
-			res.json({status: 'success', user: email, msg: 'Login Success'});
+			console.log(req.session.username);
+
+			res.json({token: req.session.loggedin, status: 'success', user: email, msg: 'Login Success'});
 		} else {
 			res.json({status: 'success', msg: 'Incorrect Username and/or Password!'});
 		}

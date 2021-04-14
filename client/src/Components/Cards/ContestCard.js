@@ -55,7 +55,7 @@ function ContestCard(props) {
 
 				<Grid md={12}>
 					{contextList.map((figure) => (
-						<figure className="snip1584" key={figure}>
+						<figure className="snip1584" key={figure.name}>
 							<img alt="card" src={figure.image} />
 							<figcaption>
 								<h3>{figure.name}</h3>

@@ -23,7 +23,7 @@ import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 
 //Import diff components
-// import Navbar from './Components/Header/Navbar';
+import Navbar from './Components/Header/Navbar';
 const BackgroundImg =
 	'https://static.photocrowd.com/img/registration_bg_2019.jpg';
 //'https://images.unsplash.com/photo-1564475228765-f0c3292f2dec?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1956&q=80';
@@ -123,6 +123,9 @@ function SignIn() {
 				console.log(response);
 				alert(response.data.msg);
 				if ('Login Success' === response.data.msg) {
+					console.log(response.data);
+					localStorage.setItem('user', true);
+					localStorage.setItem('username', response.data.user);
 					history.push('/');
 				}
 			})
@@ -135,7 +138,7 @@ function SignIn() {
 		<>
 			<CssBaseline />
 			{/* header */}
-			{/* <Navbar /> */}
+			<Navbar />
 			<main className={classes.mainDiv}>
 				<Container component="div" className={classes.innerDiv}>
 					<Typography

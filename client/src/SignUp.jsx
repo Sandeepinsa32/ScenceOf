@@ -22,7 +22,7 @@ import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 
 //Import diff components
-// import Navbar from './Components/Header/Navbar';
+import Navbar from './Components/Header/Navbar';
 
 const BackgroundImg =
 	'https://static.photocrowd.com/img/registration_bg_2019.jpg';
@@ -89,6 +89,7 @@ function SignUp() {
 	});
 
 	const handleMouseDownPassword = (event) => {
+		console.log('prevnet defaulst');
 		event.preventDefault();
 	};
 	const handleChange = (prop) => (event) => {
@@ -111,7 +112,7 @@ function SignUp() {
 	const [emailReg, SetEmailReg] = useState();
 	const [passwordReg, SetPasswordReg] = useState();
 
-	const Register = () => {
+	const Register = (e) => {
 		axios({
 			method: 'post',
 			url: 'http://localhost:3000/users/create',
@@ -133,14 +134,14 @@ function SignUp() {
 			.catch((err) => {
 				console.log(err);
 			});
-		handleMouseDownPassword();
+		e.preventDefault();
 	};
 
 	return (
 		<>
 			<CssBaseline />
 			{/* header */}
-			{/* <Navbar /> */}
+			<Navbar />
 			<main className={classes.mainDiv}>
 				<Container component="div" className={classes.innerDiv}>
 					<Typography

@@ -2,24 +2,26 @@ import React from 'react';
 
 //Import diff components
 import Homepage from './Homepage';
-import Navbar from './Components/Header/Navbar';
+// import Navbar from './Components/Header/Navbar';
 import SignIn from './SignIn';
 import SignUp from './SignUp';
 import AboutUs from './AboutUs';
 import NotFound from './Notfound';
-import NewCalendar from './Components/NewCalendar';
+import NewCalendar from './NewCalendar';
 import Contest from './Contest';
 import Blog from './blog';
 import Portfolio from './Portfolio';
 import EnterContest from './EnterContest';
 
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-
+console.clear();
 function App() {
+	// const [token, setToken] = useState('');
+
 	return (
 		<>
 			<Router>
-				<Navbar style={{ marginBottom: '10vh' }} />
+				{/* <Navbar style={{ marginBottom: '10vh' }} /> */}
 				<Switch>
 					<Route path="/" exact>
 						<Homepage />
@@ -53,7 +55,7 @@ function App() {
 						<SignIn />
 					</Route>
 
-					<Route path="/404" exact>
+					<Route exact>
 						<NotFound />
 					</Route>
 					<Route path="/enter-a-contest" exact>
