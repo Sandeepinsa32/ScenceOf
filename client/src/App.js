@@ -55,10 +55,10 @@ function App() {
 						<SignIn />
 					</Route>
 
-					<Route exact>
+					{/* <Route exact>
 						<NotFound />
-					</Route>
-					<Route path="/enter-a-contest" exact>
+					</Route> */}
+					<Route path="/contest/enter-a-contest" exact>
 						<EnterContest />
 					</Route>
 				</Switch>

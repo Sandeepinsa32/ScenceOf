@@ -2,6 +2,7 @@ import React from 'react';
 import { CssBaseline, Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import PhotoCamera from '@material-ui/icons/PhotoCamera';
+import UploaderWindow from '@webutils/uploader';
 //Import diff components
 import Navbar from './Components/Header/Navbar';
 const BackgroundImg = '';
@@ -32,16 +33,19 @@ function EnterContest(props) {
 					maxWidth="md">
 					<input
 						accept="image/*"
+						onClick={upload}
 						className={classes.input}
 						id="contained-button-file"
 						multiple
-						type="file"
+						// type="file"
 					/>
 					<label htmlFor="contained-button-file">
 						<Button
 							variant="contained"
 							color="primary"
-							component="span">
+							component="span"
+							// onClick={upload}
+						>
 							<PhotoCamera style={{ margin: '0 5px' }} />
 							Upload
 						</Button>
@@ -50,6 +54,14 @@ function EnterContest(props) {
 			</div>
 		</>
 	);
+}
+
+function upload() {
+	// const UploaderWindow = require('@webutils/uploader');
+
+	UploaderWindow('my-uploader-120')
+		.open()
+		.then((urls) => console.log(urls));
 }
 
 export default EnterContest;

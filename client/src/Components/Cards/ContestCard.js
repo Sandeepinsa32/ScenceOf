@@ -8,7 +8,7 @@ import {
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import './Css/ContestCard.css';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
 	CcOutterDiv: {
@@ -60,7 +60,9 @@ function ContestCard(props) {
 							<figcaption>
 								<h3>{figure.name}</h3>
 								<h5>{figure.sponser}</h5>
-								<Link to="/enter-a-contest"></Link>
+								<NavLink
+									to="/contest/enter-a-contest"
+									exact></NavLink>
 							</figcaption>
 						</figure>
 					))}
@@ -68,13 +70,15 @@ function ContestCard(props) {
 				<div className={classes.CcExploreMoreDiv}>
 					<Grid container spacing={2} justify="center">
 						<Grid item>
-							<Button
-								variant="contained"
-								color="default"
-								size="small"
-								className={classes.CcExploreMoreBtn}>
-								See more open contests
-							</Button>
+							<NavLink to="/active-contest" exact>
+								<Button
+									variant="contained"
+									color="default"
+									size="small"
+									className={classes.CcExploreMoreBtn}>
+									See more open contests
+								</Button>
+							</NavLink>
 						</Grid>
 					</Grid>
 				</div>
