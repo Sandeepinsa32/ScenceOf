@@ -42,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-const NoOfCard = [1, 2, 3];
+const NoOfCard = [1, 2];
 
 function TestimononialCard() {
 	const classes = useStyles();

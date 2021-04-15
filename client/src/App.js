@@ -7,6 +7,7 @@ import SignIn from './SignIn';
 import SignUp from './SignUp';
 import AboutUs from './AboutUs';
 import NotFound from './Notfound';
+import Album from './Components/others/Blog';
 import NewCalendar from './NewCalendar';
 import Contest from './Contest';
 import Blog from './blog';
@@ -54,9 +55,9 @@ function App() {
 					<Route path="/login" exact>
 						<SignIn />
 					</Route>
-
-					{/* <Route exact>
-						<NotFound />
+					{/* 
+					<Route exact>
+						<Album />
 					</Route> */}
 					<Route path="/contest/enter-a-contest" exact>
 						<EnterContest />

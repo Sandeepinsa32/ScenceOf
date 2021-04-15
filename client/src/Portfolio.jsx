@@ -15,6 +15,7 @@ const useStyles = makeStyles((theme) => ({
 		minHeight: '100vh',
 		padding: '1px 0px',
 		// marginTop: '15vh',
+		overflow: 'hidden',
 		background: `url('${BackgroundImg}')  #212121`,
 	},
 }));
