@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import qs from 'qs';
+import axios from 'axios';
 import {
 	Button,
 	Card,
@@ -59,6 +61,30 @@ function EnterContest(props) {
 				setImgsrc(alldata);
 			});
 	}
+
+	const sendInDb = () => {
+		axios({
+			method: 'post',
+			url: 'http://localhost:3000/uploadimg/insert',
+			data: qs.stringify({
+				imgurl: imgsrc,
+				contesdtid: 1,
+				userid: localStorage.getItem('userid'),
+			}),
+			headers: {
+				'content-type':
+					'application/x-www-form-urlencoded;charset=utf-8',
+			},
+		})
+			.then((response) => {
+				console.log(response);
+				alert(response.data.msg);
+			})
+			.catch((err) => {
+				console.log(err);
+			});
+		alert('picture uploaded');
+	};
 
 	return (
 		<>
@@ -124,7 +150,8 @@ function EnterContest(props) {
 											variant="contained"
 											color="default"
 											type="submit"
-											component="span">
+											component="span"
+											onClick={sendInDb}>
 											Submit
 										</Button>
 									</Grid>

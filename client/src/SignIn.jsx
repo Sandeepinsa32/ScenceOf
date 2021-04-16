@@ -126,6 +126,7 @@ function SignIn() {
 					console.log(response.data);
 					localStorage.setItem('user', true);
 					localStorage.setItem('username', response.data.user);
+					localStorage.setItem('userid', response.data.userid);
 					history.push('/');
 				}
 			})
