@@ -3,8 +3,19 @@ import ReactDOM from 'react-dom';
 import { NavLink } from 'react-router-dom';
 import './Navbar.css';
 import { makeStyles } from '@material-ui/core/styles';
-
 import { useHistory } from 'react-router-dom';
+
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import IconButton from '@material-ui/core/IconButton';
+import MenuIcon from '@material-ui/icons/Menu';
+import AccountCircle from '@material-ui/icons/AccountCircle';
+import Switch from '@material-ui/core/Switch';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormGroup from '@material-ui/core/FormGroup';
+import MenuItem from '@material-ui/core/MenuItem';
+import Menu from '@material-ui/core/Menu';
 
 const logoImg =
 	'https://whatpageareyouon.com/scenesof/wp-content/uploads/2020/07/logo.png';
@@ -35,16 +46,35 @@ function Navbar() {
 		setDisplay(!isDisplay);
 	};
 
+	//for user toggle
+	const [auth, setAuth] = React.useState(true);
+	const [anchorEl, setAnchorEl] = React.useState(null);
+	const open = Boolean(anchorEl);
+
+	const handleChange = (event) => {
+		setAuth(event.target.checked);
+	};
+
+	const handleMenu = (event) => {
+		setAnchorEl(event.currentTarget);
+	};
+
+	const handleClose = () => {
+		setAnchorEl(null);
+	};
+	//end of user toggle
+
 	const loggedInUser = localStorage.getItem('user');
 	const Username = localStorage.getItem('username');
 	// const login = localStorage.getItem('IsUserAuth');
 	// console.log(login);
-	const [auth, setAuth] = useState(loggedInUser);
+	// const [auth, setAuth] = useState(loggedInUser);
 
 	// const [isLogin, setIsLogin] = useState(false);
 
 	// if (login === 'success') {
 	// }
+
 	return (
 		<>
 			<nav className={`nav ${isActive ? '' : 'open'}`}>
@@ -146,6 +176,7 @@ function Navbar() {
 								<i className="fa fa-linkedin"></i>
 							</NavLink>
 						</li>
+
 						{!auth && (
 							<li>
 								{/* <div className="button-wrapper"> */}
@@ -172,8 +203,74 @@ function Navbar() {
 								</div>
 							</li>
 						)}
-						{auth && <li>{Username}</li>}
 						{auth && (
+							<li>
+								<div>
+									<IconButton
+										aria-label="account of current user"
+										aria-controls="menu-appbar"
+										aria-haspopup="true"
+										onClick={handleMenu}
+										color="inherit">
+										<AccountCircle />
+									</IconButton>
+									<Menu
+										id="menu-appbar"
+										anchorEl={anchorEl}
+										anchorOrigin={{
+											vertical: 'top',
+											horizontal: 'right',
+										}}
+										// style={{ top: '70px', left: '960px' }}
+										keepMounted
+										transformOrigin={{
+											vertical: 'top',
+											horizontal: 'right',
+										}}
+										open={open}
+										onClose={handleClose}>
+										<MenuItem
+											onClick={handleClose}
+											style={{
+												color: '#2e8b57',
+												textTransform: 'uppercase',
+											}}>
+											hello {Username}
+										</MenuItem>
+										<MenuItem onClick={handleClose}>
+											Profile
+										</MenuItem>
+										<MenuItem onClick={handleClose}>
+											My account
+										</MenuItem>
+										<MenuItem onClick={handleClose}>
+											<li>
+												<div className="button-wrapper">
+													<button
+														className="modalButton join-btn"
+														data-popup="accept"
+														onClick={() => {
+															setAuth(
+																localStorage.removeItem(
+																	'user'
+																)
+															);
+															// setIsLogin(true);
+															// setIsLogin(false);
+															history.push(
+																'/login'
+															);
+														}}>
+														LogOut
+													</button>
+												</div>
+											</li>
+										</MenuItem>
+									</Menu>
+								</div>
+							</li>
+						)}
+						{/* {auth && (
 							<li>
 								<div className="button-wrapper">
 									<button
@@ -191,7 +288,7 @@ function Navbar() {
 									</button>
 								</div>
 							</li>
-						)}
+						)} */}
 					</ul>
 				</div>
 			</nav>

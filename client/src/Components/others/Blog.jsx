@@ -1,126 +1,108 @@
-// import React from 'react';
-// import {
-// 	Button,
-// 	Card,
-// 	CardMedia,
-// 	CssBaseline,
-// 	Typography,
-// 	Container,
-// 	Grid,
-// } from '@material-ui/core';
-// import { makeStyles } from '@material-ui/core/styles';
-// import PhotoCamera from '@material-ui/icons/PhotoCamera';
-// import UploaderWindow from '@webutils/uploader';
+import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import IconButton from '@material-ui/core/IconButton';
+import MenuIcon from '@material-ui/icons/Menu';
+import AccountCircle from '@material-ui/icons/AccountCircle';
+import Switch from '@material-ui/core/Switch';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormGroup from '@material-ui/core/FormGroup';
+import MenuItem from '@material-ui/core/MenuItem';
+import Menu from '@material-ui/core/Menu';
 
-// const BackgroundImg = './png/Bg_black.gif';
-// const useStyles = makeStyles((theme) => ({
-// 	mainDiv: {
-// 		// marginTop: '10vh',
-// 		minHeight: '100vh',
-// 		padding: '25px 40px',
-// 		background: `url('${BackgroundImg}') fixed #EDAE9B`,
-// 		boxShadow: '-1px -12px 7px -12px rgb(0 ,0 ,0.75)',
-// 	},
-// 	heroButtons: {
-// 		marginTop: theme.spacing(4),
-// 	},
-// 	cardGrid: {
-// 		paddingTop: theme.spacing(8),
-// 		paddingBottom: theme.spacing(8),
-// 	},
-// 	input: {
-// 		display: 'none',
-// 	},
-// 	card: {
-// 		height: '100%',
-// 		display: 'flex',
-// 		flexDirection: 'column',
-// 	},
-// 	cardMedia: {
-// 		paddingTop: '56.25%', // 16:9
-// 	},
-// }));
+const useStyles = makeStyles((theme) => ({
+	root: {
+		flexGrow: 1,
+	},
+	menuButton: {
+		marginRight: theme.spacing(2),
+	},
+	title: {
+		flexGrow: 1,
+	},
+}));
 
-// export default function Album() {
-// 	const classes = useStyles();
+export default function MenuAppBar() {
+	const classes = useStyles();
+	const [auth, setAuth] = React.useState(true);
+	const [anchorEl, setAnchorEl] = React.useState(null);
+	const open = Boolean(anchorEl);
 
-// 	return (
-// 		<>
-// 			<CssBaseline />
+	const handleChange = (event) => {
+		setAuth(event.target.checked);
+	};
 
-// 			<main>
-// 				{/* Hero unit */}
-// 				<div className={classes.mainDiv}>
-// 					<Container maxWidth="md">
-// 						<Typography
-// 							component="h3"
-// 							variant="h3"
-// 							align="center"
-// 							color="textPrimary"
-// 							gutterBottom>
-// 							Enter a Contest
-// 						</Typography>
-// 						<Typography
-// 							variant="h5"
-// 							align="center"
-// 							color="textSecondary"
-// 							paragraph>
-// 							Something short and leading about the collection
-// 							below—its contents, the creator, etc. Make it short
-// 							and sweet, but not too short so folks don&apos;t
-// 							simply skip over it entirely.
-// 						</Typography>
-// 						<div className={classes.heroButtons}>
-// 							<Grid container spacing={2} justify="center">
-// 								<Grid item>
-// 									<input
-// 										accept="image/*"
-// 										onClick={upload}
-// 										className={classes.input}
-// 										id="contained-button-file"
-// 										multiple
-// 										// type="file"
-// 									/>
-// 									<label htmlFor="contained-button-file">
-// 										<Button
-// 											variant="contained"
-// 											color="primary"
-// 											component="span"
-// 											// onClick={upload}
-// 										>
-// 											<PhotoCamera
-// 												style={{ margin: '0 5px' }}
-// 											/>
-// 											Upload
-// 										</Button>
-// 									</label>
-// 								</Grid>
-// 							</Grid>
-// 						</div>
-// 					</Container>
-// 				</div>
+	const handleMenu = (event) => {
+		setAnchorEl(event.currentTarget);
+	};
 
-// 				<Container className={classes.cardGrid} maxWidth="md">
-// 					<Grid container>
-// 						<Grid item xs={12} sm={12} md={12}>
-// 							<Card className={classes.card}>
-// 								<CardMedia
-// 									className={classes.cardMedia}
-// 									image="https://source.unsplash.com/random"
-// 									title="Image title"
-// 								/>
-// 							</Card>
-// 						</Grid>
-// 					</Grid>
-// 				</Container>
-// 			</main>
-// 		</>
-// 	);
-// }
-// function upload() {
-// 	// const UploaderWindow = require('@webutils/uploader');
+	const handleClose = () => {
+		setAnchorEl(null);
+	};
 
-// 	UploaderWindow('my-uploader-120')
-// 		.open()
-// 		.then((urls) => console.log(urls));
-// }
+	return (
+		<div className={classes.root}>
+			<FormGroup>
+				<FormControlLabel
+					control={
+						<Switch
+							checked={auth}
+							onChange={handleChange}
+							aria-label="login switch"
+						/>
+					}
+					label={auth ? 'Logout' : 'Login'}
+				/>
+			</FormGroup>
+			<AppBar position="static">
+				<Toolbar>
+					<IconButton
+						edge="start"
+						className={classes.menuButton}
+						color="inherit"
+						aria-label="menu">
+						<MenuIcon />
+					</IconButton>
+					<Typography variant="h6" className={classes.title}>
+						Photos
+					</Typography>
+					{auth && (
+						<div>
+							<IconButton
+								aria-label="account of current user"
+								aria-controls="menu-appbar"
+								aria-haspopup="true"
+								onClick={handleMenu}
+								color="inherit">
+								<AccountCircle />
+							</IconButton>
+							<Menu
+								id="menu-appbar"
+								anchorEl={anchorEl}
+								anchorOrigin={{
+									vertical: 'top',
+									horizontal: 'right',
+								}}
+								keepMounted
+								transformOrigin={{
+									vertical: 'top',
+									horizontal: 'right',
+								}}
+								open={open}
+								onClose={handleClose}>
+								<MenuItem onClick={handleClose}>
+									Profile
+								</MenuItem>
+								<MenuItem onClick={handleClose}>
+									My account
+								</MenuItem>
+							</Menu>
+						</div>
+					)}
+				</Toolbar>
+			</AppBar>
+		</div>
+	);
+}

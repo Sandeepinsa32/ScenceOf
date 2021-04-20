@@ -65,7 +65,7 @@ function EnterContest(props) {
 	const sendInDb = () => {
 		axios({
 			method: 'post',
-			url: 'http://localhost:3000/uploadimg/insert',
+			url: global.config.apiurl+'uploadimg/insert',
 			data: qs.stringify({
 				imgurl: imgsrc,
 				contesdtid: 1,

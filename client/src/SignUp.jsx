@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import qs from 'qs';
 import axios from 'axios';
+import { useHistory } from 'react-router-dom';
 import {
 	CssBaseline,
 	InputAdornment,
@@ -11,7 +12,7 @@ import {
 	Input,
 	Typography,
 	TextField,
-	Link,
+	// Link,
 	Button,
 	Avatar,
 	Container,
@@ -111,11 +112,14 @@ function SignUp() {
 	const [usernameReg, SetUsernameReg] = useState();
 	const [emailReg, SetEmailReg] = useState();
 	const [passwordReg, SetPasswordReg] = useState();
+	const [signFlag, SetSignFlag] = useState('~Join Us today');
+
+	const history = useHistory();
 
 	const Register = (e) => {
 		axios({
 			method: 'post',
-			url: 'http://localhost:3000/users/create',
+			url: global.config.apiurl + 'users/create',
 			data: qs.stringify({
 				fname: fnameReg,
 				lastname: lnameReg,
@@ -134,6 +138,8 @@ function SignUp() {
 			.catch((err) => {
 				console.log(err);
 			});
+		SetSignFlag('Thank You, You Can Login Now');
+		history.push('/login');
 		e.preventDefault();
 	};
 
@@ -158,7 +164,7 @@ function SignUp() {
 						variant="h5"
 						className={classes.SectionHeading}
 						gutterBottom>
-						~Join Us today
+						{signFlag}
 					</Typography>
 				</Container>
 
@@ -287,7 +293,7 @@ function SignUp() {
 									onClick={Register}>
 									Sign Up
 								</Button>
-								<Grid
+								{/* <Grid
 									container
 									justify="center"
 									m="10px"
@@ -297,7 +303,7 @@ function SignUp() {
 											Already have an account? Sign in
 										</Link>
 									</Grid>
-								</Grid>
+								</Grid> */}
 							</form>
 						</div>
 					</Container>
