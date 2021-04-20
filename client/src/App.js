@@ -2,20 +2,22 @@ import React from 'react';
 
 //Import diff components
 import Homepage from './Homepage';
-// import Navbar from './Components/Header/Navbar';
+import Profile from './profile';
 import SignIn from './SignIn';
 import SignUp from './SignUp';
 import AboutUs from './AboutUs';
-// import NotFound from './Notfound';
-// import Album from './Components/others/Blog';
 import NewCalendar from './NewCalendar';
 import Contest from './Contest';
 import Blog from './blog';
 import Portfolio from './Portfolio';
 import EnterContest from './EnterContest';
-
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-console.clear();
+
+// import NotFound from './Notfound';
+// import Navbar from './Components/Header/Navbar';
+// import Album from './Components/others/Blog';
+
+// console.clear();
 function App() {
 	// const [token, setToken] = useState('');
 
@@ -55,11 +57,15 @@ function App() {
 					<Route path="/login" exact>
 						<SignIn />
 					</Route>
+					<Route path="/myaccount" exact>
+						<Profile />
+					</Route>
+
 					{/* 
 					<Route exact>
 						<Album />
 					</Route> */}
-					<Route path="/contest/enter-a-contest" exact>
+					<Route path="/contest/enter-a-contest/" exact>
 						<EnterContest />
 					</Route>
 				</Switch>

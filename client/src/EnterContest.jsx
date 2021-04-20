@@ -13,6 +13,7 @@ import {
 import { makeStyles } from '@material-ui/core/styles';
 import PhotoCamera from '@material-ui/icons/PhotoCamera';
 import UploaderWindow from '@webutils/uploader';
+import { useLocation } from 'react-router-dom';
 
 //Import diff components
 import Navbar from './Components/Header/Navbar';
@@ -61,14 +62,21 @@ function EnterContest(props) {
 				setImgsrc(alldata);
 			});
 	}
+	function useQuery() {
+		return new URLSearchParams(useLocation().search);
+	}
+	const query = useQuery();
+	const contesdtid = query.get('contid');
+
+	console.log(contesdtid);
 
 	const sendInDb = () => {
 		axios({
 			method: 'post',
-			url: global.config.apiurl+'uploadimg/insert',
+			url: global.config.apiurl + 'uploadimg/insert',
 			data: qs.stringify({
 				imgurl: imgsrc,
-				contesdtid: 1,
+				contesdtid: contesdtid,
 				userid: localStorage.getItem('userid'),
 			}),
 			headers: {

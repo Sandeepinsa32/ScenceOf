@@ -4,16 +4,8 @@ import { NavLink } from 'react-router-dom';
 import './Navbar.css';
 import { makeStyles } from '@material-ui/core/styles';
 import { useHistory } from 'react-router-dom';
-
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
 import AccountCircle from '@material-ui/icons/AccountCircle';
-import Switch from '@material-ui/core/Switch';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormGroup from '@material-ui/core/FormGroup';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 
@@ -29,6 +21,11 @@ const useStyles = makeStyles((theme) => ({
 			textDecoration: 'none',
 			cursor: 'pointer',
 		},
+	},
+	popupMenu: {
+		fontSize: '16px',
+		fontWeight: 'bold',
+		color: '#111',
 	},
 }));
 
@@ -87,13 +84,111 @@ function Navbar() {
 						}}></i>
 				</button>
 				<div className="brand">
-					<img
-						src={logoImg}
-						alt="image_logo"
-						className="headerLogo"
-					/>
-					{/* <a href="#">Brand</a> */}
+					<NavLink to="/" exact>
+						<img
+							src={logoImg}
+							alt="image_logo"
+							className="headerLogo"
+						/>
+					</NavLink>
 				</div>
+				{/* in mobile mode */}
+				{auth && (
+					<span className="menu">
+						<IconButton
+							aria-label="account of current user"
+							aria-controls="menu-appbar"
+							aria-haspopup="true"
+							onClick={handleMenu}
+							color="inherit">
+							<AccountCircle />
+						</IconButton>
+						<Menu
+							style={{
+								marginTop: '50px',
+								right: '50px',
+							}}
+							id="menu-appbar"
+							anchorEl={anchorEl}
+							keepMounted
+							open={open}
+							onClose={handleClose}>
+							<MenuItem>
+								<NavLink to="/myaccount" exact>
+									<div
+										className={classes.popupMenu}
+										style={{
+											width: '100%',
+											color: '#2e8b57',
+											fontWeight: 'bolder',
+											fontSize: '16px',
+											textAlign: 'center',
+											justifyContent: 'center',
+											margin: '0 auto',
+											textTransform: 'uppercase',
+										}}>
+										Welcome {Username}
+									</div>
+								</NavLink>
+							</MenuItem>
+							<MenuItem>
+								<NavLink
+									to="/myaccount"
+									exact
+									className={classes.popupMenu}>
+									My Account
+								</NavLink>
+							</MenuItem>
+							<MenuItem>
+								<NavLink
+									to="/myaccount"
+									exact
+									className={classes.popupMenu}>
+									Your Enteries
+								</NavLink>
+							</MenuItem>
+							<MenuItem>
+								<NavLink
+									to="/myaccount"
+									exact
+									className={classes.popupMenu}>
+									Your Contest
+								</NavLink>
+							</MenuItem>
+							<MenuItem>
+								<NavLink
+									to="/myaccount"
+									exact
+									className={classes.popupMenu}>
+									Notificaiton
+								</NavLink>
+							</MenuItem>
+
+							<MenuItem>
+								<li>
+									<div className="button-wrapper">
+										<button
+											className="modalButton join-btn"
+											data-popup="accept"
+											onClick={() => {
+												setAuth(
+													localStorage.removeItem(
+														'user'
+													)
+												);
+												// setIsLogin(true);
+												// setIsLogin(false);
+												history.push('/login');
+											}}>
+											LogOut
+										</button>
+									</div>
+								</li>
+							</MenuItem>
+						</Menu>
+					</span>
+				)}
+
 				<div className="narrowLinks">
 					<ul className="navbar">
 						<li>
@@ -142,14 +237,14 @@ function Navbar() {
 								to="/portfolio"
 								exact
 								activeClassName={classes.activeLink}>
-								Portfolio
+								Gallery
 							</NavLink>
 						</li>
 
 						<li
 							className="dropdown-icon"
 							onClick={() => DisplayToggle()}>
-							<a href="_blank">Follow us on</a>
+							<a href="#">Follow us on</a>
 						</li>
 						<li
 							className={`Social-icons ${
@@ -176,6 +271,103 @@ function Navbar() {
 								<i className="fa fa-linkedin"></i>
 							</NavLink>
 						</li>
+						{/* in desktop mode  */}
+
+						{auth && (
+							<span className="narrowLinks  hide_userIcon">
+								<IconButton
+									aria-label="account of current user"
+									aria-controls="menu-appbar"
+									aria-haspopup="true"
+									onClick={handleMenu}
+									color="inherit">
+									<AccountCircle />
+								</IconButton>
+								<Menu
+									style={{
+										marginTop: '50px',
+										right: '50px',
+									}}
+									id="menu-appbar"
+									anchorEl={anchorEl}
+									keepMounted
+									open={open}
+									onClose={handleClose}>
+									<MenuItem>
+										<NavLink to="/myaccount" exact>
+											<div
+												className={classes.popupMenu}
+												style={{
+													width: '100%',
+													color: '#2e8b57',
+													fontWeight: 'bolder',
+													fontSize: '16px',
+													textAlign: 'center',
+													justifyContent: 'center',
+													margin: '0 auto',
+													textTransform: 'uppercase',
+												}}>
+												Welcome {Username}
+											</div>
+										</NavLink>
+									</MenuItem>
+									<MenuItem>
+										<NavLink
+											to="/myaccount"
+											exact
+											className={classes.popupMenu}>
+											My Account
+										</NavLink>
+									</MenuItem>
+									<MenuItem>
+										<NavLink
+											to="/myaccount"
+											exact
+											className={classes.popupMenu}>
+											Your Enteries
+										</NavLink>
+									</MenuItem>
+									<MenuItem>
+										<NavLink
+											to="/myaccount"
+											exact
+											className={classes.popupMenu}>
+											Your Contest
+										</NavLink>
+									</MenuItem>
+									<MenuItem>
+										<NavLink
+											to="/myaccount"
+											exact
+											className={classes.popupMenu}>
+											Notificaiton
+										</NavLink>
+									</MenuItem>
+
+									<MenuItem>
+										<li>
+											<div className="button-wrapper">
+												<button
+													className="modalButton join-btn"
+													data-popup="accept"
+													onClick={() => {
+														setAuth(
+															localStorage.removeItem(
+																'user'
+															)
+														);
+														// setIsLogin(true);
+														// setIsLogin(false);
+														history.push('/login');
+													}}>
+													LogOut
+												</button>
+											</div>
+										</li>
+									</MenuItem>
+								</Menu>
+							</span>
+						)}
 
 						{!auth && (
 							<li>
@@ -203,73 +395,7 @@ function Navbar() {
 								</div>
 							</li>
 						)}
-						{auth && (
-							<li>
-								<div>
-									<IconButton
-										aria-label="account of current user"
-										aria-controls="menu-appbar"
-										aria-haspopup="true"
-										onClick={handleMenu}
-										color="inherit">
-										<AccountCircle />
-									</IconButton>
-									<Menu
-										id="menu-appbar"
-										anchorEl={anchorEl}
-										anchorOrigin={{
-											vertical: 'top',
-											horizontal: 'right',
-										}}
-										// style={{ top: '70px', left: '960px' }}
-										keepMounted
-										transformOrigin={{
-											vertical: 'top',
-											horizontal: 'right',
-										}}
-										open={open}
-										onClose={handleClose}>
-										<MenuItem
-											onClick={handleClose}
-											style={{
-												color: '#2e8b57',
-												textTransform: 'uppercase',
-											}}>
-											hello {Username}
-										</MenuItem>
-										<MenuItem onClick={handleClose}>
-											Profile
-										</MenuItem>
-										<MenuItem onClick={handleClose}>
-											My account
-										</MenuItem>
-										<MenuItem onClick={handleClose}>
-											<li>
-												<div className="button-wrapper">
-													<button
-														className="modalButton join-btn"
-														data-popup="accept"
-														onClick={() => {
-															setAuth(
-																localStorage.removeItem(
-																	'user'
-																)
-															);
-															// setIsLogin(true);
-															// setIsLogin(false);
-															history.push(
-																'/login'
-															);
-														}}>
-														LogOut
-													</button>
-												</div>
-											</li>
-										</MenuItem>
-									</Menu>
-								</div>
-							</li>
-						)}
+
 						{/* {auth && (
 							<li>
 								<div className="button-wrapper">

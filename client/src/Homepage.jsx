@@ -32,7 +32,7 @@ function Homepage() {
 	const [contest, setContest] = useState([]);
 	useEffect(() => {
 		axios
-			.get(global.config.apiurl+'contest/limit?limit=10&start=0')
+			.get(global.config.apiurl + 'contest/limit?limit=10&start=0')
 			.then((res) => {
 				const alldata = res.data;
 				setContest(alldata);

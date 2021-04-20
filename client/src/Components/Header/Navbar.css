@@ -106,6 +106,12 @@ body {
 }
 
 @media (max-width: 800px) {
+	.hide_userIcon {
+		display: none;
+	}
+	.narrowLinks {
+		padding-top: 12vh;
+	}
 	.sticky .menu {
 		top: 0;
 	}
@@ -230,9 +236,9 @@ body {
 	}
 
 	.nav .brand {
-		display: block;
+		display: inline-block;
 		text-align: center;
-		float: none;
+		/* float: none; */
 	}
 
 	.sticky .brand {

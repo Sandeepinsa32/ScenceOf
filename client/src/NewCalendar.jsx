@@ -15,10 +15,16 @@ const useStyles = makeStyles((theme) => ({
 	mainDiv: {
 		// marginTop: '10vh',
 		minHeight: '120vh',
-		padding: '25px 40px',
+		padding: '25px 5px',
 		background: `url('${BackgroundImg}') no-repeat  fixed #fff`,
 		fontSize: '22px',
 		fontFamily: 'Roboto',
+	},
+	CalendarStyle: {
+		width: '100%',
+		[theme.breakpoints.down('sm')]: {
+			width: '300%!important',
+		},
 	},
 }));
 
@@ -36,6 +42,7 @@ function NewCalendar() {
 		React.cloneElement(React.Children.only(children), {
 			style: {
 				backgroundColor: 'lightblue',
+				width: '300%',
 			},
 		});
 	return (
@@ -48,7 +55,9 @@ function NewCalendar() {
 					style={{
 						height: '80vh',
 						marginTop: '15vh',
+						width: '100%',
 					}}
+					className={classes.CalendarStyle}
 					step={120}
 					Views="month"
 					showMultiDayTimes

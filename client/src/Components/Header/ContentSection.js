@@ -7,6 +7,8 @@ import {
 	InputBase,
 	Paper,
 } from '@material-ui/core';
+import Typewriter from 'react-simple-typewriter';
+// import 'react-simple-typewriter/dist/index.css';
 import { makeStyles } from '@material-ui/core/styles';
 import SearchIcon from '@material-ui/icons/Search';
 
@@ -44,16 +46,38 @@ function ContentSection() {
 		<>
 			<CssBaseline />
 			<div className={classes.SectionHeadingDiv}>
-				<Typography
-					component="h3"
-					variant="h3"
-					p={1}
-					align="center"
-					color="textPrimary"
-					className={classes.SectionHeading}
-					gutterBottom>
-					Capture, Share, Explore.
-				</Typography>
+				<div className="App">
+					<Typography
+						component="h3"
+						variant="h3"
+						p={1}
+						align="center"
+						color="textPrimary"
+						className={classes.SectionHeading}
+						gutterBottom>
+						{/* Capture, Share, Explore.Life is simple */}{' '}
+						{/* Style will be inherited from the parent element */}
+						<Typewriter
+							loop
+							cursor
+							cursorStyle="_"
+							typeSpeed={70}
+							deleteSpeed={50}
+							delaySpeed={1000}
+							words={[
+								'Capture ',
+								'Share ',
+								'Explore ',
+								'Repeat ! ',
+							]}
+							onLoop={(loopCount) =>
+								console.log(`Just completed loop ${loopCount}`)
+							}
+						/>
+						{/* </span> */}
+						{/* </h1> */}
+					</Typography>
+				</div>
 
 				<Grid align="center" spacing={2}>
 					<Grid item>

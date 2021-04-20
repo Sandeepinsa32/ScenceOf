@@ -105,6 +105,7 @@ function BlogPost(props) {
 		<>
 			<Grid container md sm xs spacing={2}>
 				{/* Articles  */}
+
 				{BlogDesc.map((card) => (
 					<Grid item key={BlogDesc.id} xs={12} sm={3} md={4}>
 						<article className="article">
@@ -130,10 +131,10 @@ function BlogPost(props) {
 											<i className="far fa-clock text-primary"></i>
 											{BlogDesc[0].blogdate}
 										</span>
-										<span>
+										{/* <span>
 											<i className="far fa-comments text-primary"></i>
 											{BlogDesc[0].commentCount}
-										</span>
+										</span> */}
 									</p>
 								</div>
 							</div>
