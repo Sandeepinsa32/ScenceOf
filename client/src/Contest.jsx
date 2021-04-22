@@ -62,9 +62,10 @@ function AllCard() {
 	const [contest, setContest] = useState([]);
 	useEffect(() => {
 		axios
-			.get(global.config.apiurl+'contest/limit?limit=20&start=0')
+			.get(global.config.apiurl + 'contest/limit?limit=20&start=0')
 			.then((res) => {
 				const alldata = res.data;
+				console.log(alldata);
 				setContest(alldata);
 			});
 	}, []);
@@ -79,7 +80,7 @@ function Free() {
 	const [contest, setContest] = useState([]);
 	useEffect(() => {
 		axios
-			.get(global.config.apiurl+'contest/contestfree?limit=10&start=0')
+			.get(global.config.apiurl + 'contest/contestfree?limit=10&start=0')
 			.then((res) => {
 				const alldata = res.data;
 				setContest(alldata);
@@ -96,7 +97,7 @@ function Premium() {
 	const [contest, setContest] = useState([]);
 	useEffect(() => {
 		axios
-			.get(global.config.apiurl+'contest/premium?limit=10&start=0')
+			.get(global.config.apiurl + 'contest/premium?limit=10&start=0')
 			.then((res) => {
 				const alldata = res.data;
 				setContest(alldata);
@@ -113,7 +114,7 @@ function Sponsored() {
 	const [contest, setContest] = useState([]);
 	useEffect(() => {
 		axios
-			.get(global.config.apiurl+'contest/sponsored?limit=10&start=0')
+			.get(global.config.apiurl + 'contest/sponsored?limit=10&start=0')
 			.then((res) => {
 				const alldata = res.data;
 				setContest(alldata);

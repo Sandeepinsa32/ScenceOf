@@ -9,7 +9,7 @@ import AboutUs from './AboutUs';
 import NewCalendar from './NewCalendar';
 import Contest from './Contest';
 import Blog from './blog';
-import Portfolio from './Portfolio';
+import Portfolio from './Gallery';
 import EnterContest from './EnterContest';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 

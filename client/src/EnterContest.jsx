@@ -9,11 +9,16 @@ import {
 	Typography,
 	Container,
 	Grid,
+	Hidden,
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import PhotoCamera from '@material-ui/icons/PhotoCamera';
+import './css/profile.css';
 import UploaderWindow from '@webutils/uploader';
 import { useLocation } from 'react-router-dom';
+
+import Imageapi from './utils/Imageapi';
+import Gallery from 'react-grid-gallery';
 
 //Import diff components
 import Navbar from './Components/Header/Navbar';
@@ -23,18 +28,18 @@ const BackgroundImg = 'https://cdn.fs.teachablecdn.com/RD4lJ0jZTq6k6zfSQ8de';
 const useStyles = makeStyles((theme) => ({
 	mainDiv: {
 		// marginTop: '10vh',
+		// padding: '25px 40px',
 		minHeight: '100vh',
-		padding: '25px 40px',
-		background: `url('${BackgroundImg}')    fixed #EDAE9B`,
+		height: '100%',
+		background: `url('')   #888`,
 	},
 	input: {
 		display: 'none',
 	},
-	heroButtons: {
-		marginTop: theme.spacing(4),
-	},
+
 	heading: {
 		color: '#fff',
+		marginBottom: '10vh',
 	},
 	cardGrid: {
 		paddingTop: theme.spacing(8),
@@ -48,18 +53,32 @@ const useStyles = makeStyles((theme) => ({
 	cardMedia: {
 		paddingTop: '56.25%', // 16:9
 	},
+	ThirdDiv: {
+		// minHeight: '100vh',
+		height: '100%',
+		padding: '0 auto',
+		marginTop: '20vh',
+		margin: '0 3em',
+		borderRadius: '10px',
+		backgroundColor: '#efefef',
+		boxShadow: '-1px 13px 14px -11px rgb(0 0 1)',
+		overflow: 'Hidden',
+	},
 }));
 
+// const BackgroundImg = './png/Bg_black.gif';
+// const BackgroundImg2 = './png/trans_png.png';
 function EnterContest(props) {
 	const classes = useStyles();
+
 	const [imgsrc, setImgsrc] = useState('');
 
 	function upload() {
 		UploaderWindow('my-uploader-120')
 			.open()
 			.then((res) => {
-				const alldata = res[0].url;
-				setImgsrc(alldata);
+				// const alldata = res[0].url;
+				// setImgsrc(alldata);
 			});
 	}
 	function useQuery() {
@@ -68,7 +87,7 @@ function EnterContest(props) {
 	const query = useQuery();
 	const contesdtid = query.get('contid');
 
-	console.log(contesdtid);
+	// console.log(contesdtid);
 
 	const sendInDb = () => {
 		axios({
@@ -94,17 +113,42 @@ function EnterContest(props) {
 		alert('picture uploaded');
 	};
 
+	const getImgs = () => {
+		axios
+			.get(global.config.apiurl + 'uploadimg/byContest?contesid=44')
+			.then((res) => {
+				let alldata = res.data;
+
+				setImgsrc(alldata);
+
+				// console.log(typeof alldata);
+
+				// alldata.map((anObjectMapped, index) => {
+				// 	return (
+				// 		<p key={`${anObjectMapped.name}`}>
+				// 			console.log(anObjectMapped.id);
+				// 			{anObjectMapped.id} - {anObjectMapped.url}-
+				// 			{anObjectMapped.user}
+				// 		</p>
+				// 	);
+				// });
+			});
+	};
+	getImgs();
 	return (
 		<>
 			<CssBaseline />
 			<Navbar />
 
 			<main>
-				<div maxWidth="md" className={classes.mainDiv}>
-					<div
-						style={{ marginTop: '12vh', height: '100%' }}
-						maxWidth="md">
-						<Container maxWidth="md">
+				<div maxWidth="lg" className={classes.mainDiv}>
+					<div className="Wrapper-div">
+						<header
+							className="card-header"
+							style={{
+								position: 'relative',
+								top: '-500px',
+							}}>
 							<Typography
 								component="h3"
 								variant="h3"
@@ -112,63 +156,83 @@ function EnterContest(props) {
 								color="textPrimary"
 								className={classes.heading}
 								gutterBottom>
-								Enter a Contest
+								Contest Title
 							</Typography>
-							<Typography
-								variant="h5"
-								align="center"
-								className={classes.heading}
-								color="textSecondary"
-								paragraph>
-								Something short and leading about the collection
-								below—its contents, the creator, etc. Make it
-								short and sweet, but not too short so folks
-								don&apos;t simply skip over it entirely.
-							</Typography>
-							<div className={classes.heroButtons}>
-								<Grid container spacing={2} justify="center">
-									<Grid item>
-										<input
-											accept="image/*"
-											onClick={upload}
-											className={classes.input}
-											id="contained-button-file"
-											multiple
+							<div>
+								<input
+									accept="image/*"
+									onClick={upload}
+									className={classes.input}
+									id="contained-button-file"
+									multiple
+								/>
+								<label htmlFor="contained-button-file">
+									<Button
+										variant="contained"
+										color="default"
+										style={{
+											backgroundColor: '#2e8b57',
+											color: '#fff',
+										}}
+										component="span"
+										// onClick={upload}
+									>
+										<PhotoCamera
+											style={{ margin: '0 5px' }}
 										/>
-										<label htmlFor="contained-button-file">
-											<Button
-												variant="contained"
-												color="default"
-												style={{
-													backgroundColor: '#2e8b57',
-													color: '#fff',
-												}}
-												component="span"
-												// onClick={upload}
-											>
-												<PhotoCamera
-													style={{ margin: '0 5px' }}
-												/>
-												Upload
-											</Button>
-										</label>
-									</Grid>
-									<Grid item>
-										<Button
-											variant="contained"
-											color="default"
-											type="submit"
-											component="span"
-											onClick={sendInDb}>
-											Submit
-										</Button>
-									</Grid>
-								</Grid>
+										Enter a Contest
+									</Button>
+								</label>
 							</div>
-						</Container>
-					</div>
 
-					<Container className={classes.cardGrid} maxWidth="md">
+							<div className={classes.ThirdDiv}>
+								<Container maxwidth="md">
+									<Grid container spacing={2}>
+										<Grid item>
+											<Typography
+												component="p"
+												variant="body1"
+												align="center"
+												style={{ color: '#111' }}>
+												This contest was created by a
+												member of the Photocrowd
+												community. Want to create your
+												own?
+											</Typography>
+											<Typography
+												component="p"
+												variant="body1"
+												align="center"
+												style={{ color: '#111' }}>
+												For this contest, enter your
+												photos showing your favourite
+												vacation place. Images can show
+												any place such as a beach, a
+												city, the mountains, etc. It
+												would add interest to the
+												contest if you include the
+												location in the image
+												description.
+											</Typography>
+										</Grid>
+										<Grid item></Grid>
+									</Grid>
+								</Container>
+
+								{/* <Gallery
+									images={imgDic}
+									backdropClosesModal={true}
+									enableKeyboardInput={true}
+									enableImageSelection={false}
+									style={{ marginTop: '20vh' }}
+								/> */}
+							</div>
+						</header>
+					</div>
+				</div>
+
+				{/* image preview */}
+				{/* <Container className={classes.cardGrid} maxWidth="md">
 						<Typography
 							variant="h5"
 							align="center"
@@ -188,8 +252,8 @@ function EnterContest(props) {
 								</Card>
 							</Grid>
 						</Grid>
-					</Container>
-				</div>
+					</Container> */}
+				{/* </div> */}
 			</main>
 		</>
 	);

@@ -81,6 +81,7 @@
 	right: 0;
 	z-index: 1;
 }
+
 .snip1584:hover:before,
 .snip1584.hover:before {
 	top: 10px;
@@ -95,6 +96,7 @@
 	transform: translateY(0);
 	opacity: 1;
 }
+
 .snip1584:hover h3,
 .snip1584.hover h3 {
 	-webkit-transition-delay: 0.3s;

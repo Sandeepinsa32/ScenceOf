@@ -20,11 +20,14 @@
 	content: '';
 	display: block;
 	width: 100%;
-	height: 50vh;
-	background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/435311/photo__mountains.jpg')
-		no-repeat center;
-	filter: saturate(25%);
+	height: 100vh;
+	background: url('https://images.unsplash.com/photo-1498175928029-a5627bc28bd6?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1268&q=80')
+		no-repeat;
+	background-position: 50% 50%;
+	background-color: rgb(0, 0, 0, 0.4);
+	/* filter: saturate(25%); */
 	background-size: cover;
+	/* box-shadow: -1px 13px 14px -11px rgb(0 0 1); */
 }
 
 .Wrapper-div-header {
@@ -216,4 +219,37 @@
 	100% {
 		transform: rotate(0deg);
 	}
+}
+/* css flxbox css for enter contest page  */
+.flex-container {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: normal;
+	align-items: normal;
+	align-content: stretch;
+}
+
+.flex-items:nth-child(1) {
+	display: block;
+	flex-grow: 0;
+	flex-shrink: 1;
+	flex-basis: auto;
+	align-self: auto;
+	order: 0;
+	width: 60%;
+	/* height: 100%; */
+	background-color: #666666;
+}
+
+.flex-items:nth-child(2) {
+	display: block;
+	flex-grow: 0;
+	flex-shrink: 8;
+	flex-basis: auto;
+	align-self: auto;
+	order: 0;
+	width: 30vw;
+	/* height: 100%; */
+	background-color: aquamarine;
 }

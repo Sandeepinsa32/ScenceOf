@@ -1,16 +1,16 @@
 import React from 'react';
 import {
 	CssBaseline,
-	Grid,
+	// Grid,
 	Typography,
-	IconButton,
-	InputBase,
-	Paper,
+	// IconButton,
+	// InputBase,
+	// Paper,
 } from '@material-ui/core';
 import Typewriter from 'react-simple-typewriter';
 // import 'react-simple-typewriter/dist/index.css';
 import { makeStyles } from '@material-ui/core/styles';
-import SearchIcon from '@material-ui/icons/Search';
+// import SearchIcon from '@material-ui/icons/Search';
 
 const useStyles = makeStyles((theme) => ({
 	SectionHeadingDiv: {
@@ -18,7 +18,8 @@ const useStyles = makeStyles((theme) => ({
 		color: '#FFF',
 	},
 	SectionHeading: {
-		color: '#FFF',
+		color: '#888',
+		// color: '#EE6059',
 		[theme.breakpoints.down('sm')]: {
 			fontSize: '2rem',
 		},
@@ -55,30 +56,48 @@ function ContentSection() {
 						color="textPrimary"
 						className={classes.SectionHeading}
 						gutterBottom>
-						{/* Capture, Share, Explore.Life is simple */}{' '}
-						{/* Style will be inherited from the parent element */}
-						<Typewriter
-							loop
-							cursor
-							cursorStyle="_"
-							typeSpeed={70}
-							deleteSpeed={50}
-							delaySpeed={1000}
-							words={[
-								'Capture ',
-								'Share ',
-								'Explore ',
-								'Repeat ! ',
-							]}
-							onLoop={(loopCount) =>
-								console.log(`Just completed loop ${loopCount}`)
-							}
-						/>
-						{/* </span> */}
-						{/* </h1> */}
+						Life is simple{' '}
+						<span style={{ color: '#3dad4b' }}>
+							{/* Style will be inherited from the parent element */}
+							<Typewriter
+								loop
+								cursor
+								cursorStyle="_"
+								typeSpeed={120}
+								deleteSpeed={100}
+								delaySpeed={1000}
+								words={['Capture .', 'Share .', 'Explore .']}
+								onLoop={(loopCount) =>
+									console.log(
+										`Just completed loop ${loopCount}`
+									)
+								}
+							/>
+						</span>
 					</Typography>
 				</div>
 
+				<div align="center" style={{ marginTop: '40vh' }}>
+					<Typography
+						component="p"
+						variant="body1"
+						align="center"
+						style={{ color: '#FFFDFD' }}>
+						Find Out More
+					</Typography>
+					<Typography
+						component="p"
+						variant="body1"
+						align="center"
+						color="textPrimary">
+						<img
+							src="./png/DownArrow.png"
+							alt="arrow_Downard"
+							style={{ height: '30px' }}
+						/>
+					</Typography>
+				</div>
+				{/* 
 				<Grid align="center" spacing={2}>
 					<Grid item>
 						<Paper
@@ -97,7 +116,7 @@ function ContentSection() {
 							</IconButton>
 						</Paper>
 					</Grid>
-				</Grid>
+				</Grid> */}
 			</div>
 		</>
 	);
