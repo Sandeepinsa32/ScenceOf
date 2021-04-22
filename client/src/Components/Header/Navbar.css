@@ -51,7 +51,7 @@ body {
 .nav .brand {
 	height: 12vh;
 	line-height: 100px;
-	padding-left: 30px;
+	padding-left: 10px;
 	display: inline-block;
 	float: left;
 	font-size: 20px;
@@ -66,14 +66,14 @@ body {
 	/* padding-right: 60px; */
 }
 .headerLogo {
-	margin-top: 25px;
+	/* margin-top: 25px; */
 	height: 40px;
 }
 
 .nav .brand a {
 	color: #e33b00;
 	text-decoration: none;
-	font-size: 36px;
+	/* font-size: 36px; */
 }
 .nav ul {
 	margin: 0;
@@ -147,8 +147,8 @@ body {
 		position: relative;
 		line-height: 60px;
 		float: left;
-		left: 20px;
-		top: 20px;
+		left: 10px;
+		top: 10px;
 		width: 60px;
 		height: 60px;
 		background: none;

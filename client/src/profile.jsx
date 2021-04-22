@@ -25,7 +25,7 @@ const Profile = (props) => {
 						<div className="inner-div">
 							<img
 								className="user_pic"
-								src="https://media.visualstories.com/uploads/images/1/140/5430023-960_468357488-1158103_p.jpg"
+								src="../png/img_avatar.png"
 								alt=""
 							/>
 							<div className="heading-box">
@@ -43,11 +43,6 @@ const Profile = (props) => {
 						</div>
 					</header>
 					<main className="card-main">
-						{/* <div className="activity">
-					<i className="material-icons">group</i>
-					<span className="activity-name">Followers</span>
-					<span className="index">{props.friends}</span>
-				</div> */}
 						<div className="activity">
 							<i className="material-icons">access_time</i>
 							<span className="activity-name">Photos</span>

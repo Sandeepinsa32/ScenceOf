@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import qs from 'qs';
 import axios from 'axios';
 import {
@@ -17,7 +17,6 @@ import './css/profile.css';
 import UploaderWindow from '@webutils/uploader';
 import { useLocation } from 'react-router-dom';
 
-import Imageapi from './utils/Imageapi';
 import Gallery from 'react-grid-gallery';
 
 //Import diff components
@@ -72,13 +71,14 @@ function EnterContest(props) {
 	const classes = useStyles();
 
 	const [imgsrc, setImgsrc] = useState('');
+	const [imgsdb, setImgsrcdb] = useState([]);
 
 	function upload() {
 		UploaderWindow('my-uploader-120')
 			.open()
 			.then((res) => {
-				// const alldata = res[0].url;
-				// setImgsrc(alldata);
+				const alldata = res[0].url;
+				setImgsrc(alldata);
 			});
 	}
 	function useQuery() {
@@ -113,28 +113,24 @@ function EnterContest(props) {
 		alert('picture uploaded');
 	};
 
-	const getImgs = () => {
+	useEffect(() => {
+		const imgsdata = [];
 		axios
 			.get(global.config.apiurl + 'uploadimg/byContest?contesid=44')
 			.then((res) => {
 				let alldata = res.data;
-
-				setImgsrc(alldata);
-
-				// console.log(typeof alldata);
-
-				// alldata.map((anObjectMapped, index) => {
-				// 	return (
-				// 		<p key={`${anObjectMapped.name}`}>
-				// 			console.log(anObjectMapped.id);
-				// 			{anObjectMapped.id} - {anObjectMapped.url}-
-				// 			{anObjectMapped.user}
-				// 		</p>
-				// 	);
-				// });
+				alldata.map(function (val, i, arr) {
+					imgsdata.push({
+						src: val.url,
+						thumbnail: val.url,
+						thumbnailWidth: 640,
+						thumbnailHeight: 320,
+					});
+				});
+				console.log(imgsdata);
+				setImgsrcdb(imgsdata);
 			});
-	};
-	getImgs();
+	}, []);
 	return (
 		<>
 			<CssBaseline />
@@ -219,13 +215,13 @@ function EnterContest(props) {
 									</Grid>
 								</Container>
 
-								{/* <Gallery
-									images={imgDic}
+								<Gallery
+									images={imgsdb}
 									backdropClosesModal={true}
 									enableKeyboardInput={true}
 									enableImageSelection={false}
 									style={{ marginTop: '20vh' }}
-								/> */}
+								/>
 							</div>
 						</header>
 					</div>
