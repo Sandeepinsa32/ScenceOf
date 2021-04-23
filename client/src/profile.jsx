@@ -1,4 +1,7 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+// import qs from 'qs';
+import axios from 'axios';
+
 import './css/profile.css';
 
 import Navbar from './Components/Header/Navbar';
@@ -15,6 +18,31 @@ const useStyles = makeStyles((theme) => ({
 
 const Profile = (props) => {
 	const classes = useStyles();
+
+	const [totalimgs, setTotalimgs] = useState(0);
+	const [totalcontests, setTotalcontests] = useState(0);
+
+	useEffect(() => {
+		axios
+			.get(global.config.apiurl + `uploadimg/countimgs`, {
+				withCredentials: true,
+			})
+			.then((res) => {
+				let alldata = res.data;
+				// alert(alldata[0].totalimgs);
+				setTotalimgs(alldata[0].totalimgs);
+			});
+		axios
+			.get(global.config.apiurl + `uploadimg/countcontests`, {
+				withCredentials: true,
+			})
+			.then((res) => {
+				let alldata = res.data;
+				// console.log(alldata);
+				setTotalcontests(alldata[0].totalcontests);
+			});
+	}, []);
+
 	return (
 		<>
 			<CssBaseline />
@@ -46,12 +74,12 @@ const Profile = (props) => {
 						<div className="activity">
 							<i className="material-icons">access_time</i>
 							<span className="activity-name">Photos</span>
-							<span className="index">225</span>
+							<span className="index">{totalimgs}</span>
 						</div>
 						<div className="activity">
 							<i className="material-icons">mode_comment</i>
 							<span className="activity-name">Contest</span>
-							<span className="index">146</span>
+							<span className="index">{totalcontests}</span>
 						</div>
 					</main>
 				</div>

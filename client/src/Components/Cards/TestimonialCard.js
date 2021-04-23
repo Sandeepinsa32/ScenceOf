@@ -76,7 +76,7 @@ function TestimononialCard() {
 										<Grid item>
 											<CardMedia
 												className={classes.CardMedia}
-												image="https://scenesofnewengland.com/wp-content/uploads/2020/07/pexels-photo-220453.png"
+												image="../png/img_avatar.png"
 											/>
 										</Grid>
 

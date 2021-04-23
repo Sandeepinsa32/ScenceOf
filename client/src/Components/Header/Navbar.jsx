@@ -44,7 +44,8 @@ function Navbar() {
 	};
 
 	//for user toggle
-	const [auth, setAuth] = React.useState(true);
+	// const [auth, setAuth] = React.useState(true);
+
 	const [anchorEl, setAnchorEl] = React.useState(null);
 	const open = Boolean(anchorEl);
 
@@ -63,10 +64,11 @@ function Navbar() {
 
 	const loggedInUser = localStorage.getItem('user');
 	const Username = localStorage.getItem('username');
+
+	const [auth, setAuth] = useState(loggedInUser);
+
 	// const login = localStorage.getItem('IsUserAuth');
 	// console.log(login);
-	// const [auth, setAuth] = useState(loggedInUser);
-
 	// const [isLogin, setIsLogin] = useState(false);
 
 	// if (login === 'success') {
@@ -144,7 +146,7 @@ function Navbar() {
 									to="/myaccount"
 									exact
 									className={classes.popupMenu}>
-									Your Enteries
+									Your Photos
 								</NavLink>
 							</MenuItem>
 							<MenuItem>
@@ -324,7 +326,7 @@ function Navbar() {
 											to="/myaccount"
 											exact
 											className={classes.popupMenu}>
-											Your Enteries
+											Your Photos
 										</NavLink>
 									</MenuItem>
 									<MenuItem>
@@ -332,7 +334,7 @@ function Navbar() {
 											to="/myaccount"
 											exact
 											className={classes.popupMenu}>
-											Your Contest
+											Your Contests
 										</NavLink>
 									</MenuItem>
 									<MenuItem>
@@ -340,7 +342,7 @@ function Navbar() {
 											to="/myaccount"
 											exact
 											className={classes.popupMenu}>
-											Notificaiton
+											Notification
 										</NavLink>
 									</MenuItem>
 

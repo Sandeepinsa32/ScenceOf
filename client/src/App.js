@@ -11,6 +11,7 @@ import Contest from './Contest';
 import Blog from './blog';
 import Portfolio from './Gallery';
 import EnterContest from './EnterContest';
+import ReadBlog from './ReadBlog';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 // import NotFound from './Notfound';
@@ -67,6 +68,9 @@ function App() {
 					</Route> */}
 					<Route path="/contest/enter-a-contest/" exact>
 						<EnterContest />
+					</Route>
+					<Route path="/blog/readblog/" exact>
+						<ReadBlog />
 					</Route>
 				</Switch>
 			</Router>

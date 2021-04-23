@@ -60,6 +60,7 @@ function ContestCard(props) {
 							<figcaption>
 								<h3>{figure.name}</h3>
 								<h5>{figure.sponser}</h5>
+
 								<Link
 									to={
 										'/contest/enter-a-contest?contid=' +

@@ -1,25 +1,22 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import { CssBaseline, Grid } from '@material-ui/core';
+import { CssBaseline, Grid, Link } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import { Link } from 'react-router-dom';
+import axios from 'axios';
 import './css/Blog.css';
 
 //Import diff components
 import Navbar from './Components/Header/Navbar';
 import Footer from './Components/Footer/Footer';
 
-// const BackgroundImg = 'https://cdn.fs.teachablecdn.com/RD4lJ0jZTq6k6zfSQ8de';
-
 const useStyles = makeStyles((theme) => ({
 	mainDiv: {
 		minHeight: '100vh',
 		padding: '1px 0px',
-		background: `url('')  #212121`,
+		background: `url('')  #fff`,
 	},
 }));
 
-function Blog() {
+function ReadBlog() {
 	const classes = useStyles();
 
 	return (
@@ -28,7 +25,7 @@ function Blog() {
 			<Navbar />
 			<main className={classes.mainDiv}>
 				<div maxWidth="md" className="site-main">
-					<BlogPost />
+					<Blog />
 				</div>
 				{/* Footer */}
 				<Footer />
@@ -36,15 +33,17 @@ function Blog() {
 		</>
 	);
 }
-function BlogPost(props) {
-	const [blogsdata, setBlogsdata] = useState([]);
+
+function Blog(props) {
+	const [blog, setBlog] = useState([]);
 	useEffect(() => {
 		axios
-			.get(global.config.apiurl + `blog/limit?limit=10&start=0`)
+			.get(global.config.apiurl + `blog/?blogid=` + blog.id)
 			.then((res) => {
 				let alldata = res.data;
+				console.log(res);
 				console.log(alldata);
-				setBlogsdata(alldata);
+				setBlog(alldata);
 			});
 		axios.get(global.config.apiurl + `users/checklog`).then((res) => {
 			let alldata = res.data;
@@ -58,25 +57,19 @@ function BlogPost(props) {
 			<Grid container md sm xs spacing={2}>
 				{/* Articles  */}
 
-				{blogsdata.map((Blog) => (
+				{blog.map((Blog) => (
 					<Grid item key={Blog.id} xs={12} sm={3} md={4}>
 						<article className="article">
 							<div className="card">
 								<div className="overflow-img">
-									<Link
-										to={'/blog/readblog?blogid=' + Blog.id}
-										exact>
-										<img
-											src={Blog.thumbnail}
-											alt=""
-											className="img-fluid"
-										/>
-									</Link>
+									<img
+										src={Blog.thumbnail}
+										alt=""
+										className="img-fluid"
+									/>
 								</div>
 								<div className="card-body text-center px-1">
 									<Link
-										to={'/blog/readblog?blogid=' + Blog.id}
-										exact
 										className="text-title display-1
 										text-dark">
 										{Blog.title}
@@ -99,4 +92,4 @@ function BlogPost(props) {
 	);
 }
 
-export default Blog;
+export default ReadBlog;
