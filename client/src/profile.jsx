@@ -8,6 +8,8 @@ import Navbar from './Components/Header/Navbar';
 import { CssBaseline } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
+import Gallery from 'react-grid-gallery';
+
 const useStyles = makeStyles((theme) => ({
 	mainDiv: {
 		minHeight: '100vh',
@@ -21,6 +23,7 @@ const Profile = (props) => {
 
 	const [totalimgs, setTotalimgs] = useState(0);
 	const [totalcontests, setTotalcontests] = useState(0);
+	const [imgsdb, setImgsrcdb] = useState([]);
 
 	useEffect(() => {
 		axios
@@ -41,6 +44,20 @@ const Profile = (props) => {
 				// console.log(alldata);
 				setTotalcontests(alldata[0].totalcontests);
 			});
+		const imgsdata = [];
+		axios.get(global.config.apiurl + `uploadimg/byUser`).then((res) => {
+			let alldata = res.data;
+			alldata.map(function (val, i, arr) {
+				imgsdata.push({
+					src: val.url,
+					thumbnail: val.url,
+					thumbnailWidth: 640,
+					thumbnailHeight: 320,
+				});
+			});
+			// console.log(imgsdata);
+			setImgsrcdb(imgsdata);
+		});
 	}, []);
 
 	return (
@@ -71,6 +88,11 @@ const Profile = (props) => {
 						</div>
 					</header>
 					<main className="card-main">
+						{/* <div className="activity">
+					<i className="material-icons">group</i>
+					<span className="activity-name">Followers</span>
+					<span className="index">{props.friends}</span>
+				</div> */}
 						<div className="activity">
 							<i className="material-icons">access_time</i>
 							<span className="activity-name">Photos</span>
@@ -81,6 +103,13 @@ const Profile = (props) => {
 							<span className="activity-name">Contest</span>
 							<span className="index">{totalcontests}</span>
 						</div>
+						<Gallery
+							images={imgsdb}
+							backdropClosesModal={true}
+							enableKeyboardInput={true}
+							enableImageSelection={false}
+							style={{ marginTop: '20vh' }}
+						/>
 					</main>
 				</div>
 			</div>

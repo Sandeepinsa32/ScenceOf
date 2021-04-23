@@ -21,8 +21,7 @@ import Gallery from 'react-grid-gallery';
 
 //Import diff components
 import Navbar from './Components/Header/Navbar';
-const BackgroundImg = 'https://cdn.fs.teachablecdn.com/RD4lJ0jZTq6k6zfSQ8de';
-// 'https://images.unsplash.com/photo-1564475228765-f0c3292f2dec?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1956&q=80';
+// const BackgroundImg = 'https://cdn.fs.teachablecdn.com/RD4lJ0jZTq6k6zfSQ8de';
 
 const useStyles = makeStyles((theme) => ({
 	mainDiv: {
@@ -154,7 +153,7 @@ function EnterContest(props) {
 								gutterBottom>
 								Contest Title
 							</Typography>
-							<div>
+							{/* <div>
 								<input
 									accept="image/*"
 									onClick={upload}
@@ -171,47 +170,140 @@ function EnterContest(props) {
 											color: '#fff',
 										}}
 										component="span"
-										// onClick={upload}
-									>
+										onClick={upload}>
 										<PhotoCamera
 											style={{ margin: '0 5px' }}
 										/>
 										Enter a Contest
 									</Button>
 								</label>
-							</div>
+
+								<Button
+									variant="contained"
+									color="default"
+									style={{
+										backgroundColor: '#888',
+										margin: '5px',
+										color: '#fff',
+									}}
+									component="span"
+									onClick={sendInDb}>
+									Submit
+								</Button>
+							</div> */}
 
 							<div className={classes.ThirdDiv}>
 								<Container maxwidth="md">
 									<Grid container spacing={2}>
-										<Grid item>
+										<Grid
+											item
+											xs={12}
+											sm={6}
+											md={6}
+											style={{ padding: '45px 0' }}>
 											<Typography
-												component="p"
-												variant="body1"
+												component="h2"
+												variant="h6"
 												align="center"
 												style={{ color: '#111' }}>
-												This contest was created by a
-												member of the Photocrowd
-												community. Want to create your
-												own?
+												Something About Contest
 											</Typography>
 											<Typography
 												component="p"
 												variant="body1"
 												align="center"
 												style={{ color: '#111' }}>
-												For this contest, enter your
-												photos showing your favourite
-												vacation place. Images can show
-												any place such as a beach, a
-												city, the mountains, etc. It
-												would add interest to the
-												contest if you include the
-												location in the image
-												description.
+												Description of blog For this
+												contest, enter your photos
+												showing your favourite vacation
+												place. Images can show any place
+												such as a beach, a city, the
+												mountains, etc. It would add
+												interest to the contest if you
+												include the location in the
+												image.
 											</Typography>
+											<div>
+												<i class="material-icons">
+													schedule
+												</i>
+												<span className="activity-name">
+													1 Days Left to Enter
+												</span>
+											</div>
+											<div>
+												<i class="material-icons">
+													photo
+												</i>
+												<span className="activity-name">
+													1,778 Photos Enter
+												</span>
+											</div>
+											<div>
+												<i class="material-icons">
+													photo_camera_front
+												</i>
+												<span className="activity-name">
+													7,78 photographers
+												</span>
+											</div>
 										</Grid>
-										<Grid item></Grid>
+
+										<Grid
+											item
+											xs={12}
+											sm={6}
+											md={6}
+											style={{ margin: '0 auto' }}>
+											<Card className={classes.card}>
+												<CardMedia
+													className={
+														classes.cardMedia
+													}
+													image={imgsrc}
+													// title="Image title"
+												/>
+												<div>
+													{/* <input
+														accept="image/*"
+														onClick={upload}
+														className={
+															classes.input
+														}
+														id="contained-button-file"
+														multiple
+													/>
+													<label htmlFor="contained-button-file"> */}
+													<Button
+														variant="contained"
+														color="default"
+														style={{
+															backgroundColor:
+																'#2e8b57',
+															color: '#fff',
+														}}
+														component="span"
+														onClick={upload}>
+														upload
+													</Button>
+													{/* </label> */}
+
+													<Button
+														variant="contained"
+														color="default"
+														style={{
+															backgroundColor:
+																'#888',
+															margin: '5px',
+															color: '#fff',
+														}}
+														component="span"
+														onClick={sendInDb}>
+														Submit
+													</Button>
+												</div>
+											</Card>
+										</Grid>
 									</Grid>
 								</Container>
 
@@ -228,27 +320,7 @@ function EnterContest(props) {
 				</div>
 
 				{/* image preview */}
-				{/* <Container className={classes.cardGrid} maxWidth="md">
-						<Typography
-							variant="h5"
-							align="center"
-							className={classes.heading}
-							color="textSecondary"
-							paragraph>
-							Image Preview:
-						</Typography>
-						<Grid container>
-							<Grid item xs={12} sm={12} md={12}>
-								<Card className={classes.card}>
-									<CardMedia
-										className={classes.cardMedia}
-										image={imgsrc}
-										// title="Image title"
-									/>
-								</Card>
-							</Grid>
-						</Grid>
-					</Container> */}
+
 				{/* </div> */}
 			</main>
 		</>

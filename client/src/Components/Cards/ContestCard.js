@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import {
 	CssBaseline,
 	Container,
@@ -40,6 +40,7 @@ function ContestCard(props) {
 	const classes = useStyles();
 	// console.log(props.data);
 	const contextList = props.data;
+
 	// console.log(contextList[0].name);
 	return (
 		<>
@@ -48,12 +49,12 @@ function ContestCard(props) {
 				<Grid container spacing={2} justify="center">
 					<Grid item>
 						<Typography gutterBottom variant="h4" component="h4">
-							Active Contest
+							{props.Contest}
 						</Typography>
 					</Grid>
 				</Grid>
 
-				<Grid md={12}>
+				<Grid md={12} id="active-contest">
 					{contextList.map((figure) => (
 						<figure className="snip1584" key={figure.name}>
 							<img alt="card" src={figure.image} />

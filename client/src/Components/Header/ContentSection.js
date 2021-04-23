@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import {
 	CssBaseline,
 	// Grid,
@@ -78,24 +78,26 @@ function ContentSection() {
 				</div>
 
 				<div align="center" style={{ marginTop: '40vh' }}>
-					<Typography
-						component="p"
-						variant="body1"
-						align="center"
-						style={{ color: '#FFFDFD' }}>
-						Find Out More
-					</Typography>
-					<Typography
-						component="p"
-						variant="body1"
-						align="center"
-						color="textPrimary">
-						<img
-							src="./png/DownArrow.png"
-							alt="arrow_Downard"
-							style={{ height: '30px' }}
-						/>
-					</Typography>
+					<a href="#active-contest">
+						<Typography
+							component="p"
+							variant="body1"
+							align="center"
+							style={{ color: '#FFFDFD' }}>
+							Find Out More
+						</Typography>
+						<Typography
+							component="p"
+							variant="body1"
+							align="center"
+							color="textPrimary">
+							<img
+								src="./png/DownArrow.png"
+								alt="arrow_Downard"
+								style={{ height: '30px' }}
+							/>
+						</Typography>
+					</a>
 				</div>
 				{/* 
 				<Grid align="center" spacing={2}>

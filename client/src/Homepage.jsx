@@ -15,15 +15,15 @@ import Footer from './Components/Footer/Footer';
 // import SignIn from './SignIn';
 // import SignUp from './SignUp';
 
-const BackgroundImg =
-	'https://images.unsplash.com/photo-1564475228765-f0c3292f2dec?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1956&q=80';
+const BackgroundImg = 'https://cdn.fs.teachablecdn.com/RD4lJ0jZTq6k6zfSQ8de';
+// 'https://images.unsplash.com/photo-1564475228765-f0c3292f2dec?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1956&q=80';
 
 const useStyles = makeStyles((theme) => ({
 	mainDiv: {
 		// marginTop: '10vh',
 		minHeight: '100vh',
 		padding: '25px 40px',
-		background: `url('${BackgroundImg}') no-repeat  fixed #212121`,
+		background: `url('${BackgroundImg}')   fixed #212121`,
 	},
 }));
 
@@ -50,7 +50,11 @@ function Homepage() {
 					<ContentSection />
 				</div>
 
-				<ContestCard maxWidth="lg" data={contest} />
+				<ContestCard
+					maxWidth="lg"
+					data={contest}
+					Contest="Active Contests"
+				/>
 
 				{/*CardContest */}
 				<TestimononialCard />

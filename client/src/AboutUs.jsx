@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { CssBaseline, Grid, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -68,6 +68,13 @@ const useStyles = makeStyles((theme) => ({
 function AboutUs() {
 	const classes = useStyles();
 
+	const ref = React.createRef();
+
+	const handleClick = () =>
+		ref.current.scrollIntoView({
+			behavior: 'smooth',
+			block: 'start',
+		});
 	return (
 		<>
 			<CssBaseline />
@@ -106,7 +113,10 @@ function AboutUs() {
 							What we do?
 						</Typography>
 
-						<div align="center" style={{ marginTop: '15vh' }}>
+						<div
+							align="center"
+							style={{ marginTop: '15vh' }}
+							onClick={handleClick}>
 							<Typography
 								component="p"
 								variant="  body1"
@@ -131,6 +141,7 @@ function AboutUs() {
 				<div
 					maxWidth="md"
 					className={classes.SecondDiv}
+					ref={ref}
 					style={{ Background: '#fff' }}>
 					<Typography
 						component="h3"

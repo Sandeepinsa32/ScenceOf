@@ -71,8 +71,7 @@ function AllCard() {
 	}, []);
 	return (
 		<>
-			<h2>All ONe!!</h2>
-			<ContestCard data={contest} />
+			<ContestCard data={contest} Contest="All Contests" />
 		</>
 	);
 }
@@ -86,12 +85,7 @@ function Free() {
 				setContest(alldata);
 			});
 	}, []);
-	return (
-		<>
-			<h2>Free ONe!!</h2>
-			<ContestCard data={contest} />
-		</>
-	);
+	return <ContestCard data={contest} Contest="Free Contests" />;
 }
 function Premium() {
 	const [contest, setContest] = useState([]);
@@ -103,12 +97,7 @@ function Premium() {
 				setContest(alldata);
 			});
 	}, []);
-	return (
-		<>
-			<h2>Premium ONe!!</h2>
-			<ContestCard data={contest} />
-		</>
-	);
+	return <ContestCard data={contest} Contest="Premium Contests" />;
 }
 function Sponsored() {
 	const [contest, setContest] = useState([]);
@@ -120,12 +109,7 @@ function Sponsored() {
 				setContest(alldata);
 			});
 	}, []);
-	return (
-		<>
-			<h2>Sponsored ONe!!</h2>
-			<ContestCard data={contest} />
-		</>
-	);
+	return <ContestCard data={contest} Contest="Sponsored Contests" />;
 }
 
 export default Homepage;
