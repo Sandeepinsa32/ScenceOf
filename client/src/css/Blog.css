@@ -31,9 +31,9 @@ a {
 	color: var(--light);
 }
 
-/* .article {
+.article {
 	width: 80%;
-} */
+}
 /* global styling */
 /* .text-light {
 	color: var(--light);
@@ -107,7 +107,10 @@ a {
 	padding: 0 5px;
 }
 .px-2 {
-	padding: 0 20px;
+	padding: 0 50px;
+	line-height: 1.5;
+	font-size: 28px;
+	font-weight: 100;
 }
 .py-1 {
 	padding: 10px 0;
@@ -124,7 +127,7 @@ a {
 /* Main Section */
 
 .site-main {
-	margin-top: 5em;
+	margin-top: 4em;
 	margin-bottom: 5em;
 }
 .display-1 {
