@@ -1,3 +1,3 @@
 module.exports = global.config = {
-	apiurl: 'http://scenesofnewengland.com/myapp/',
+	apiurl: 'https://scenesofnewengland.com/myapp/',
 };

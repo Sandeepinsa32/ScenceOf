@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 //Import diff components
 import Homepage from './Homepage';
@@ -12,7 +12,13 @@ import Blog from './blog';
 import Portfolio from './Gallery';
 import EnterContest from './EnterContest';
 import ReadBlog from './ReadBlog';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import {
+	BrowserRouter as Router,
+	Redirect,
+	Route,
+	Switch,
+	useHistory,
+} from 'react-router-dom';
 
 // import NotFound from './Notfound';
 // import Navbar from './Components/Header/Navbar';
@@ -20,12 +26,20 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 // console.clear();
 function App() {
-	// const [token, setToken] = useState('');
+	const history = useHistory();
+	// const [token, setToken] = useState(localStorage.getItem('user'));
+	// console.log(token);
+
+	const requireAuth = () => {
+		if (localStorage.getItem('user') === false) {
+			alert('done');
+			<Redirect to="/login" />;
+		}
+	};
 
 	return (
 		<>
 			<Router>
-				{/* <Navbar style={{ marginBottom: '10vh' }} /> */}
 				<Switch>
 					<Route path="/" exact>
 						<Homepage />
@@ -35,7 +49,7 @@ function App() {
 						<NewCalendar />
 					</Route>
 
-					<Route path="/active-contest" exact>
+					<Route path="/active-contest" onEnter={requireAuth} exact>
 						<Contest />
 					</Route>
 
@@ -58,15 +72,13 @@ function App() {
 					<Route path="/login" exact>
 						<SignIn />
 					</Route>
-					<Route path="/myaccount" exact>
+					<Route path="/myaccount" onEnter={requireAuth} exact>
 						<Profile />
 					</Route>
-
-					{/* 
-					<Route exact>
-						<Album />
-					</Route> */}
-					<Route path="/contest/enter-a-contest/" exact>
+					<Route
+						path="/contest/enter-a-contest/"
+						onEnter={requireAuth}
+						exact>
 						<EnterContest />
 					</Route>
 					<Route path="/blog/readblog/" exact>

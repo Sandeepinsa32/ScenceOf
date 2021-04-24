@@ -45,7 +45,10 @@ function ContestCard(props) {
 	return (
 		<>
 			<CssBaseline />
-			<Container className={classes.CcOutterDiv} maxWidth="lg">
+			<Container
+				className={classes.CcOutterDiv}
+				maxWidth="lg"
+				id="active-contest">
 				<Grid container spacing={2} justify="center">
 					<Grid item>
 						<Typography gutterBottom variant="h4" component="h4">
@@ -54,7 +57,7 @@ function ContestCard(props) {
 					</Grid>
 				</Grid>
 
-				<Grid md={12} id="active-contest">
+				<Grid md={12}>
 					{contextList.map((figure) => (
 						<figure className="snip1584" key={figure.name}>
 							<img alt="card" src={figure.image} />

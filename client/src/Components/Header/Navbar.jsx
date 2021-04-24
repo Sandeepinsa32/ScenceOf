@@ -173,13 +173,7 @@ function Navbar() {
 											className="modalButton join-btn"
 											data-popup="accept"
 											onClick={() => {
-												setAuth(
-													localStorage.removeItem(
-														'user'
-													)
-												);
-												// setIsLogin(true);
-												// setIsLogin(false);
+												localStorage.removeItem('user');
 												history.push('/login');
 											}}>
 											LogOut
@@ -353,13 +347,9 @@ function Navbar() {
 													className="modalButton join-btn"
 													data-popup="accept"
 													onClick={() => {
-														setAuth(
-															localStorage.removeItem(
-																'user'
-															)
+														localStorage.removeItem(
+															'user'
 														);
-														// setIsLogin(true);
-														// setIsLogin(false);
 														history.push('/login');
 													}}>
 													LogOut

@@ -7,7 +7,13 @@ import { makeStyles } from '@material-ui/core/styles';
 import Navbar from './Components/Header/Navbar';
 import Footer from './Components/Footer/Footer';
 import OldNavbar from './Components/others/oldNavbar';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import {
+	BrowserRouter as Router,
+	Route,
+	Switch,
+	Redirect,
+	useHistory,
+} from 'react-router-dom';
 
 import ContestCard from './Components/Cards/ContestCard';
 
@@ -22,7 +28,14 @@ const useStyles = makeStyles((theme) => ({
 
 function Homepage() {
 	const classes = useStyles();
-
+	const history = useHistory();
+	const requireAuth = () => {
+		if (!localStorage.getItem('user')) {
+			alert('Please Login ');
+			return history.push('/login');
+		}
+	};
+	requireAuth();
 	return (
 		<>
 			<CssBaseline />
