@@ -6,10 +6,6 @@ import { makeStyles } from '@material-ui/core/styles';
 //Import diff components
 import Navbar from './Components/Header/Navbar';
 import Footer from './Components/Footer/Footer';
-import OldNavbar from './Components/others/oldNavbar';
-import App from './App';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-
 import ContestCard from './Components/Cards/ContestCard';
 
 // const BackgroundImg = 'https://cdn.fs.teachablecdn.com/RD4lJ0jZTq6k6zfSQ8de';
@@ -21,51 +17,8 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-function Homepage() {
-	const classes = useStyles();
-
-	return (
-		<>
-			<CssBaseline />
-			<Navbar />
-			<main maxWidth="md" className={classes.mainDiv}>
-				<div style={{ marginTop: '12vh' }} maxWidth="md">
-					<Router>
-						<OldNavbar />
-
-						<Switch>
-							<Route
-								path="/active-contest/"
-								component={AllCard}
-								exact
-							/>
-							<Route
-								path="/active-contest/Free-contest"
-								component={Free}
-								exact
-							/>
-							<Route
-								path="/active-contest/Premium-contest"
-								component={Premium}
-								exact
-							/>
-							<Route
-								path="/active-contest/Sponsored-contest"
-								component={Sponsored}
-								exact
-							/>
-						</Switch>
-					</Router>
-				</div>
-			</main>
-
-			{/* Footer */}
-			<Footer />
-		</>
-	);
-}
-
 function AllCard() {
+	const classes = useStyles();
 	const [contest, setContest] = useState([]);
 	useEffect(() => {
 		axios
@@ -78,11 +31,21 @@ function AllCard() {
 	}, []);
 	return (
 		<>
-			<ContestCard data={contest} Contest="All Contests" />
+			<CssBaseline />
+			<Navbar />
+			<main maxWidth="md" className={classes.mainDiv}>
+				<div style={{ marginTop: '12vh' }} maxWidth="md">
+					<ContestCard data={contest} Contest="All Contests" />
+				</div>
+			</main>
+
+			{/* Footer */}
+			<Footer />
 		</>
 	);
 }
 function Free() {
+	const classes = useStyles();
 	const [contest, setContest] = useState([]);
 	useEffect(() => {
 		axios
@@ -92,9 +55,23 @@ function Free() {
 				setContest(alldata);
 			});
 	}, []);
-	return <ContestCard data={contest} Contest="Free Contests" />;
+	return (
+		<>
+			<CssBaseline />
+			<Navbar />
+			<main maxWidth="md" className={classes.mainDiv}>
+				<div style={{ marginTop: '12vh' }} maxWidth="md">
+					<ContestCard data={contest} Contest="Free Contests" />
+				</div>
+			</main>
+
+			{/* Footer */}
+			<Footer />
+		</>
+	);
 }
 function Premium() {
+	const classes = useStyles();
 	const [contest, setContest] = useState([]);
 	useEffect(() => {
 		axios
@@ -104,9 +81,23 @@ function Premium() {
 				setContest(alldata);
 			});
 	}, []);
-	return <ContestCard data={contest} Contest="Premium Contests" />;
+	return (
+		<>
+			<CssBaseline />
+			<Navbar />
+			<main maxWidth="md" className={classes.mainDiv}>
+				<div style={{ marginTop: '12vh' }} maxWidth="md">
+					<ContestCard data={contest} Contest="Premium Contests" />
+				</div>
+			</main>
+
+			{/* Footer */}
+			<Footer />
+		</>
+	);
 }
 function Sponsored() {
+	const classes = useStyles();
 	const [contest, setContest] = useState([]);
 	useEffect(() => {
 		axios
@@ -116,7 +107,20 @@ function Sponsored() {
 				setContest(alldata);
 			});
 	}, []);
-	return <ContestCard data={contest} Contest="Sponsored Contests" />;
+	return (
+		<>
+			<CssBaseline />
+			<Navbar />
+			<main maxWidth="md" className={classes.mainDiv}>
+				<div style={{ marginTop: '12vh' }} maxWidth="md">
+					<ContestCard data={contest} Contest="Sponsored Contests" />
+				</div>
+			</main>
+
+			{/* Footer */}
+			<Footer />
+		</>
+	);
 }
 
-export default Homepage;
+export { AllCard, Free, Premium, Sponsored };

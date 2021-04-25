@@ -99,6 +99,40 @@ body {
 .menu {
 	display: none;
 }
+.Contest-wrapper {
+	position: absolute;
+	left: 400px;
+	top: 70px;
+	padding: 0;
+	margin: 0;
+	width: auto;
+	height: auto;
+}
+.Contest-Menu {
+	padding: 5px !important;
+	margin: 0 5px;
+	display: none !important;
+	border-top: 1px solid;
+	border-bottom: 1px solid;
+}
+.Contest-Menu:hover {
+	color: #2e8b57 !important;
+	font-weight: bold;
+}
+
+.dropdown-icon :after {
+	content: '▸';
+}
+/* .dropdown-Contest-icon:after {
+	content: '▾' !important;
+} */
+
+.displayContest {
+	display: inline-block !important;
+	/* position: absolute;
+	top: 80px; */
+}
+
 @media (max-width: 950px) {
 	.nav ul li {
 		padding: 5px;
@@ -251,7 +285,7 @@ body {
 	}
 	nav.open {
 		height: auto;
-		min-height: 75%;
+		min-height: 100%;
 	}
 	nav.sticky {
 		height: 60px;
@@ -259,8 +293,18 @@ body {
 	nav .open.sticky {
 		height: auto;
 	}
-	.dropdown-icon :after {
-		content: '▾' !important;
+	.Contest-wrapper {
+		position: unset;
+	}
+
+	.Contest-Menu {
+		background-color: transparent;
+		/* border: none !important; */
+	}
+
+	.displayContest {
+		display: block !important;
+		font-weight: bold;
 	}
 }
 
@@ -370,9 +414,6 @@ button.modalButton.join-btn {
 	display: none;
 	z-index: 1;
 	box-shadow: 0 3px 12px rgba(0, 0, 0, 0.15);
-}
-.dropdown-icon :after {
-	content: '▸';
 }
 .display {
 	display: inline-block !important;

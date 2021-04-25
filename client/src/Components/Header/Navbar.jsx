@@ -9,6 +9,7 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import { Link } from '@material-ui/core';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 const logoImg =
 	'https://whatpageareyouon.com/scenesof/wp-content/uploads/2020/07/logo.png';
@@ -28,12 +29,17 @@ const useStyles = makeStyles((theme) => ({
 		fontWeight: 'bold',
 		color: '#111',
 	},
+	ContestLink: {
+		color: '#2e8b57 !important',
+		cursor: 'pointer',
+	},
 }));
 
 function Navbar() {
 	const classes = useStyles();
 	const [isActive, setActive] = useState('false');
 	const [isDisplay, setDisplay] = useState('false');
+	const [checkContest, setCheckContest] = useState('false');
 
 	const history = useHistory();
 
@@ -42,6 +48,9 @@ function Navbar() {
 	};
 	const DisplayToggle = () => {
 		setDisplay(!isDisplay);
+	};
+	const ContestToggle = () => {
+		setCheckContest(!checkContest);
 	};
 
 	//for user toggle
@@ -205,14 +214,74 @@ function Navbar() {
 								Calendar
 							</NavLink>
 						</li>
-						<li>
+						{/* testing For COntest Page */}
+						<li
+							className="dropdown-Contest-icon"
+							// onMouseOut={() => ContestToggle()}
+							// onClick={() => ContestToggle()}
+						>
 							<NavLink
 								to="/active-contest"
 								exact
+								onMouseOver={() => ContestToggle()}
 								activeClassName={classes.activeLink}>
 								Contest
 							</NavLink>
+							<span
+								onClick={() => ContestToggle()}
+								// onMouseOver={() => ContestToggle()}
+							>
+								<ExpandMoreIcon />
+							</span>
 						</li>
+						<span className="Contest-wrapper">
+							{/* <li
+								className={` Contest-Menu ${
+									checkContest ? '' : 'displayContest'
+								}`}
+								style={{
+									left: '270px',
+								}}>
+								All Contest
+							</li> */}
+							<li
+								className={`Contest-Menu ${
+									checkContest ? '' : 'displayContest'
+								}`}>
+								<NavLink
+									to="/active-contest/Free-contest"
+									exact
+									activeClassName={classes.activeLink}
+									className={classes.ContestLink}>
+									Free Contest
+								</NavLink>
+							</li>
+
+							<li
+								className={`Contest-Menu ${
+									checkContest ? '' : 'displayContest'
+								}`}>
+								<NavLink
+									to="/active-contest/Premium-contest"
+									exact
+									activeClassName={classes.activeLink}
+									className={classes.ContestLink}>
+									Premium Contest
+								</NavLink>
+							</li>
+							<li
+								className={`Contest-Menu ${
+									checkContest ? '' : 'displayContest'
+								}`}>
+								<NavLink
+									to="/active-contest/Sponsored-contest"
+									exact
+									className={classes.ContestLink}
+									activeClassName={classes.activeLink}>
+									Sponsered Contest
+								</NavLink>
+							</li>
+						</span>
 						<li>
 							<NavLink
 								to="/about-us"
@@ -270,6 +339,7 @@ function Navbar() {
 								<i className="fa fa-linkedin"></i>
 							</NavLink>
 						</li>
+
 						{/* in desktop mode  */}
 
 						{auth && (
