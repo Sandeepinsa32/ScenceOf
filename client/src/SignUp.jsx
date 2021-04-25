@@ -12,7 +12,6 @@ import {
 	Input,
 	Typography,
 	TextField,
-	// Link,
 	Button,
 	Avatar,
 	Container,
@@ -21,28 +20,30 @@ import { makeStyles } from '@material-ui/core/styles';
 
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
+import { Link } from 'react-router-dom';
 
 //Import diff components
 import Navbar from './Components/Header/Navbar';
 
-const BackgroundImg =
-	'https://static.photocrowd.com/img/registration_bg_2019.jpg';
+const BackgroundImg = '../png/diamond.png';
+// '../png/ocean.jpg';
 
 const useStyles = makeStyles((theme) => ({
 	mainDiv: {
 		minHeight: '100vh',
 		padding: '25px 5px',
-		background: `url('${BackgroundImg}') no-repeat #212121`,
+		background: `url('${BackgroundImg}') fixed #666`,
 		backgroundPosition: 'center',
-		backgroundSize: 'cover',
+		// backgroundSize: 'cover',
 	},
 	outterDiv: {
-		backgroundColor: '#fff',
+		// backgroundColor: '#fff',
+		background: "url('../png/brush.png')",
 		color: '#222',
 		borderRadius: '15px',
 		boxShadow: '0px 0px 8px 0px rgba(0,0,0,0.51)',
 		margin: 0,
-		height: '80vh',
+		height: '65vh',
 		[theme.breakpoints.down('sm')]: {
 			height: '125vh',
 		},
@@ -112,7 +113,9 @@ function SignUp() {
 	const [usernameReg, SetUsernameReg] = useState();
 	const [emailReg, SetEmailReg] = useState();
 	const [passwordReg, SetPasswordReg] = useState();
-	const [signFlag, SetSignFlag] = useState('~Join Us today');
+	const [signFlag, SetSignFlag] = useState(
+		'Step In The World Of Great Photos'
+	);
 
 	const history = useHistory();
 
@@ -150,7 +153,7 @@ function SignUp() {
 			<Navbar />
 			<main className={classes.mainDiv}>
 				<Container component="div" className={classes.innerDiv}>
-					<Typography
+					{/* <Typography
 						component="h4"
 						variant="h4"
 						color="textSecondary"
@@ -158,7 +161,7 @@ function SignUp() {
 						style={{ marginTop: '15vh' }}
 						gutterBottom>
 						A world of great photo contests and awards, in one place
-					</Typography>
+					</Typography> */}
 					<Typography
 						component="h1"
 						variant="h5"
@@ -293,17 +296,17 @@ function SignUp() {
 									onClick={Register}>
 									Sign Up
 								</Button>
-								{/* <Grid
+								<Grid
 									container
 									justify="center"
 									m="10px"
 									gutterBottom>
 									<Grid item>
-										<Link href="#" variant="body2">
+										<Link to="/login" variant="body2">
 											Already have an account? Sign in
 										</Link>
 									</Grid>
-								</Grid> */}
+								</Grid>
 							</form>
 						</div>
 					</Container>

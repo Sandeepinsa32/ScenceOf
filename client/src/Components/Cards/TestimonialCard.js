@@ -3,7 +3,6 @@ import {
 	Grid,
 	CssBaseline,
 	Container,
-	Button,
 	Card,
 	CardMedia,
 	CardContent,
@@ -21,6 +20,7 @@ const useStyles = makeStyles((theme) => ({
 		maxWidth: '400px',
 		margin: '10px auto',
 		borderRadius: '20px',
+		backgroundColor: '#99999999',
 	},
 	CardMedia: {
 		height: '80px',
@@ -55,7 +55,10 @@ function TestimononialCard() {
 					gutterBottom
 					variant="h4"
 					component="h4"
-					align="center">
+					align="center"
+					style={{
+						color: '#efefef',
+					}}>
 					Let us know what you think!
 				</Typography>
 
@@ -84,15 +87,17 @@ function TestimononialCard() {
 											<Typography
 												variant="body2"
 												color="textSecondary"
-												component="p">
-												I love this site, so many
+												component="blockquote">
+												"I love this site, so many
 												amazing photos that inspired me
-												every single day
+												every single day"
 											</Typography>
+
 											<Typography
 												variant="subtitle1"
 												component="h6"
-												align="right">
+												align="right"
+												style={{ color: '#efefef' }}>
 												-John Kei
 											</Typography>
 										</Grid>
@@ -102,7 +107,7 @@ function TestimononialCard() {
 						</Card>
 					))}
 				</Grid>
-				<div className={classes.cardExploreMorediv}>
+				{/* <div className={classes.cardExploreMorediv}>
 					<Grid container spacing={2} justify="center">
 						<Grid item>
 							<Button
@@ -114,7 +119,7 @@ function TestimononialCard() {
 							</Button>
 						</Grid>
 					</Grid>
-				</div>
+				</div> */}
 			</Container>
 		</>
 	);

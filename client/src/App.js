@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 //Import diff components
 import Homepage from './Homepage';
@@ -12,31 +12,10 @@ import Blog from './blog';
 import Portfolio from './Gallery';
 import EnterContest from './EnterContest';
 import ReadBlog from './ReadBlog';
-import {
-	BrowserRouter as Router,
-	Redirect,
-	Route,
-	Switch,
-	useHistory,
-} from 'react-router-dom';
-
-// import NotFound from './Notfound';
-// import Navbar from './Components/Header/Navbar';
-// import Album from './Components/others/Blog';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 // console.clear();
 function App() {
-	const history = useHistory();
-	// const [token, setToken] = useState(localStorage.getItem('user'));
-	// console.log(token);
-
-	const requireAuth = () => {
-		if (localStorage.getItem('user') === false) {
-			alert('done');
-			<Redirect to="/login" />;
-		}
-	};
-
 	return (
 		<>
 			<Router>
@@ -49,7 +28,7 @@ function App() {
 						<NewCalendar />
 					</Route>
 
-					<Route path="/active-contest" onEnter={requireAuth} exact>
+					<Route path="/active-contest" exact>
 						<Contest />
 					</Route>
 
@@ -72,13 +51,10 @@ function App() {
 					<Route path="/login" exact>
 						<SignIn />
 					</Route>
-					<Route path="/myaccount" onEnter={requireAuth} exact>
+					<Route path="/myaccount" exact>
 						<Profile />
 					</Route>
-					<Route
-						path="/contest/enter-a-contest/"
-						onEnter={requireAuth}
-						exact>
+					<Route path="/contest/enter-a-contest/" exact>
 						<EnterContest />
 					</Route>
 					<Route path="/blog/readblog/" exact>

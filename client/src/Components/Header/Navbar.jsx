@@ -8,6 +8,7 @@ import IconButton from '@material-ui/core/IconButton';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
+import { Link } from '@material-ui/core';
 
 const logoImg =
 	'https://whatpageareyouon.com/scenesof/wp-content/uploads/2020/07/logo.png';
@@ -49,9 +50,9 @@ function Navbar() {
 	const [anchorEl, setAnchorEl] = React.useState(null);
 	const open = Boolean(anchorEl);
 
-	const handleChange = (event) => {
-		setAuth(event.target.checked);
-	};
+	// const handleChange = (event) => {
+	// 	setAuth(event.target.checked);
+	// };
 
 	const handleMenu = (event) => {
 		setAnchorEl(event.currentTarget);
@@ -240,7 +241,9 @@ function Navbar() {
 						<li
 							className="dropdown-icon"
 							onClick={() => DisplayToggle()}>
-							<a href="#">Follow us on</a>
+							<Link style={{ textDecoration: 'none' }} to="#">
+								Follow us on
+							</Link>
 						</li>
 						<li
 							className={`Social-icons ${

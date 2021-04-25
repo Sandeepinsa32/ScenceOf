@@ -48,7 +48,7 @@ function OldNavbar() {
 						activeClassName={classes.activeLink}
 						variant="button"
 						color="primary"
-						to="/active-contest/"
+						to={`/active-contest/`}
 						className={classes.NavbarLink}>
 						All Contest
 					</NavLink>

@@ -23,7 +23,16 @@ const useStyles = makeStyles((theme) => ({
 		// marginTop: '10vh',
 		minHeight: '100vh',
 		padding: '25px 40px',
+		// background: "url('../png/diamond.png') fixed #888",
 		background: `url('${BackgroundImg}')   fixed #212121`,
+	},
+	cards: {
+		background: "url('../png/diamond.png') fixed #888",
+
+		// background: `url('../png/diamond.png'), url('../png/brush.png') fixed #212121`,
+		padding: '20px 10px',
+		minHeight: '125vh',
+		// marginTop: ' 5vh',
 	},
 }));
 
@@ -50,22 +59,25 @@ function Homepage() {
 					<ContentSection />
 				</div>
 
-				<ContestCard
-					maxWidth="lg"
-					data={contest}
-					Contest="Active Contests"
-				/>
+				<div maxWidth="md" className={classes.cards}>
+					{/*CardContest */}
+					<ContestCard data={contest} Contest="Active Contests" />
+				</div>
 
-				{/*CardContest */}
-				<TestimononialCard />
-				{/* testimonial */}
-
-				<Container maxWidth="lg">
-					<Grid>
-						{/* Winner card */}
-						<WinnerCards />
-					</Grid>
-				</Container>
+				<div
+					maxWidth="md"
+					style={{
+						background: "url('../png/brush.png') fixed #585858",
+					}}>
+					{/* testimonial */}
+					<TestimononialCard />
+					<Container maxWidth="lg">
+						<Grid>
+							{/* Winner card */}
+							<WinnerCards />
+						</Grid>
+					</Container>
+				</div>
 			</main>
 
 			{/* Footer */}

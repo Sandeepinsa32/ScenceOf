@@ -24,22 +24,22 @@ import VisibilityOff from '@material-ui/icons/VisibilityOff';
 
 //Import diff components
 import Navbar from './Components/Header/Navbar';
-const BackgroundImg =
-	'https://static.photocrowd.com/img/registration_bg_2019.jpg';
-//'https://images.unsplash.com/photo-1564475228765-f0c3292f2dec?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1956&q=80';
+const BackgroundImg = '../png/img_black_grey.jpg';
 
 const useStyles = makeStyles((theme) => ({
 	mainDiv: {
 		minHeight: '100vh',
 		padding: '25px 5px',
-		background: `url('${BackgroundImg}') no-repeat #212121`,
-		backgroundPosition: 'center',
-		backgroundSize: 'cover',
+		backgroundImage: ` url('../png/trans_png.png'),url('${BackgroundImg}')`,
+		backgroundColor: '#212121',
+		// backgroundPosition: 'center',
+		// backgroundSize: 'cover',
 		// backgroundColor: '#fff',
 	},
 	outterDiv: {
-		backgroundColor: '#fff',
-		color: '#222',
+		background: "url('../png/brush.png')",
+		// backgroundColor: '#fff',
+		color: '#111x',
 		borderRadius: '15px',
 		boxShadow: '0px 0px 8px 0px rgba(0,0,0,0.51)',
 		margin: 0,
@@ -150,15 +150,15 @@ function SignIn() {
 						className={classes.SectionHeading}
 						style={{ marginTop: '15vh' }}
 						gutterBottom>
-						A world of great photo contests and awards, in one place
+						Welcome Back
 					</Typography>
-					<Typography
+					{/* <Typography
 						component="h1"
 						variant="h5"
 						className={classes.SectionHeading}
 						gutterBottom>
-						~Sign in Now
-					</Typography>
+						Sign in Now
+					</Typography> */}
 				</Container>
 
 				<div align="center" xs={12}>
@@ -167,14 +167,13 @@ function SignIn() {
 						justify="center"
 						className={classes.outterDiv}>
 						<div className={classes.paper}>
-							<Avatar className={classes.avatar}>
-								{/* <LockOutlinedIcon /> */}
-							</Avatar>
+							<Avatar className={classes.avatar}></Avatar>
 							<Typography component="h1" variant="h5">
 								Sign in
 							</Typography>
 							{/* <form className={classes.form} noValidate> */}
 							<TextField
+								style={{ color: '#fff' }}
 								margin="normal"
 								required
 								fullWidth
@@ -186,7 +185,8 @@ function SignIn() {
 								}}
 							/>
 
-							<FormControl style={{ width: '100%' }}>
+							<FormControl
+								style={{ width: '100%', color: '#fff' }}>
 								<InputLabel htmlFor="standard-adornment-password">
 									Password
 								</InputLabel>

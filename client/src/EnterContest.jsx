@@ -9,13 +9,11 @@ import {
 	Typography,
 	Container,
 	Grid,
-	Hidden,
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import PhotoCamera from '@material-ui/icons/PhotoCamera';
 import './css/profile.css';
 import UploaderWindow from '@webutils/uploader';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useHistory } from 'react-router-dom';
 
 import Gallery from 'react-grid-gallery';
 
@@ -68,6 +66,14 @@ const useStyles = makeStyles((theme) => ({
 // const BackgroundImg2 = './png/trans_png.png';
 function EnterContest(props) {
 	const classes = useStyles();
+	// const history = useHistory();
+	// const requireAuth = () => {
+	// 	if (!localStorage.getItem('user')) {
+	// 		alert('Please Login ');
+	// 		return history.push('/login');
+	// 	}
+	// };
+	// requireAuth();
 
 	const [imgsrc, setImgsrc] = useState('');
 	const [imgsdb, setImgsrcdb] = useState([]);
@@ -84,7 +90,7 @@ function EnterContest(props) {
 		return new URLSearchParams(useLocation().search);
 	}
 	const query = useQuery();
-	const contesdtid = query.get('contid');
+	const contestid = query.get('contid');
 
 	// console.log(contesdtid);
 
@@ -94,7 +100,7 @@ function EnterContest(props) {
 			url: global.config.apiurl + 'uploadimg/insert',
 			data: qs.stringify({
 				imgurl: imgsrc,
-				contesdtid: contesdtid,
+				contesttid: contestid,
 				userid: localStorage.getItem('userid'),
 			}),
 			headers: {
@@ -115,11 +121,15 @@ function EnterContest(props) {
 	useEffect(() => {
 		const imgsdata = [];
 		axios
-			.get(global.config.apiurl + 'uploadimg/byContest?contesid=44')
+			.get(
+				global.config.apiurl +
+					'uploadimg/byContest?contesid=' +
+					contestid
+			)
 			.then((res) => {
 				let alldata = res.data;
 				alldata.map(function (val, i, arr) {
-					imgsdata.push({
+					return imgsdata.push({
 						src: val.url,
 						thumbnail: val.url,
 						thumbnailWidth: 640,

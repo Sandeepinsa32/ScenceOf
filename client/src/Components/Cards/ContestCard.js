@@ -1,11 +1,5 @@
-import React, { useRef } from 'react';
-import {
-	CssBaseline,
-	Container,
-	Grid,
-	Typography,
-	Button,
-} from '@material-ui/core';
+import React from 'react';
+import { CssBaseline, Grid, Typography, Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import './Css/ContestCard.css';
 import { Link } from 'react-router-dom';
@@ -24,6 +18,7 @@ const useStyles = makeStyles((theme) => ({
 		padding: '10px',
 		backgroundColor: '#3dad4b',
 		borderRadius: '10px',
+		marginTop: '10vh',
 		'&:hover': {
 			backgroundColor: '#389e44',
 		},
@@ -45,11 +40,11 @@ function ContestCard(props) {
 	return (
 		<>
 			<CssBaseline />
-			<Container
+			<div
 				className={classes.CcOutterDiv}
-				maxWidth="lg"
+				maxWidth="md"
 				id="active-contest">
-				<Grid container spacing={2} justify="center">
+				<Grid spacing={2} justify="center">
 					<Grid item>
 						<Typography gutterBottom variant="h4" component="h4">
 							{props.Contest}
@@ -70,6 +65,7 @@ function ContestCard(props) {
 										'/contest/enter-a-contest?contid=' +
 										figure.id
 									}
+									refresh="ture"
 									exact></Link>
 							</figcaption>
 						</figure>
@@ -90,7 +86,7 @@ function ContestCard(props) {
 						</Grid>
 					</Grid>
 				</div>
-			</Container>
+			</div>
 		</>
 	);
 }

@@ -2,6 +2,7 @@ import React from 'react';
 import { Grid } from '@material-ui/core';
 import {
 	CssBaseline,
+	Container,
 	Typography,
 	Card,
 	CardContent,
@@ -42,6 +43,9 @@ const useStyles = makeStyles((theme) => ({
 		paddingTop: theme.spacing(8),
 		paddingBottom: theme.spacing(8),
 	},
+	CardOutterDiv: {
+		minHeight: '75vh',
+	},
 }));
 
 function WinnerCards() {
@@ -49,43 +53,62 @@ function WinnerCards() {
 	return (
 		<>
 			<CssBaseline />
+			<Container className={classes.CardOutterDiv} maxWidth="lg">
+				<Typography
+					gutterBottomContainer
+					variant="h4"
+					component="h4"
+					align="center"
+					style={{
+						color: '#efefef',
+						marginBottom: '10vh',
+					}}>
+					Contest Winner
+				</Typography>
 
-			<Grid container spacing={2}>
-				{NoOfCards.map((card) => (
-					<Grid item key={card} xs={12} sm={6} md={3}>
-						<Card className={classes.cardMain}>
-							<CardMedia
-								className={classes.cardMedia}
-								image={image}
-								title="Image title"
-							/>
-							<CardContent className={classes.cardContent}>
-								<Grid container spacing={2} justify="center">
-									<Grid item>
-										<Typography
-											gutterBottom
-											variant="h6"
-											component="h6">
-											Winner (name )
-										</Typography>
+				<Grid container spacing={2} style={{ marginBottom: '5vh' }}>
+					{NoOfCards.map((card) => (
+						<Grid item key={card} xs={12} sm={6} md={3}>
+							<Card className={classes.cardMain}>
+								<CardMedia
+									className={classes.cardMedia}
+									image={image}
+									title="Image title"
+								/>
+								<CardContent className={classes.cardContent}>
+									<Grid
+										container
+										spacing={2}
+										justify="center">
+										<Grid item>
+											<Typography
+												gutterBottom
+												variant="h6"
+												component="h6">
+												Winner (name )
+											</Typography>
+										</Grid>
 									</Grid>
-								</Grid>
-								<Grid container spacing={2} justify="center">
-									<Grid item>
-										<Typography
-											gutterBottom
-											variant="p"
-											component="p"
-											color="textSecondary">
-											Nature (photo Categories)
-										</Typography>
+									<Grid
+										container
+										spacing={2}
+										justify="center">
+										<Grid item>
+											<Typography
+												gutterBottom
+												variant="p"
+												component="p"
+												color="textSecondary">
+												Nature (photo Categories)
+											</Typography>
+										</Grid>
 									</Grid>
-								</Grid>
-							</CardContent>
-						</Card>
-					</Grid>
-				))}
-			</Grid>
+								</CardContent>
+							</Card>
+						</Grid>
+					))}
+				</Grid>
+			</Container>
 		</>
 	);
 }

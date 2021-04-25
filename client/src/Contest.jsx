@@ -7,13 +7,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import Navbar from './Components/Header/Navbar';
 import Footer from './Components/Footer/Footer';
 import OldNavbar from './Components/others/oldNavbar';
-import {
-	BrowserRouter as Router,
-	Route,
-	Switch,
-	Redirect,
-	useHistory,
-} from 'react-router-dom';
+import App from './App';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import ContestCard from './Components/Cards/ContestCard';
 
@@ -28,14 +23,7 @@ const useStyles = makeStyles((theme) => ({
 
 function Homepage() {
 	const classes = useStyles();
-	const history = useHistory();
-	const requireAuth = () => {
-		if (!localStorage.getItem('user')) {
-			alert('Please Login ');
-			return history.push('/login');
-		}
-	};
-	requireAuth();
+
 	return (
 		<>
 			<CssBaseline />
@@ -46,20 +34,26 @@ function Homepage() {
 						<OldNavbar />
 
 						<Switch>
-							<Route path="/active-contest/" exact>
-								<AllCard />
-							</Route>
-							<Route path="/active-contest/Free-contest" exact>
-								<Free />
-							</Route>
-							<Route path="/active-contest/Premium-contest" exact>
-								<Premium />
-							</Route>
+							<Route
+								path="/active-contest/"
+								component={AllCard}
+								exact
+							/>
+							<Route
+								path="/active-contest/Free-contest"
+								component={Free}
+								exact
+							/>
+							<Route
+								path="/active-contest/Premium-contest"
+								component={Premium}
+								exact
+							/>
 							<Route
 								path="/active-contest/Sponsored-contest"
-								exact>
-								<Sponsored />
-							</Route>
+								component={Sponsored}
+								exact
+							/>
 						</Switch>
 					</Router>
 				</div>

@@ -1,24 +1,34 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { CssBaseline } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import Footer from './Components/Footer/Footer';
-import { Calendar, Views, momentLocalizer } from 'react-big-calendar';
-import events from './utils/events';
-import Navbar from './Components/Header/Navbar';
-import moment from 'moment';
-import 'react-big-calendar/lib/css/react-big-calendar.css';
+import {
+	MonthlyBody,
+	MonthlyCalendar,
+	MonthlyNav,
+	DefaultMonthlyEventItem,
+} from '@zach.codes/react-calendar';
 
-const BackgroundImg = '';
+import { format, startOfMonth, subHours } from 'date-fns';
+
+// import events from './utils/events';
+import Navbar from './Components/Header/Navbar';
+import '@zach.codes/react-calendar/dist/calendar-tailwind.css';
+import { blue } from '@material-ui/core/colors';
+
+// const BackgroundImg = '';
 // 'https://images.unsplash.com/photo-1564475228765-f0c3292f2dec?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1956&q=80';
 
 const useStyles = makeStyles((theme) => ({
 	mainDiv: {
-		// marginTop: '10vh',
 		minHeight: '120vh',
-		padding: '25px 5px',
-		background: `url('${BackgroundImg}') no-repeat  fixed #fff`,
+		padding: '10%',
+		background: "url('../png/brush.png') fixed #888",
+		// background: `url('${BackgroundImg}') no-repeat  fixed #fff`,
 		fontSize: '22px',
 		fontFamily: 'Roboto',
+		paddingTop: '15vh',
+		fontWeight: 'bold',
 	},
 	CalendarStyle: {
 		width: '100%',
@@ -30,48 +40,60 @@ const useStyles = makeStyles((theme) => ({
 
 function NewCalendar() {
 	const classes = useStyles();
-
-	const localizer = momentLocalizer(moment);
-	console.log(localizer);
-
-	let allViews = Object.keys(Views).map((k) => Views[k]);
-
-	console.log(allViews);
-
-	const ColoredDateCellWrapper = ({ children }) =>
-		React.cloneElement(React.Children.only(children), {
-			style: {
-				backgroundColor: 'lightblue',
-				width: '300%',
-			},
-		});
+	let [currentMonth, setCurrentMonth] = useState(startOfMonth(Date.now()));
 	return (
 		<>
 			<CssBaseline />
 			<Navbar />
 			<div className={classes.mainDiv}>
-				<Calendar
-					events={events}
-					style={{
-						height: '80vh',
-						marginTop: '15vh',
-						width: '100%',
-					}}
-					className={classes.CalendarStyle}
-					step={120}
-					Views="month"
-					showMultiDayTimes
-					defaultDate={new Date()}
-					components={{
-						timeSlotWrapper: ColoredDateCellWrapper,
-					}}
-					localizer={localizer}
-				/>
+				<MonthlyCalendar
+					currentMonth={currentMonth}
+					onCurrentMonthChange={(date) => setCurrentMonth(date)}>
+					<MonthlyNav />
+					<MonthlyBody
+						events={[
+							{
+								id: 1,
+								date: Date.now(),
+								time: '17:55- 17:56',
+								title: 'Call John',
+							},
+							{
+								id: 2,
+								date: new Date(2021, 3, 5),
+								time: '17:55- 17:56',
+								title: 'Call John',
+							},
+							{
+								id: 3,
+								date: new Date(2021, 3, 15),
+								time: '17:55- 17:56',
+								title: 'Meeting with Bob',
+							},
+						]}
+						renderDay={(data) =>
+							data.map((item) => (
+								<DefaultMonthlyEventItem
+									key={item.id}
+									title={item.title}
+									date={item.time}
+								/>
+							))
+						}
+					/>
+				</MonthlyCalendar>
 			</div>
 
 			<Footer />
 		</>
 	);
 }
-
 export default NewCalendar;
+
+// renderDay={(data) => (
+// 					<DefaultMonthlyEventItem
+// 						title={'call me'}
+// 						// date={)}
+// 					/>
+// 				)}
+// 			/>

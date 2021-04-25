@@ -48,7 +48,7 @@ const Profile = (props) => {
 		axios.get(global.config.apiurl + `uploadimg/byUser`).then((res) => {
 			let alldata = res.data;
 			alldata.map(function (val, i, arr) {
-				imgsdata.push({
+				return imgsdata.push({
 					src: val.url,
 					thumbnail: val.url,
 					thumbnailWidth: 640,

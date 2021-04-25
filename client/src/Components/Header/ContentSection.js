@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import {
 	CssBaseline,
 	// Grid,
@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
 	SectionSearchPaper: {
 		padding: '2px 4px',
 		display: 'flex',
-		alignItems: 'center',
+		// alignItems: 'center',
 		width: '70vw',
 	},
 	SectionSearchInput: {
@@ -89,7 +89,6 @@ function ContentSection() {
 						<Typography
 							component="p"
 							variant="body1"
-							align="center"
 							color="textPrimary">
 							<img
 								src="./png/DownArrow.png"
