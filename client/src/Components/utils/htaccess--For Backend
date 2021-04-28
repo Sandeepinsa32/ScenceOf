@@ -1,0 +1,15 @@
+# DO NOT REMOVE. CLOUDLINUX PASSENGER CONFIGURATION BEGIN
+PassengerAppRoot "/home/scenesof/myapp"
+PassengerBaseURI "/myapp"
+PassengerNodejs "/home/scenesof/nodevenv/myapp/14/bin/node"
+PassengerAppType node
+PassengerStartupFile app.js
+# DO NOT REMOVE. CLOUDLINUX PASSENGER CONFIGURATION END
+# DO NOT REMOVE OR MODIFY. CLOUDLINUX ENV VARS CONFIGURATION BEGIN
+<IfModule Litespeed>
+SetEnv MYSQL_DATABASE scenesof_appapi
+SetEnv MYSQL_HOST localhost
+SetEnv MYSQL_PASSWORD appapi@4321
+SetEnv MYSQL_USER scenesof_appapi
+</IfModule>
+# DO NOT REMOVE OR MODIFY. CLOUDLINUX ENV VARS CONFIGURATION END

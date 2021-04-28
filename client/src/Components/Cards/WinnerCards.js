@@ -9,7 +9,7 @@ import {
 	CardMedia,
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import './Css/ContestCard.css';
+import '../../css/ContestCard.css';
 
 var image =
 	'https://static.photocrowd.com/photos/3254787-f3ee9574acbd976f72f925c00cc96a91ed06132a-h810.jpeg';

@@ -1,17 +1,22 @@
 import React from 'react';
 
 //Import diff components
-import Homepage from './Homepage';
-import Profile from './profile';
-import SignIn from './SignIn';
-import SignUp from './SignUp';
-import AboutUs from './AboutUs';
-import NewCalendar from './NewCalendar';
-import Blog from './blog';
-import Portfolio from './Gallery';
-import EnterContest from './EnterContest';
-import ReadBlog from './ReadBlog';
-import { AllCard, Free, Premium, Sponsored } from './Contest';
+import Homepage from './Components/Homepage';
+import Profile from './Components/User/Profile';
+import SignIn from './Components/Login';
+import SignUp from './Components/Join';
+import AboutUs from './Components/AboutUs';
+import NewCalendar from './Components/Calender/NewCalendar';
+import Blog from './Components/Blog/Blog';
+import Portfolio from './Components/Gallery/Gallery';
+import EnterContest from './Components/Contest/EnterContest';
+import ReadBlog from './Components/Blog/ReadBlog';
+import {
+	AllCard,
+	Free,
+	Premium,
+	Sponsored,
+} from './Components/Contest/Contest';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 // import Dashboard from './Admin/Dashboard';
 import AdminLogin from './Admin/Login';

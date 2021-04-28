@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
 		color: '#FFF',
 	},
 	SectionHeading: {
-		color: '#888',
+		color: '#efefef',
 		// color: '#EE6059',
 		[theme.breakpoints.down('sm')]: {
 			fontSize: '2rem',
@@ -56,9 +56,10 @@ function ContentSection() {
 						color="textPrimary"
 						className={classes.SectionHeading}
 						gutterBottom>
-						Life is simple{' '}
-						<span style={{ color: '#3dad4b' }}>
-							{/* Style will be inherited from the parent element */}
+						Capture, Share, Explore
+						{/* Life is simple{' '} */}
+						{/* Style will be inherited from the parent element */}
+						{/* <span style={{ color: '#3dad4b' }}>
 							<Typewriter
 								loop
 								cursor
@@ -73,7 +74,7 @@ function ContentSection() {
 									)
 								}
 							/>
-						</span>
+						</span> */}
 					</Typography>
 				</div>
 

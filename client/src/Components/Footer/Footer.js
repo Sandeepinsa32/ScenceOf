@@ -10,9 +10,7 @@ const BackgroundImg = 'https://cdn.fs.teachablecdn.com/RD4lJ0jZTq6k6zfSQ8de';
 
 const useStyles = makeStyles((theme) => ({
 	footerMainDiv: {
-		// Height: '60vh',
 		background: `url('${BackgroundImg}')  fixed #212121`,
-		// marginTop: '10vh',
 		color: '#FFF',
 	},
 	footerText: {
@@ -25,7 +23,11 @@ function Footer() {
 	return (
 		<>
 			<CssBaseline />
-			<div>
+			<div
+				style={{
+					position: 'relative',
+					bottom: '0',
+				}}>
 				<footer className={classes.footerMainDiv}>
 					<Typography
 						variant="h6"

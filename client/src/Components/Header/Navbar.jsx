@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import { NavLink } from 'react-router-dom';
-import './Navbar.css';
+import '../../css/Navbar.css';
 import { makeStyles } from '@material-ui/core/styles';
 import { useHistory } from 'react-router-dom';
 import IconButton from '@material-ui/core/IconButton';
@@ -35,11 +35,14 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-function Navbar() {
+function Navbar(props) {
 	const classes = useStyles();
 	const [isActive, setActive] = useState('false');
 	const [isDisplay, setDisplay] = useState('false');
 	const [checkContest, setCheckContest] = useState('false');
+
+	// const BackgroundImg = `' ${props.BackgroundImg}'`;
+	// 'https://images.unsplash.com/photo-1564475228765-f0c3292f2dec?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1956&q=80';
 
 	const history = useHistory();
 
@@ -77,16 +80,14 @@ function Navbar() {
 
 	const [auth, setAuth] = useState(loggedInUser);
 
-	// const login = localStorage.getItem('IsUserAuth');
-	// console.log(login);
-	// const [isLogin, setIsLogin] = useState(false);
-
-	// if (login === 'success') {
-	// }
-
 	return (
 		<>
-			<nav className={`nav ${isActive ? '' : 'open'}`}>
+			<nav
+				className={` nav  ${isActive ? '' : 'open'}`}
+				style={{
+					background: `url('${props.BackgroundImg}') #212121`,
+					// filter: 'saturate(0.9)',
+				}}>
 				<button className="menu">
 					<i
 						className="hamburger"
@@ -194,7 +195,6 @@ function Navbar() {
 						</Menu>
 					</span>
 				)}
-
 				<div className="narrowLinks">
 					<ul className="navbar">
 						<li>

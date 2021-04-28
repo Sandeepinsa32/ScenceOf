@@ -1,6 +1,6 @@
 import React from 'react';
 import { useForm } from 'react-cool-form';
-import './Css/Login.css';
+import '../css/Login.css';
 
 const Field = ({ label, id, error, ...rest }) => (
 	<div>
@@ -18,7 +18,7 @@ export default function AdminLogin() {
 	const errors = mon('errors', { errorWithTouched: true });
 
 	return (
-		<>
+		<div className="outter-div">
 			<h2 className="header-text">Login</h2>
 			<div className="Wrapper-Login" ref={form}>
 				<Field
@@ -38,8 +38,10 @@ export default function AdminLogin() {
 					minLength={8}
 					error={errors.password}
 				/>
-				<button onClick={submit}>Submit</button>
+				<button className="submit-button" onClick={submit}>
+					Submit
+				</button>
 			</div>
-		</>
+		</div>
 	);
 }
