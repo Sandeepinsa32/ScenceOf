@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { forpost } from './utils/Auth';
 import qs from 'qs';
 import axios from 'axios';
 import {
@@ -79,7 +80,7 @@ function EnterContest(props) {
 	const [imgsdb, setImgsrcdb] = useState([]);
 
 	function upload() {
-		UploaderWindow('my-uploader-120')
+		UploaderWindow('my-uploader-12')
 			.open()
 			.then((res) => {
 				const alldata = res[0].url;
@@ -100,25 +101,22 @@ function EnterContest(props) {
 			url: global.config.apiurl + 'uploadimg/insert',
 			data: qs.stringify({
 				imgurl: imgsrc,
-				contesttid: contestid,
-				userid: localStorage.getItem('userid'),
+				contesdtid: contestid,
 			}),
-			headers: {
-				'content-type':
-					'application/x-www-form-urlencoded;charset=utf-8',
-			},
+			headers: forpost(),
 		})
 			.then((response) => {
 				console.log(response);
-				alert(response.data.msg);
+				alert('picture uploaded');
+				FetchImage();
+				// window.location.reload(false);
 			})
 			.catch((err) => {
 				console.log(err);
 			});
-		alert('picture uploaded');
 	};
 
-	useEffect(() => {
+	function FetchImage() {
 		const imgsdata = [];
 		axios
 			.get(
@@ -139,7 +137,11 @@ function EnterContest(props) {
 				console.log(imgsdata);
 				setImgsrcdb(imgsdata);
 			});
+	}
+	useEffect(() => {
+		FetchImage();
 	}, []);
+
 	return (
 		<>
 			<CssBaseline />

@@ -127,8 +127,8 @@ function SignIn() {
 					console.log(response.data);
 					localStorage.setItem('user', true);
 					localStorage.setItem('username', response.data.user);
-					localStorage.setItem('userid', response.data.userid);
-					history.push('/');
+					localStorage.setItem('token', response.data.token);
+					// history.push('/');
 				}
 			})
 			.catch((err) => {

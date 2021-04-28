@@ -13,6 +13,8 @@ import EnterContest from './EnterContest';
 import ReadBlog from './ReadBlog';
 import { AllCard, Free, Premium, Sponsored } from './Contest';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+// import Dashboard from './Admin/Dashboard';
+import AdminLogin from './Admin/Login';
 
 // console.clear();
 function App() {
@@ -75,6 +77,7 @@ function App() {
 						component={Sponsored}
 						exact
 					/>
+					<Route path="/admin" component={AdminLogin} exact />
 				</Switch>
 			</Router>
 		</>

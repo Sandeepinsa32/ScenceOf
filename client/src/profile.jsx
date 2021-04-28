@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import Auth from './utils/Auth';
 // import qs from 'qs';
 import axios from 'axios';
 
@@ -28,7 +29,7 @@ const Profile = (props) => {
 	useEffect(() => {
 		axios
 			.get(global.config.apiurl + `uploadimg/countimgs`, {
-				withCredentials: true,
+				headers: Auth(),
 			})
 			.then((res) => {
 				let alldata = res.data;
@@ -36,8 +37,8 @@ const Profile = (props) => {
 				setTotalimgs(alldata[0].totalimgs);
 			});
 		axios
-			.get(global.config.apiurl + `uploadimg/countcontests`, {
-				withCredentials: true,
+			.get(global.config.apiurl + `contest/countcontests`, {
+				headers: Auth(),
 			})
 			.then((res) => {
 				let alldata = res.data;
@@ -45,19 +46,23 @@ const Profile = (props) => {
 				setTotalcontests(alldata[0].totalcontests);
 			});
 		const imgsdata = [];
-		axios.get(global.config.apiurl + `uploadimg/byUser`).then((res) => {
-			let alldata = res.data;
-			alldata.map(function (val, i, arr) {
-				return imgsdata.push({
-					src: val.url,
-					thumbnail: val.url,
-					thumbnailWidth: 640,
-					thumbnailHeight: 320,
+		axios
+			.get(global.config.apiurl + `uploadimg/byUser`, {
+				headers: Auth(),
+			})
+			.then((res) => {
+				let alldata = res.data;
+				alldata.map(function (val, i, arr) {
+					return imgsdata.push({
+						src: val.url,
+						thumbnail: val.url,
+						thumbnailWidth: 640,
+						thumbnailHeight: 320,
+					});
 				});
+				console.log(imgsdata);
+				setImgsrcdb(imgsdata);
 			});
-			// console.log(imgsdata);
-			setImgsrcdb(imgsdata);
-		});
 	}, []);
 
 	return (
@@ -88,11 +93,6 @@ const Profile = (props) => {
 						</div>
 					</header>
 					<main className="card-main">
-						{/* <div className="activity">
-					<i className="material-icons">group</i>
-					<span className="activity-name">Followers</span>
-					<span className="index">{props.friends}</span>
-				</div> */}
 						<div className="activity">
 							<i className="material-icons">access_time</i>
 							<span className="activity-name">Photos</span>

@@ -1,0 +1,52 @@
+body {
+	font-family: sans-serif;
+	background: #212121;
+}
+body > div {
+	margin: 5rem auto 0;
+	width: 100%;
+}
+body > div div {
+	width: auto;
+	margin-bottom: 1rem;
+}
+body > div label {
+	display: block;
+	color: #fff;
+}
+body > div input,
+body > div button {
+	margin: 0.5rem 0;
+	padding: 0 0.5rem;
+	width: auto;
+	height: 2rem;
+	border: none;
+	border-radius: 4px;
+	box-sizing: border-box;
+}
+body > div button {
+	height: 2.5rem;
+	font-size: 1rem;
+	color: #fff;
+	background: #0971f1;
+	cursor: pointer;
+}
+body > div p {
+	margin: 0.5rem 0;
+	padding: 0 0.5rem;
+	width: auto;
+	height: 2rem;
+	margin: 0;
+	color: #f90;
+}
+.Wrapper-Login {
+	border: 1px solid #888;
+	background-color: #212121;
+	padding: 20px;
+	width: 24rem;
+	margin: 0 auto;
+}
+.header-text {
+	margin-bottom: 5px;
+	color: #fff;
+}
