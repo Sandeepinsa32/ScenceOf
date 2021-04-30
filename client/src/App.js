@@ -11,6 +11,10 @@ import Blog from './Components/Blog/Blog';
 import Portfolio from './Components/Gallery/Gallery';
 import EnterContest from './Components/Contest/EnterContest';
 import ReadBlog from './Components/Blog/ReadBlog';
+import ForgetPassword from './Components/Forgetpassword';
+import ChangePassword from './Components/ChangePassword';
+import Payment from './Components/Payment';
+import Pricing from './Components/Pricing';
 import {
 	AllCard,
 	Free,
@@ -82,7 +86,21 @@ function App() {
 						component={Sponsored}
 						exact
 					/>
+					{/* For Admin Panel */}
 					<Route path="/admin" component={AdminLogin} exact />
+					{/* user view */}
+					<Route
+						path="/Forgetpassword"
+						component={ForgetPassword}
+						exact
+					/>
+					<Route
+						path="/Changepassword"
+						component={ChangePassword}
+						exact
+					/>
+					<Route path="/payment" component={Payment} exact />
+					<Route path="/pricing" component={Pricing} exact />
 				</Switch>
 			</Router>
 		</>

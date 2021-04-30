@@ -76,6 +76,12 @@ function Homepage() {
 						</Grid>
 					</Container>
 				</div>
+
+				<div maxWidth="md">
+					<Container maxWidth="lg">
+						<Grid></Grid>
+					</Container>
+				</div>
 			</main>
 
 			{/* Footer */}
