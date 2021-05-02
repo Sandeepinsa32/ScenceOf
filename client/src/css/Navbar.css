@@ -23,8 +23,7 @@ body {
 }
 
 .nav {
-	background-color: #777;
-
+	/* background-color: #777; */
 	color: #fff;
 	transition: all 0.5s ease;
 	font-size: 12px;
@@ -92,9 +91,11 @@ body {
 }
 .nav ul li:hover a {
 	font-weight: bold;
+	color: #ffae42;
 }
 .nav ul li a {
 	color: #eee;
+	/* color: #ffae42; */
 	text-decoration: none;
 }
 .menu {
@@ -348,7 +349,7 @@ button.modalButton {
 }
 
 button.modalButton.join-btn {
-	background: #2e8b57;
+	background: #ffae42;
 }
 
 .Sign-btn {

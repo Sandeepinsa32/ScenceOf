@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { CssBaseline, Grid } from '@material-ui/core';
+import { CssBaseline, Grid, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
 import '../../css/Blog.css';
@@ -8,14 +8,13 @@ import '../../css/Blog.css';
 //Import diff components
 import Navbar from '../Header/Navbar';
 import Footer from '../Footer/Footer';
-
-// const BackgroundImg = 'https://cdn.fs.teachablecdn.com/RD4lJ0jZTq6k6zfSQ8de';
+const BackgroundImg =
+	'https://images.unsplash.com/photo-1564475228765-f0c3292f2dec?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1956&q=80';
 
 const useStyles = makeStyles((theme) => ({
 	mainDiv: {
 		minHeight: '100vh',
-		padding: '1px 0px',
-		background: `url('')  #212121`,
+		// background: `url('${BackgroundImg}')   #212121`,
 	},
 }));
 
@@ -25,7 +24,22 @@ function Blog() {
 	return (
 		<>
 			<CssBaseline />
-			<Navbar />
+			<Navbar BackgroundImg={BackgroundImg} />
+
+			<div
+				style={{
+					background: `url('${BackgroundImg}')`,
+					padding: '15vh 0',
+					color: '#fff',
+				}}>
+				<Grid justify="center">
+					<Grid item>
+						<Typography gutterBottom variant="h4" component="h4">
+							Blog
+						</Typography>
+					</Grid>
+				</Grid>
+			</div>
 			<main className={classes.mainDiv}>
 				<div maxWidth="md" className="site-main">
 					<BlogPost />

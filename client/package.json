@@ -24,9 +24,12 @@
 		"react-cool-form": "^0.1.0",
 		"react-dom": "^17.0.2",
 		"react-grid-gallery": "^0.5.5",
+		"react-paypal-express-checkout": "^1.0.5",
 		"react-router-dom": "^5.2.0",
 		"react-scripts": "4.0.3",
+		"react-share": "^4.4.0",
 		"react-simple-typewriter": "^1.0.13",
+		"reactjs-popup": "^2.0.4",
 		"web-vitals": "^1.1.1"
 	},
 	"scripts": {

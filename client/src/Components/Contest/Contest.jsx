@@ -42,8 +42,7 @@ function AllCard() {
 			<div
 				style={{
 					background: `url('${BackgroundImg}')`,
-					marginTop: '12vh',
-					padding: '12vh 0',
+					padding: '25vh 0',
 					color: '#fff',
 				}}>
 				<Grid justify="center">
@@ -83,8 +82,7 @@ function Free() {
 			<div
 				style={{
 					background: `url('${BackgroundImg2}')`,
-					marginTop: '12vh',
-					padding: '12vh 0',
+					padding: '25vh 0',
 					color: '#fff',
 				}}>
 				<Grid justify="center">
@@ -124,8 +122,7 @@ function Premium() {
 			<div
 				style={{
 					background: `url('${BackgroundImg3}')`,
-					marginTop: '12vh',
-					padding: '12vh 0',
+					padding: '25vh 0',
 					color: '#fff',
 				}}>
 				<Grid justify="center">
@@ -165,8 +162,7 @@ function Sponsored() {
 			<div
 				style={{
 					background: `url('${BackgroundImg}')`,
-					marginTop: '12vh',
-					padding: '12vh 0',
+					padding: '25vh 0',
 					color: '#fff',
 				}}>
 				<Grid justify="center">

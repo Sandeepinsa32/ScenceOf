@@ -1,5 +1,5 @@
 import React from 'react';
-import { CssBaseline, Grid, Button } from '@material-ui/core';
+import { CssBaseline, Grid, Button, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import '../../css/ContestCard.css';
 import { Link } from 'react-router-dom';
@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
 		color: '#fff',
 		fontSize: '12px',
 		padding: '10px',
-		backgroundColor: '#3dad4b',
+		backgroundColor: '#ffae42',
 		borderRadius: '10px',
 		marginTop: '10vh',
 		'&:hover': {

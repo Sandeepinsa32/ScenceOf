@@ -1,5 +1,5 @@
 import React from 'react';
-import { CssBaseline } from '@material-ui/core';
+import { CssBaseline, Grid, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 //Import diff components
@@ -8,44 +8,51 @@ import Footer from '../Footer/Footer';
 import Imageapi from '../utils/Imageapi';
 import Gallery from 'react-grid-gallery';
 
-const BackgroundImg = '';
-// 'https://cdn.fs.teachablecdn.com/RD4lJ0jZTq6k6zfSQ8de';
+const BackgroundImg = 'https://cdn.fs.teachablecdn.com/RD4lJ0jZTq6k6zfSQ8de';
 
 const useStyles = makeStyles((theme) => ({
 	mainDiv: {
 		minHeight: '100vh',
-		padding: '1px 0px',
-		// marginTop: '15vh',
-		overflow: 'hidden',
-		background: `url('${BackgroundImg}')  #fff`,
+		height: '100%',
+		// overflow: 'hidden',
+		// background: `url('${BackgroundImg}')  #fff`,
+		// margin: '0 auto',
 	},
 }));
 
-function Portfolio() {
+function ImgGallery() {
 	const classes = useStyles();
 
 	return (
 		<>
 			<CssBaseline />
-			<Navbar />
-			<main maxWidth="lg" className={classes.mainDiv}>
-				<div
-					style={{
-						marginTop: '12vh',
-						height: 'auto',
-						minHeight: '100vh',
-						padding: '5px 10px',
-					}}
-					maxWidth="md">
-					<Gallery
-						images={Imageapi}
-						margin={3}
-						backdropClosesModal={true}
-						enableKeyboardInput={true}
-						enableImageSelection={false}
-						style={{ marginTop: '20vh' }}
-					/>
-				</div>
+			<Navbar BackgroundImg={BackgroundImg} />
+			<div
+				style={{
+					background: `url('${BackgroundImg}')`,
+					padding: '15vh 0',
+					color: '#fff',
+				}}>
+				<Grid justify="center">
+					<Grid item>
+						<Typography gutterBottom variant="h4" component="h4">
+							Gallery
+						</Typography>
+					</Grid>
+				</Grid>
+			</div>
+			<main className={classes.mainDiv}>
+				<Grid justify="center">
+					<Grid item>
+						<Gallery
+							images={Imageapi}
+							margin={3}
+							backdropClosesModal={true}
+							enableKeyboardInput={true}
+							enableImageSelection={false}
+						/>
+					</Grid>
+				</Grid>
 			</main>
 
 			{/* Footer */}
@@ -54,4 +61,4 @@ function Portfolio() {
 	);
 }
 
-export default Portfolio;
+export default ImgGallery;

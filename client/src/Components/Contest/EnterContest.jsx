@@ -15,11 +15,18 @@ import { makeStyles } from '@material-ui/core/styles';
 import '../../css/profile.css';
 import UploaderWindow from '@webutils/uploader';
 import { useLocation } from 'react-router-dom';
-
+import {
+	FacebookShareButton,
+	TwitterShareButton,
+	WhatsappShareButton,
+} from 'react-share';
+import { FacebookIcon, TwitterIcon, WhatsappIcon } from 'react-share';
 import Gallery from 'react-grid-gallery';
 
 //Import diff components
 import Navbar from '../Header/Navbar';
+import LoginPopUp from '../utils/LoginPopUp';
+import LoginPopup from '../utils/LoginPopUp';
 // const BackgroundImg = 'https://cdn.fs.teachablecdn.com/RD4lJ0jZTq6k6zfSQ8de';
 
 const useStyles = makeStyles((theme) => ({
@@ -61,12 +68,24 @@ const useStyles = makeStyles((theme) => ({
 		boxShadow: '-1px 13px 14px -11px rgb(0 0 1)',
 		overflow: 'Hidden',
 	},
+	activity_tag: {
+		display: 'flex',
+		alignItems: 'center',
+		justifyContent: 'center',
+	},
 }));
 
 // const BackgroundImg = './png/Bg_black.gif';
 // const BackgroundImg2 = './png/trans_png.png';
 function EnterContest(props) {
 	const classes = useStyles();
+	function Checkupload() {
+		if (auth) {
+			upload();
+		} else {
+			LoginPopUp();
+		}
+	}
 	// const history = useHistory();
 	// const requireAuth = () => {
 	// 	if (!localStorage.getItem('user')) {
@@ -75,11 +94,14 @@ function EnterContest(props) {
 	// 	}
 	// };
 	// requireAuth();
+	const loggedInUser = localStorage.getItem('user');
+	const [auth, setAuth] = useState(loggedInUser);
 
 	const [imgsrc, setImgsrc] = useState('');
 	const [imgsdb, setImgsrcdb] = useState([]);
 
 	function upload() {
+		alert('upload clicked');
 		UploaderWindow('my-uploader-12')
 			.open()
 			.then((res) => {
@@ -139,10 +161,6 @@ function EnterContest(props) {
 			});
 	}
 
-	// useEffect(() => {
-	// 	FetchImage();
-	// }, []);
-
 	return (
 		<>
 			<CssBaseline />
@@ -155,7 +173,7 @@ function EnterContest(props) {
 							className="card-header"
 							style={{
 								position: 'relative',
-								top: '-500px',
+								top: '-400px',
 							}}>
 							<Typography
 								component="h3"
@@ -166,44 +184,6 @@ function EnterContest(props) {
 								gutterBottom>
 								Contest Title
 							</Typography>
-							{/* <div>
-								<input
-									accept="image/*"
-									onClick={upload}
-									className={classes.input}
-									id="contained-button-file"
-									multiple
-								/>
-								<label htmlFor="contained-button-file">
-									<Button
-										variant="contained"
-										color="default"
-										style={{
-											backgroundColor: '#2e8b57',
-											color: '#fff',
-										}}
-										component="span"
-										onClick={upload}>
-										<PhotoCamera
-											style={{ margin: '0 5px' }}
-										/>
-										Enter a Contest
-									</Button>
-								</label>
-
-								<Button
-									variant="contained"
-									color="default"
-									style={{
-										backgroundColor: '#888',
-										margin: '5px',
-										color: '#fff',
-									}}
-									component="span"
-									onClick={sendInDb}>
-									Submit
-								</Button>
-							</div> */}
 
 							<div className={classes.ThirdDiv}>
 								<Container maxwidth="md">
@@ -211,8 +191,8 @@ function EnterContest(props) {
 										<Grid
 											item
 											xs={12}
-											sm={6}
-											md={6}
+											sm={12}
+											md={12}
 											style={{ padding: '45px 0' }}>
 											<Typography
 												component="h2"
@@ -236,31 +216,95 @@ function EnterContest(props) {
 												include the location in the
 												image.
 											</Typography>
-											<div>
-												<i class="material-icons">
-													schedule
-												</i>
-												<span className="activity-name">
-													1 Days Left to Enter
-												</span>
-											</div>
-											<div>
-												<i class="material-icons">
-													photo
-												</i>
-												<span className="activity-name">
-													1,778 Photos Enter
-												</span>
-											</div>
-											<div>
-												<i class="material-icons">
-													photo_camera_front
-												</i>
-												<span className="activity-name">
-													7,78 photographers
-												</span>
-											</div>
+											<Container>
+												<div
+													className={
+														classes.activity_tag
+													}>
+													<i class="material-icons">
+														schedule
+													</i>
+													<span
+														className="activity-name"
+														style={{
+															padding: '10px',
+														}}>
+														1 Days Left to Enter
+													</span>
+												</div>
+												<div
+													className={
+														classes.activity_tag
+													}>
+													<i class="material-icons">
+														photo
+													</i>
+													<span
+														className="activity-name"
+														style={{
+															padding: '15px',
+														}}>
+														1 Photos Enter
+													</span>
+												</div>
+												<div
+													className={
+														classes.activity_tag
+													}>
+													<i class="material-icons">
+														photo_camera_front
+													</i>
+													<span
+														className="activity-name"
+														style={{
+															padding: '10px',
+														}}>
+														7 photographers
+													</span>
+												</div>
+											</Container>
 										</Grid>
+										{/*  */}
+										<Grid
+											item
+											xs={12}
+											sm={12}
+											md={12}
+											style={{ margin: '0 auto' }}>
+											<FacebookShareButton
+												url="http://scenesofnewengland.com/"
+												quote={'hey im sharing this'}
+												hashtag="#react">
+												<FacebookIcon
+													logoFillColor="white"
+													round={true}></FacebookIcon>
+											</FacebookShareButton>
+											<WhatsappShareButton
+												url="http://scenesofnewengland.com/"
+												quote={'hey im sharing this'}
+												hashtag="#react">
+												<WhatsappIcon
+													logoFillColor="white"
+													round={true}></WhatsappIcon>
+											</WhatsappShareButton>
+											{/* <InstagramShareButton>
+												<InstagramIcon
+													logoFillColor="white"
+													round={
+														true
+													}></InstagramIcon>
+											</InstagramShareButton> */}
+											<TwitterShareButton
+												url="http://scenesofnewengland.com/"
+												quote={'hey im sharing this'}
+												hashtag="#react">
+												<TwitterIcon
+													logoFillColor="white"
+													round={true}></TwitterIcon>
+											</TwitterShareButton>
+										</Grid>
+
+										{/*  */}
 
 										<Grid
 											item
@@ -277,29 +321,22 @@ function EnterContest(props) {
 													// title="Image title"
 												/>
 												<div>
-													{/* <input
-														accept="image/*"
-														onClick={upload}
-														className={
-															classes.input
-														}
-														id="contained-button-file"
-														multiple
-													/>
-													<label htmlFor="contained-button-file"> */}
-													<Button
-														variant="contained"
-														color="default"
-														style={{
-															backgroundColor:
-																'#2e8b57',
-															color: '#fff',
-														}}
-														component="span"
-														onClick={upload}>
-														upload
-													</Button>
-													{/* </label> */}
+													{auth ? (
+														<Button
+															variant="contained"
+															color="default"
+															style={{
+																backgroundColor:
+																	'#2e8b57',
+																color: '#fff',
+															}}
+															component="span"
+															onClick={upload}>
+															upload
+														</Button>
+													) : (
+														<LoginPopup />
+													)}
 
 													<Button
 														variant="contained"
@@ -333,7 +370,6 @@ function EnterContest(props) {
 				</div>
 
 				{/* image preview */}
-
 				{/* </div> */}
 			</main>
 		</>

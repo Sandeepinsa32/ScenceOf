@@ -4,8 +4,18 @@ var router = express.Router();
 var db = require('../db');
 var bodyParser = require('body-parser');
 
-router.use(bodyParser.json()); // for parsing application/json
-//router.use(bodyParser.urlencoded({extended: true})); // for parsing application/x-www-form-urlencoded
+
+router.use(bodyParser.json());
+// Create application/x-www-form-urlencoded parser  
+router.use(bodyParser.urlencoded({
+  extended: true
+}));
+
+router.use(express.json());
+router.use(express.urlencoded({
+  extended: true
+}))
+
 
 /* get method for fetch all products. */
 router.get('/', function(req, res, next) {
@@ -19,16 +29,16 @@ router.get('/', function(req, res, next) {
 });
 
 /*get method for fetch single product*/
-router.get('/:id', function(req, res, next) {
-  var id = req.params.id;
-  var sql = `SELECT * FROM products WHERE id=${id}`;
-  db.query(sql, function(err, row, fields) {
-    if(err) {
-      res.status(500).send({ error: 'Something failed!' })
-    }
-    res.json(row[0])
-  })
-});
+// router.get('/:id', function(req, res, next) {
+//   var id = req.params.id;
+//   var sql = `SELECT * FROM products WHERE id=${id}`;
+//   db.query(sql, function(err, row, fields) {
+//     if(err) {
+//       res.status(500).send({ error: 'Something failed!' })
+//     }
+//     res.json(row[0])
+//   })
+// });
 
 /*post method for create product*/
 router.post('/create', function(req, res, next) {
@@ -74,4 +84,3 @@ router.delete('/delete/:id', function(req, res, next) {
 })
 
 module.exports = router;
-

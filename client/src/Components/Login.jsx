@@ -60,7 +60,6 @@ const useStyles = makeStyles((theme) => ({
 		marginTop: '10vh',
 	},
 	paper: {
-		marginTop: theme.spacing(8),
 		display: 'flex',
 		flexDirection: 'column',
 		alignItems: 'center',
@@ -80,6 +79,30 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function SignIn() {
+	const classes = useStyles();
+	return (
+		<>
+			<CssBaseline />
+			{/* header */}
+			<Navbar />
+			<main className={classes.mainDiv}>
+				<Container component="div" className={classes.innerDiv}>
+					<Typography
+						component="h4"
+						variant="h4"
+						color="textSecondary"
+						className={classes.SectionHeading}
+						style={{ marginTop: '15vh' }}
+						gutterBottom>
+						Welcome Back
+					</Typography>
+				</Container>
+				<Login />
+			</main>
+		</>
+	);
+}
+const Login = () => {
 	const classes = useStyles();
 
 	const [usernameLog, SetUsernameLog] = useState('');
@@ -135,126 +158,90 @@ function SignIn() {
 				console.log(err);
 			});
 	};
-
 	return (
 		<>
-			<CssBaseline />
-			{/* header */}
-			<Navbar />
-			<main className={classes.mainDiv}>
-				<Container component="div" className={classes.innerDiv}>
-					<Typography
-						component="h4"
-						variant="h4"
-						color="textSecondary"
-						className={classes.SectionHeading}
-						style={{ marginTop: '15vh' }}
-						gutterBottom>
-						Welcome Back
-					</Typography>
-					{/* <Typography
-						component="h1"
-						variant="h5"
-						className={classes.SectionHeading}
-						gutterBottom>
-						Sign in Now
-					</Typography> */}
-				</Container>
+			<div align="center" xs={12}>
+				<Container
+					maxWidth="xs"
+					justify="center"
+					className={classes.outterDiv}>
+					<div className={classes.paper}>
+						<Avatar className={classes.avatar}></Avatar>
+						<Typography component="h1" variant="h5">
+							Sign in
+						</Typography>
+						{/* <form className={classes.form} noValidate> */}
+						<TextField
+							style={{ color: '#fff' }}
+							margin="normal"
+							required
+							fullWidth
+							label="Enter Username"
+							autoComplete="email"
+							autoFocus
+							onChange={(e) => {
+								SetUsernameLog(e.target.value);
+							}}
+						/>
 
-				<div align="center" xs={12}>
-					<Container
-						maxWidth="xs"
-						justify="center"
-						className={classes.outterDiv}>
-						<div className={classes.paper}>
-							<Avatar className={classes.avatar}></Avatar>
-							<Typography component="h1" variant="h5">
-								Sign in
-							</Typography>
-							{/* <form className={classes.form} noValidate> */}
-							<TextField
-								style={{ color: '#fff' }}
-								margin="normal"
+						<FormControl style={{ width: '100%', color: '#fff' }}>
+							<InputLabel htmlFor="standard-adornment-password">
+								Password
+							</InputLabel>
+							<Input
 								required
 								fullWidth
-								label="Enter Username"
-								autoComplete="email"
-								autoFocus
-								onChange={(e) => {
-									SetUsernameLog(e.target.value);
-								}}
+								label="Password"
+								id="standard-adornment-password"
+								onChange={handleChange('password')}
+								type={values.showPassword ? 'text' : 'password'}
+								value={values.password}
+								endAdornment={
+									<InputAdornment position="end">
+										<IconButton
+											aria-label="toggle password visibility"
+											onClick={handleClickShowPassword}
+											onMouseDown={
+												handleMouseDownPassword
+											}>
+											{values.showPassword ? (
+												<Visibility />
+											) : (
+												<VisibilityOff />
+											)}
+										</IconButton>
+									</InputAdornment>
+								}
 							/>
+						</FormControl>
 
-							<FormControl
-								style={{ width: '100%', color: '#fff' }}>
-								<InputLabel htmlFor="standard-adornment-password">
-									Password
-								</InputLabel>
-								<Input
-									required
-									fullWidth
-									label="Password"
-									id="standard-adornment-password"
-									onChange={handleChange('password')}
-									type={
-										values.showPassword
-											? 'text'
-											: 'password'
-									}
-									value={values.password}
-									endAdornment={
-										<InputAdornment position="end">
-											<IconButton
-												aria-label="toggle password visibility"
-												onClick={
-													handleClickShowPassword
-												}
-												onMouseDown={
-													handleMouseDownPassword
-												}>
-												{values.showPassword ? (
-													<Visibility />
-												) : (
-													<VisibilityOff />
-												)}
-											</IconButton>
-										</InputAdornment>
-									}
-								/>
-							</FormControl>
-
-							<Button
-								type="submit"
-								fullWidth
-								variant="contained"
-								color="primary"
-								className={classes.submit}
-								onClick={Login}>
-								Sign In
-							</Button>
-							<Grid
-								container
-								justify="center"
-								m="10px"
-								gutterBottom>
-								<Grid item xs gutterBottom>
-									<Link href="#" variant="body2">
-										Forgot password?
-									</Link>
-								</Grid>
-								<Grid item gutterBottom>
-									<Link href="#" variant="body2">
-										{"Don't have an account? Sign Up"}
-									</Link>
-								</Grid>
+						<Button
+							type="submit"
+							fullWidth
+							variant="contained"
+							color="primary"
+							className={classes.submit}
+							onClick={Login}>
+							Sign In
+						</Button>
+						<Grid container justify="center" m="10px" gutterBottom>
+							<Grid item xs gutterBottom>
+								<Link href="#" variant="body2">
+									Forgot password?
+								</Link>
 							</Grid>
-							{/* </form> */}
-						</div>
-					</Container>
-				</div>
-			</main>
+							<Grid item gutterBottom>
+								<Link href="#" variant="body2">
+									{"Don't have an account? Sign Up"}
+								</Link>
+							</Grid>
+						</Grid>
+						{/* </form> */}
+					</div>
+				</Container>
+			</div>
 		</>
 	);
-}
+};
 
-export default SignIn;
+export { SignIn, Login };

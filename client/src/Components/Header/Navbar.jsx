@@ -84,10 +84,12 @@ function Navbar(props) {
 		<>
 			<nav
 				className={` nav  ${isActive ? '' : 'open'}`}
-				style={{
-					background: `url('${props.BackgroundImg}') #212121`,
-					// filter: 'saturate(0.9)',
-				}}>
+				style={
+					{
+						// background: `url('${props.BackgroundImg}') #212121`,
+						// filter: 'saturate(0.9)',
+					}
+				}>
 				<button className="menu">
 					<i
 						className="hamburger"

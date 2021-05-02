@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { CssBaseline, Grid, Container } from '@material-ui/core';
+import { CssBaseline, Grid, Container, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import axios from 'axios';
 
@@ -59,6 +59,16 @@ function Homepage() {
 
 				<div maxWidth="md" className={classes.cards}>
 					{/*CardContest */}
+					<Grid spacing={2} justify="center">
+						<Grid item>
+							<Typography
+								gutterBottom
+								variant="h4"
+								component="h4">
+								Active Contest
+							</Typography>
+						</Grid>
+					</Grid>
 					<ContestCard data={contest} Contest="Active Contests" />
 				</div>
 

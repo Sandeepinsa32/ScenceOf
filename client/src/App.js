@@ -3,7 +3,7 @@ import React from 'react';
 //Import diff components
 import Homepage from './Components/Homepage';
 import Profile from './Components/User/Profile';
-import SignIn from './Components/Login';
+import { SignIn } from './Components/Login';
 import SignUp from './Components/Join';
 import AboutUs from './Components/AboutUs';
 import NewCalendar from './Components/Calender/NewCalendar';

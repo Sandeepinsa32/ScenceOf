@@ -5,20 +5,31 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var session = require('express-session');
 var cors = require('cors');
 
 var indexRouter = require('./routes/index');
+var contestcategoryRouter = require('./routes/contestcategory');
+var contestRouter = require('./routes/contest');
 var usersRouter = require('./routes/users');
 var productsRouter = require('./routes/product');
 
 var app = express();
 
-app.use(cors());
+app.use(
+	session({
+		secret: 'secret',
+		resave: false,
+		saveUninitialized: true,
+	})
+);
 const corsOptions = {
 	origin: 'http://localhost:3001',
 	credentials: true, //access-control-allow-credentials:true
 	optionSuccessStatus: 200,
 };
+app.use(cors(corsOptions));
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
@@ -30,8 +41,10 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
 app.use('/products', productsRouter);
+app.use('/contest', contestRouter);
+app.use('/contestcategory', contestcategoryRouter);
+app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

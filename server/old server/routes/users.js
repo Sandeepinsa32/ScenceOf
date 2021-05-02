@@ -25,36 +25,49 @@ router.get('/', function (req, res, next) {
 
 /*post method for create user*/
 router.post('/create', function (req, res, next) {
-	console.log(req.body);
-	var name = req.body.name;
+	// console.log(req.body);
+	var fname = req.body.fname;
+	var lastname = req.body.lastname;
+	var username = req.body.username;
 	var email = req.body.email;
 	var password = req.body.password;
 
-	var sql = `INSERT INTO users (name, email, password) VALUES ("${name}", "${email}", "${password}")`;
-	db.query(sql, function (err, result) {
+	db.query(`SELECT * FROM users WHERE email="${email}"`, function (err, result) {
 		if (err) {
-			res.status(500).send({error: 'Something failed!'});
+			res.status(500).send({error: err});
 		}
-		res.json({status: 'success', id: result.insertId});
+		if (result.length > 0) {
+			res.json({status: 'success', msg: 'Email Already Exist'});
+		} else {
+			var sql = `INSERT INTO users (fname, lastname, username, email, password) VALUES ("${fname}", "${lastname}", "${username}","${email}", "${password}")`;
+			db.query(sql, function (err, result) {
+				if (err) {
+					res.status(500).send({error: err});
+				}
+				res.json({status: 'success', id: result.insertId});
+			});
+		}
 	});
 });
 
 /*post method for login user*/
 router.post('/login', function (req, res, next) {
-	console.log(req.body);
 	var email = req.body.email;
 	var password = req.body.password;
 
-	var sql = `SELECT * FROM users WHERE email="${email}" AND password="${password}"`;
+	var sql = `SELECT * FROM users WHERE username="${email}" AND password="${password}"`;
 	db.query(sql, function (err, result) {
 		if (err) {
-			res.status(500).send({error: 'Something failed!'});
+			res.status(500).send({error: err});
+		}
+		if (result.length > 0) {
+			req.session.loggedin = true;
+			req.session.username = email;
+			console.log(req.session.username);
+
+			res.json({token: req.session.loggedin, status: 'success', user: email, msg: 'Login Success'});
 		} else {
-			if (result) {
-				res.json({status: 'success', user: result});
-			} else {
-				res.send({message: '`Oops! Wrong Username/Password'});
-			}
+			res.json({status: 'success', msg: 'Incorrect Username and/or Password!'});
 		}
 	});
 });
