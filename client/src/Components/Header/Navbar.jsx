@@ -111,6 +111,15 @@ function Navbar(props) {
 						</li>
 						{/* testing For COntest Page */}
 						<li>
+							<NavLink
+								to="/active-contest"
+								exact
+								activeClassName={classes.activeLink}>
+								Contest
+							</NavLink>
+						</li>
+						{/* explore more */}
+						<li>
 							<ContestNav />
 						</li>
 						<li>

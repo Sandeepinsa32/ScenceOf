@@ -34,23 +34,22 @@ export default function UserNav(props) {
 	return (
 		<>
 			<span className={props.NameOfClass}>
-				<NavLink
+				{/* <NavLink
 					to="/active-contest"
 					exact
 					activeClassName={classes.activeLink}>
-					Contests
-				</NavLink>
-				{/* <span
+					Explore
+				</NavLink> */}
+				<span
 					aria-label="account of current user"
 					aria-controls="menu-appbar"
 					aria-haspopup="true"
 					onClick={handleMenu}
-
 					color="inherit">
-					Contests
+					Explore
 					<ExpandMoreIcon />
-				</span> */}
-				{/* 
+				</span>
+
 				<Menu
 					style={{
 						marginTop: '50px',
@@ -63,40 +62,59 @@ export default function UserNav(props) {
 					onClose={handleClose}>
 					<MenuItem>
 						<NavLink
-							to="/active-contest"
+							to="/pricing"
 							exact
 							activeClassName={classes.activeLink}>
-							All Contest
+							Pricing
 						</NavLink>
 					</MenuItem>
 					<MenuItem>
 						<NavLink
-							to="/active-contest/Free-contest"
+							to="/winner"
 							exact
 							activeClassName={classes.activeLink}
 							className={classes.ContestLink}>
-							Free Contest
+							Winner
 						</NavLink>
 					</MenuItem>
+
 					<MenuItem>
 						<NavLink
-							to="/active-contest/Premium-contest"
+							to="/admin"
 							exact
 							activeClassName={classes.activeLink}
 							className={classes.ContestLink}>
-							Premium Contest
+							Admin Login
 						</NavLink>
 					</MenuItem>
 					<MenuItem>
 						<NavLink
-							to="/active-contest/Sponsored-contest"
+							to="/admin/dashboard"
 							exact
-							className={classes.ContestLink}
-							activeClassName={classes.activeLink}>
-							Sponsered Contest
+							activeClassName={classes.activeLink}
+							className={classes.ContestLink}>
+							Admin Dashboard
 						</NavLink>
 					</MenuItem>
-				</Menu> */}
+					<MenuItem>
+						<NavLink
+							to="/Forgetpassword"
+							exact
+							activeClassName={classes.activeLink}
+							className={classes.ContestLink}>
+							ForgetPassword
+						</NavLink>
+					</MenuItem>
+					<MenuItem>
+						<NavLink
+							to="/Changepassword"
+							exact
+							activeClassName={classes.activeLink}
+							className={classes.ContestLink}>
+							Change Password
+						</NavLink>
+					</MenuItem>
+				</Menu>
 			</span>
 		</>
 	);
