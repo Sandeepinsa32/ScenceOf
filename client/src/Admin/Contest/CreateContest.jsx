@@ -1,12 +1,7 @@
-import { Container, Button, Grid } from '@material-ui/core';
 import React, { useState } from 'react';
 import Title from '../Title';
 import { makeStyles } from '@material-ui/core/styles';
-import TextField from '@material-ui/core/TextField';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
+import '../../css/CreateContest.css';
 import UploaderWindow from '@webutils/uploader';
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -51,102 +46,103 @@ export default function CreateContest() {
 		setOpen(true);
 	};
 	return (
-		<>
+		<div>
 			<Title children="Create a Contest" />
-			<Container>
-				<form className={classes.root} noValidate autoComplete="off">
-					<Grid container spacing={2}>
-						<Grid
-							item
-							xs={12}
-							sm={12}
-							md={12}
-							justify-Content="Space-around">
-							<TextField
-								id="standard-basic"
-								label="Contest Name"
-							/>
 
-							<TextField
-								id="standard-basic"
-								label="Sponser Name"
-							/>
-						</Grid>
-						<Grid
-							item
-							xs={12}
-							sm={12}
-							md={12}
-							style={{ padding: '40px 20vh' }}>
-							<span
-								className={classes.dropdown}
-								style={{ margin: '0 5vh' }}>
-								<InputLabel id="demo-controlled-open-select-label">
-									Category
-								</InputLabel>
-								<Select
-									labelId="demo-controlled-open-select-label"
-									id="demo-controlled-open-select"
-									open={open}
-									onClose={handleClose}
-									onOpen={handleOpen}
-									value={age}
-									onChange={handleChange}>
-									<MenuItem value="">
-										<em>None</em>
-									</MenuItem>
-									<MenuItem value={10}>Free</MenuItem>
-									<MenuItem value={20}>Premium</MenuItem>
-									<MenuItem value={30}>Sposoner</MenuItem>
-								</Select>
-							</span>
-							<InputLabel htmlFor="grouped-select">
-								Type
-							</InputLabel>
-							<Select defaultValue="" id="grouped-select">
-								<MenuItem value="">
-									<em>None</em>
-								</MenuItem>
+			<form action="index.html" method="post">
+				<label for="name"> Contest Name:</label>
+				<input type="text" id="name" name="user_name" />
 
-								<MenuItem value={1}>1</MenuItem>
-								<MenuItem value={2}> 2</MenuItem>
-								<MenuItem value={3}> 3</MenuItem>
-							</Select>
-						</Grid>
+				<label for="email">Sponser Name</label>
+				<input type="email" id="mail" name="user_email" />
 
-						<Grid
-							item
-							xs={12}
-							sm={12}
-							md={12}
-							style={{ padding: '45px 0' }}>
-							<Button
-								variant="contained"
-								color="default"
-								style={{
-									backgroundColor: '#2e8b57',
-									color: '#fff',
-									margin: '5vh 5vh',
-								}}
-								component="span"
-								onClick={upload}>
-								upload
-							</Button>
-							<Button
-								variant="contained"
-								color="default"
-								style={{
-									backgroundColor: '#888',
-									margin: '5px',
-									color: '#fff',
-								}}
-								component="span">
-								Submit
-							</Button>
-						</Grid>
-					</Grid>
-				</form>
-			</Container>
-		</>
+				{/* <label for="bio">Bio:</label>
+				<textarea id="bio" name="user_bio"></textarea> */}
+
+				<label for="job">Contest Category:</label>
+				<select id="job" name="user_job">
+					<option value="frontend_developer">Free</option>
+					<option value="php_developer">Premium</option>
+					<option value="python_developer">Sponser</option>
+
+					{/* <optgroup label="Mobile">
+						<option value="android_developer">
+							Android Developer
+						</option>
+						<option value="ios_developer">IOS Developer</option>
+						<option value="mobile_designer">Mobile Designer</option>
+					</optgroup>
+					<optgroup label="Business">
+						<option value="business_owner">Business Owner</option>
+						<option value="freelancer">Freelancer</option>
+					</optgroup> */}
+				</select>
+
+				<label>Contest type:</label>
+				<input
+					type="radio"
+					id="under_13"
+					value="under_13"
+					name="user_age"
+				/>
+				<label for="under_13" class="light">
+					Free
+				</label>
+				<br />
+				<input
+					type="radio"
+					id="over_13"
+					value="over_13"
+					name="user_age"
+				/>
+				<label for="over_13" class="light">
+					Premium
+				</label>
+				<br />
+				<input
+					type="radio"
+					id="over_13"
+					value="over_13"
+					name="user_age"
+				/>
+				<label for="over_13" class="light">
+					Sponser
+				</label>
+
+				{/* <label>Interests:</label>
+				<input
+					type="checkbox"
+					id="development"
+					value="interest_development"
+					name="user_interest"
+				/>
+				<label class="light" for="development">
+					Development
+				</label>
+				<br />
+				<input
+					type="checkbox"
+					id="design"
+					value="interest_design"
+					name="user_interest"
+				/>
+				<label class="light" for="design">
+					Design
+				</label> 
+				<br />
+				<input
+					type="checkbox"
+					id="business"
+					value="interest_business"
+					name="user_interest"
+				/>
+				<label class="light" for="business">
+					Business
+				</label>*/}
+
+				<button type="submit">Upload Image</button>
+				<button type="submit">Sign Up</button>
+			</form>
+		</div>
 	);
 }
