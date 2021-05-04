@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import qs from 'qs';
 import axios from 'axios';
-// import { useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import {
 	CssBaseline,
 	Grid,
@@ -102,13 +102,14 @@ function SignIn() {
 		</>
 	);
 }
+
 const Login = () => {
 	const classes = useStyles();
 
 	const [usernameLog, SetUsernameLog] = useState('');
 	const [passwordLog, SetPasswordLog] = useState('');
 
-	// const history = useHistory();
+	const history = useHistory();
 
 	const [values, setValues] = useState({
 		amount: '',
@@ -151,13 +152,18 @@ const Login = () => {
 					localStorage.setItem('user', true);
 					localStorage.setItem('username', response.data.user);
 					localStorage.setItem('token', response.data.token);
-					// history.push('/');
+					if (window.location.pathname === '/login') {
+						history.push('/');
+					} else {
+						window.location.reload();
+					}
 				}
 			})
 			.catch((err) => {
 				console.log(err);
 			});
 	};
+
 	return (
 		<>
 			<div align="center" xs={12}>

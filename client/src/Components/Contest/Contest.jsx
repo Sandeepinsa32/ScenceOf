@@ -7,6 +7,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Navbar from '../Header/Navbar';
 import Footer from '../Footer/Footer';
 import ContestCard from './ContestCard';
+import NavTab from '../NavTab';
 
 const BackgroundImg =
 	'https://images.unsplash.com/photo-1564475228765-f0c3292f2dec?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1956&q=80';
@@ -23,26 +24,49 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-function AllCard() {
-	const classes = useStyles();
-	const [contest, setContest] = useState([]);
-	useEffect(() => {
-		axios
-			.get(global.config.apiurl + 'contest/limit?limit=20&start=0')
-			.then((res) => {
-				const alldata = res.data;
-				console.log(alldata);
-				setContest(alldata);
-			});
-	}, []);
+function Contest() {
 	return (
 		<>
 			<CssBaseline />
 			<Navbar BackgroundImg={BackgroundImg} />
+
 			<div
 				style={{
 					background: `url('${BackgroundImg}')`,
-					padding: '25vh 0',
+					paddingTop: '15vh',
+					color: '#fff',
+				}}>
+				<NavTab
+					contest0={<AllCard />}
+					contest1={<Free />}
+					contest2={<Premium />}
+					contest3={<Sponsored />}
+					contest4={<AllCard />}
+				/>
+			</div>
+
+			{/* Footer */}
+			<Footer />
+		</>
+	);
+}
+
+function AllCard() {
+	const classes = useStyles();
+	const [contest, setContest] = useState([]);
+	useEffect(() => {
+		axios.get(global.config.apiurl + 'contest/').then((res) => {
+			const alldata = res.data;
+			console.log(alldata);
+			setContest(alldata);
+		});
+	}, []);
+	return (
+		<>
+			<div
+				style={{
+					background: `url('${BackgroundImg}')`,
+					padding: '5vh 0',
 					color: '#fff',
 				}}>
 				<Grid justify="center">
@@ -60,7 +84,7 @@ function AllCard() {
 			</main>
 
 			{/* Footer */}
-			<Footer />
+			{/* <Footer /> */}
 		</>
 	);
 }
@@ -77,12 +101,12 @@ function Free() {
 	}, []);
 	return (
 		<>
-			<CssBaseline />
-			<Navbar BackgroundImg={BackgroundImg2} />
+			{/* <CssBaseline /> */}
+			{/* <Navbar BackgroundImg={BackgroundImg2} /> */}
 			<div
 				style={{
 					background: `url('${BackgroundImg2}')`,
-					padding: '25vh 0',
+					padding: '5vh 0',
 					color: '#fff',
 				}}>
 				<Grid justify="center">
@@ -100,7 +124,7 @@ function Free() {
 			</main>
 
 			{/* Footer */}
-			<Footer />
+			{/* <Footer /> */}
 		</>
 	);
 }
@@ -118,11 +142,11 @@ function Premium() {
 	return (
 		<>
 			<CssBaseline />
-			<Navbar BackgroundImg={BackgroundImg3} />
+			{/* <Navbar BackgroundImg={BackgroundImg3} /> */}
 			<div
 				style={{
 					background: `url('${BackgroundImg3}')`,
-					padding: '25vh 0',
+					padding: '5vh 0',
 					color: '#fff',
 				}}>
 				<Grid justify="center">
@@ -140,7 +164,7 @@ function Premium() {
 			</main>
 
 			{/* Footer */}
-			<Footer />
+			{/* <Footer /> */}
 		</>
 	);
 }
@@ -158,11 +182,11 @@ function Sponsored() {
 	return (
 		<>
 			<CssBaseline />
-			<Navbar BackgroundImg={BackgroundImg} />
+			{/* <Navbar BackgroundImg={BackgroundImg} /> */}
 			<div
 				style={{
 					background: `url('${BackgroundImg}')`,
-					padding: '25vh 0',
+					padding: '5vh 0',
 					color: '#fff',
 				}}>
 				<Grid justify="center">
@@ -180,9 +204,9 @@ function Sponsored() {
 			</main>
 
 			{/* Footer */}
-			<Footer />
+			{/* <Footer /> */}
 		</>
 	);
 }
 
-export { AllCard, Free, Premium, Sponsored };
+export { AllCard, Free, Premium, Sponsored, Contest };

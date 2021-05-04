@@ -181,13 +181,20 @@ export default function Pricing() {
 												{tier.buttonText}
 											</Button>
 										) : (
-											<Payment />
+											<Payment totalAmount="1" />
 										)}
 									</CardActions>
 								</Card>
 							</Grid>
 						))}
 					</Grid>
+				</Container>
+
+				<Container>
+					<img
+						src="https://www.paypalobjects.com/webstatic/en_US/i/buttons/cc-badges-ppppcmcvdam.png"
+						alt="Pay with PayPal, PayPal Credit or any major credit card"
+					/>
 				</Container>
 			</main>
 

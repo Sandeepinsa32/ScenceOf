@@ -3,7 +3,7 @@ import { CssBaseline } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import Footer from './Footer/Footer';
 import Navbar from './Header/Navbar';
-import './css/SNotfound.css';
+import '../css/Notfound.css';
 const BackgroundImg = '';
 // 'https://images.unsplash.com/photo-1564475228765-f0c3292f2dec?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1956&q=80';
 

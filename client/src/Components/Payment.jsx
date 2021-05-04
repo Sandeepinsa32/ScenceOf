@@ -9,7 +9,6 @@ const Payment = (props) => {
 	const onCancel = (data) => {
 		console.log('The payment was cancelled!', data);
 	};
-
 	const onError = (err) => {
 		// The main Paypal's script cannot be loaded or somethings block the loading of that script!
 		console.log('Error!', err);
@@ -25,7 +24,6 @@ const Payment = (props) => {
 	const client = {
 		sandbox:
 			'AdLiXyDElHtSN7bAwkMaBarZfEpz-0Km5cwd7TwlZxPddoPfjm52thdYlW8Y8hWH0iZKA3NAjUl4lZOQ',
-		production: 'YOUR-PRODUCTION-APP-ID',
 	};
 	// In order to get production's app-ID, you will have to send your app to Paypal for approval first
 	// For sandbox app-ID (after logging into your developer account, please locate the "REST API apps" section, click "Create App"):
@@ -36,9 +34,9 @@ const Payment = (props) => {
 	// NB. You can also have many Paypal express checkout buttons on page, just pass in the correct amount and they will work!
 	return (
 		<PaypalExpressBtn
-			env={props.env}
-			client={props.client}
-			currency={props.currency}
+			env={env}
+			client={client}
+			currency={currency}
 			total={props.totalAmount}
 			onError={onError}
 			onSuccess={onSuccess}

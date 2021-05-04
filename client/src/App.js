@@ -15,14 +15,12 @@ import ForgetPassword from './Components/Forgetpassword';
 import ChangePassword from './Components/ChangePassword';
 import Payment from './Components/Payment';
 import Pricing from './Components/Pricing';
-import {
-	AllCard,
-	Free,
-	Premium,
-	Sponsored,
-} from './Components/Contest/Contest';
+import Winner from './Components/WinnerList';
+import Demo from './Components/NavTab';
+import Notfound from './Components/404.jsx';
+import { Contest } from './Components/Contest/Contest';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-// import Dashboard from './Admin/Dashboard';
+import Dashboard from './Admin/Dashboard';
 import AdminLogin from './Admin/Login';
 
 // console.clear();
@@ -31,6 +29,7 @@ function App() {
 		<>
 			<Router>
 				<Switch>
+					{/* user view */}
 					<Route path="/" exact>
 						<Homepage />
 					</Route>
@@ -68,39 +67,36 @@ function App() {
 						<ReadBlog />
 					</Route>
 
-					{/* for Contest */}
-
-					<Route path="/active-contest/" component={AllCard} exact />
-					<Route
-						path="/active-contest/Free-contest"
-						component={Free}
-						exact
-					/>
-					<Route
-						path="/active-contest/Premium-contest"
-						component={Premium}
-						exact
-					/>
-					<Route
-						path="/active-contest/Sponsored-contest"
-						component={Sponsored}
-						exact
-					/>
-					{/* For Admin Panel */}
-					<Route path="/admin" component={AdminLogin} exact />
-					{/* user view */}
 					<Route
 						path="/Forgetpassword"
 						component={ForgetPassword}
 						exact
 					/>
+
 					<Route
 						path="/Changepassword"
 						component={ChangePassword}
 						exact
 					/>
+
+					{/* for Contest */}
+
+					<Route path="/active-contest/" component={Contest} exact />
+
+					{/* For Admin Panel */}
+
+					<Route path="/admin" component={AdminLogin} exact />
+					<Route
+						path="/admin/dashboard"
+						component={Dashboard}
+						exact
+					/>
+
 					<Route path="/payment" component={Payment} exact />
 					<Route path="/pricing" component={Pricing} exact />
+					<Route path="/winner" component={Winner} exact />
+					<Route path="/test" component={Demo} exact />
+					<Route component={Notfound} exact />
 				</Switch>
 			</Router>
 		</>

@@ -1,9 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Typography, Link, Grid, CssBaseline } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import InstagramIcon from '@material-ui/icons/Instagram';
-import TwitterIcon from '@material-ui/icons/Twitter';
-import FacebookIcon from '@material-ui/icons/Facebook';
+// import InstagramIcon from '@material-ui/icons/Instagram';
+// import TwitterIcon from '@material-ui/icons/Twitter';
+// import FacebookIcon from '@material-ui/icons/Facebook';
+
+//
+import {
+	FacebookShareButton,
+	TwitterShareButton,
+	WhatsappShareButton,
+} from 'react-share';
+import { FacebookIcon, TwitterIcon, WhatsappIcon } from 'react-share';
+
+import { NavLink } from 'react-router-dom';
 
 const BackgroundImg = 'https://cdn.fs.teachablecdn.com/RD4lJ0jZTq6k6zfSQ8de';
 // 'https://images.unsplash.com/photo-1564475228765-f0c3292f2dec?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1956&q=80';
@@ -20,6 +30,9 @@ const useStyles = makeStyles((theme) => ({
 
 function Footer() {
 	const classes = useStyles();
+	const loggedInUser = localStorage.getItem('user');
+
+	const [auth, setAuth] = useState(loggedInUser);
 	return (
 		<>
 			<CssBaseline />
@@ -39,9 +52,48 @@ function Footer() {
 
 					<Grid spacing={2} align="center">
 						<Grid item>
-							<FacebookIcon className={classes.footerText} />
-							<InstagramIcon className={classes.footerText} />
-							<TwitterIcon className={classes.footerText} />
+							<FacebookShareButton
+								url="http://scenesofnewengland.com/"
+								quote={'hey im sharing this'}
+								hashtag="#react">
+								<FacebookIcon
+									logoFillColor="white"
+									round={true}></FacebookIcon>
+							</FacebookShareButton>
+							<WhatsappShareButton
+								url="http://scenesofnewengland.com/"
+								quote={'hey im sharing this'}
+								hashtag="#react">
+								<WhatsappIcon
+									logoFillColor="white"
+									round={true}></WhatsappIcon>
+							</WhatsappShareButton>
+							<TwitterShareButton
+								url="http://scenesofnewengland.com/"
+								quote={'hey im sharing this'}
+								hashtag="#react">
+								<TwitterIcon
+									logoFillColor="white"
+									round={true}></TwitterIcon>
+							</TwitterShareButton>
+							{!auth && (
+								<span
+									className="button-wrapper"
+									style={{
+										margin: ' 0vh 5vh',
+										display: 'flex',
+										alignItems: 'center',
+										justifyContent: ' center',
+									}}>
+									<NavLink to="/join" exact>
+										<button
+											className="modalButton join-btn"
+											data-popup="accept">
+											Join
+										</button>
+									</NavLink>
+								</span>
+							)}
 						</Grid>
 					</Grid>
 
@@ -61,9 +113,8 @@ function Footer() {
 						{'Copyright © '}
 						<Link color="inherit" href="https://material-ui.com/">
 							ScenesOfNewEngland.Com
-						</Link>{' '}
+						</Link>
 						{new Date().getFullYear()}
-						{'.'}
 					</Typography>
 				</footer>
 			</div>

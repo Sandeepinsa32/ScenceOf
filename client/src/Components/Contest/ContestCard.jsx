@@ -33,10 +33,7 @@ const useStyles = makeStyles((theme) => ({
 
 function ContestCard(props) {
 	const classes = useStyles();
-	// console.log(props.data);
 	const contextList = props.data;
-
-	// console.log(contextList[0].name);
 	return (
 		<>
 			<CssBaseline />

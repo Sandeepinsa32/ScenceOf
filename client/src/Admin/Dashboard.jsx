@@ -1,28 +1,40 @@
-import React from 'react';
+import React, { useState } from 'react';
 import clsx from 'clsx';
-
 import { makeStyles } from '@material-ui/core/styles';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Drawer from '@material-ui/core/Drawer';
-import Box from '@material-ui/core/Box';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import List from '@material-ui/core/List';
-import Typography from '@material-ui/core/Typography';
-import Divider from '@material-ui/core/Divider';
-import IconButton from '@material-ui/core/IconButton';
-import Badge from '@material-ui/core/Badge';
-import Container from '@material-ui/core/Container';
-import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
-import Link from '@material-ui/core/Link';
+
+import {
+	CssBaseline,
+	Drawer,
+	Paper,
+	Grid,
+	Container,
+	Badge,
+	IconButton,
+	Divider,
+	Typography,
+	List,
+	Toolbar,
+	AppBar,
+} from '@material-ui/core';
+
+import ContestList from './Contest/Contestlist';
+import ContestType from './Contest/ContestType';
+import ContestCategory from './Contest/ContestCategory';
+// import ImagesList from './Contest/ImagesList';
+import CreateContest from './Contest/CreateContest';
+import UserList from './Contest/UserList';
+
+//menulist
+import { ListItemText, ListItemIcon, ListItem } from '@material-ui/core';
+
+//Icons
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationsIcon from '@material-ui/icons/Notifications';
+import DashboardIcon from '@material-ui/icons/Dashboard';
+import LayersIcon from '@material-ui/icons/Layers';
 
-import { mainListItems, secondaryListItems } from './listItems';
-import ContestList from './Contest/Contestlist';
-const drawerWidth = 240;
+const drawerWidth = 260;
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -103,9 +115,22 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
+const welcome = (
+	<Typography
+		component="h3"
+		variant="h3"
+		p={1}
+		align="center"
+		color="textPrimary"
+		gutterBottom>
+		Welcome to Admin Panel
+	</Typography>
+);
+
 export default function Dashboard() {
 	const classes = useStyles();
-	const [open, setOpen] = React.useState(true);
+	const [open, setOpen] = useState(true);
+	const [component, setComponent] = useState(welcome);
 	const handleDrawerOpen = () => {
 		setOpen(true);
 	};
@@ -162,9 +187,65 @@ export default function Dashboard() {
 					</IconButton>
 				</div>
 				<Divider />
-				<List>{mainListItems}</List>
+				<List>
+					<div>
+						<ListItem
+							button
+							onClick={() => {
+								setComponent(<UserList />);
+							}}>
+							<ListItemIcon>
+								<DashboardIcon />
+							</ListItemIcon>
+							<ListItemText primary="Dashboard" />
+						</ListItem>
+
+						<ListItem
+							button
+							onClick={() => {
+								setComponent(<ContestList />);
+							}}>
+							<ListItemIcon>
+								<LayersIcon />
+							</ListItemIcon>
+
+							<ListItemText primary="Contest" />
+						</ListItem>
+
+						<ListItem
+							button
+							onClick={() => {
+								setComponent(<ContestCategory />);
+							}}>
+							<ListItemIcon>
+								<LayersIcon />
+							</ListItemIcon>
+							<ListItemText primary="Contest Category" />
+						</ListItem>
+
+						<ListItem
+							button
+							onClick={() => {
+								setComponent(<ContestType />);
+							}}>
+							<ListItemIcon>
+								<LayersIcon />
+							</ListItemIcon>
+							<ListItemText primary="Contest Type" />
+						</ListItem>
+						<ListItem
+							button
+							onClick={() => {
+								setComponent(<CreateContest />);
+							}}>
+							<ListItemIcon>
+								<LayersIcon />
+							</ListItemIcon>
+							<ListItemText primary="Create Contest" />
+						</ListItem>
+					</div>
+				</List>
 				<Divider />
-				<List>{secondaryListItems}</List>
 			</Drawer>
 			<main className={classes.content}>
 				<div className={classes.appBarSpacer} />
@@ -172,11 +253,17 @@ export default function Dashboard() {
 					<Grid container spacing={3}>
 						<Grid item xs={12}>
 							<Paper className={classes.paper}>
-								<ContestList />
+								{component}
+
+								{/* <ContestList />	 */}
+								{/* <ContestType /> */}
+								{/* <ContestCategory /> */}
+								{/* <UserList /> */}
+								{/* <ImagesList /> */}
 							</Paper>
 						</Grid>
 					</Grid>
-					<Box pt={4}></Box>
+					{/* <Box pt={4}></Box> */}
 				</Container>
 			</main>
 		</div>

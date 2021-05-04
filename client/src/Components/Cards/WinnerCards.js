@@ -3,6 +3,7 @@ import { Grid } from '@material-ui/core';
 import {
 	CssBaseline,
 	Container,
+	Link,
 	Typography,
 	Card,
 	CardContent,
@@ -109,6 +110,27 @@ function WinnerCards() {
 					))}
 				</Grid>
 			</Container>
+
+			{/*  */}
+			{/* <Grid md={12}>
+				{NoOfCards.map((figure) => (
+					<figure className="snip1584" key={figure.name}>
+						<img alt="card" src={figure.image} />
+						<figcaption>
+							<h3>{figure.name}</h3>
+							<h5>{figure.sponser}</h5>
+
+							<Link
+								to={
+									'/contest/enter-a-contest?contid=' +
+									figure.id
+								}
+								refresh="ture"
+								exact></Link>
+						</figcaption>
+					</figure>
+				))}
+			</Grid> */}
 		</>
 	);
 }
