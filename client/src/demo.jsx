@@ -58,13 +58,12 @@ export default function CreateContest() {
 			});
 	}
 
-	const [contesttype, setContesttype] = useState(['']);
+	const [contesttype, setContesttype] = useState([]);
 	useEffect(() => {
 		axios.get(global.config.apiurl + 'contesttype').then((res) => {
 			const alldata = res.data;
-			console.log(alldata);
+			// console.log(alldata);
 			setContesttype(alldata);
-			console.log(contesttype);
 		});
 	}, []);
 
@@ -80,10 +79,9 @@ export default function CreateContest() {
 		<div>
 			<Title children="Create a Contest" />
 
-			<form onSubmit={submitform} ClassName="CreateContest_form">
+			<form onSubmit={submitform}>
 				<label for="name"> Contest Name:</label>
 				<input
-					className="input"
 					type="text"
 					id="name"
 					value={name}
@@ -92,7 +90,6 @@ export default function CreateContest() {
 
 				<label for="email">Sponser Name</label>
 				<input
-					className="input"
 					type="text"
 					id="mail"
 					value={sponser}
@@ -104,22 +101,16 @@ export default function CreateContest() {
 
 				<label for="job">Contest Type:</label>
 				<select
-					className="CreateContest_Select"
 					id="job"
 					name="user_job"
 					onChange={(e) => setType(e.target.value)}>
-					{contesttype.map((val, ind, arr) => (
-						<option>{val.type}</option>
-					))}
-
-					{/* <option value="1">Free</option>
+					<option value="1">Free</option>
 					<option value="2">Premium</option>
-					<option value="3">Sponser</option> */}
+					<option value="3">Sponser</option>
 				</select>
 
 				<label>Contest Category:</label>
 				<select
-					className="CreateContest_Select"
 					id="job"
 					name="user_job"
 					onChange={(e) => setCategory(e.target.value)}>
@@ -131,12 +122,10 @@ export default function CreateContest() {
 					<option value="6">Sports</option>
 				</select>
 
-				<button className="submit_btn" type="button" onClick={upload}>
+				<button type="button" onClick={upload}>
 					Upload Image
 				</button>
-				<button className="submit_btn" type="submit">
-					Create a Contest
-				</button>
+				<button type="submit">Sign Up</button>
 			</form>
 		</div>
 	);

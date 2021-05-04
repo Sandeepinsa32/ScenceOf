@@ -98,26 +98,20 @@ function ForgetPassword() {
 	const Login = () => {
 		axios({
 			method: 'post',
-			url: global.config.apiurl + 'users/login',
+			url: global.config.apiurl + 'users/forgetpass',
 			data: qs.stringify({
 				email: usernameLog,
-				password: passwordLog,
 			}),
 			headers: {
 				'content-type':
 					'application/x-www-form-urlencoded;charset=utf-8',
 			},
-			withCredentials: true,
 		})
 			.then((response) => {
 				console.log(response);
 				alert(response.data.msg);
 				if ('Login Success' === response.data.msg) {
 					console.log(response.data);
-					localStorage.setItem('user', true);
-					localStorage.setItem('username', response.data.user);
-					localStorage.setItem('token', response.data.token);
-					// history.push('/');
 				}
 			})
 			.catch((err) => {
@@ -133,13 +127,7 @@ function ForgetPassword() {
 			<main className={classes.mainDiv}>
 				<Grid container>
 					<Grid item md={4}>
-						<div className={classes.innerDiv}>
-							{/* <img
-								src="../png/forget_password.png"
-								alt="forget password"
-								className={classes.imgForget}
-							/> */}
-						</div>
+						<div className={classes.innerDiv}></div>
 					</Grid>
 					<Grid item md={8}>
 						<Container maxWidth="xs" className={classes.outterDiv}>
@@ -170,6 +158,7 @@ function ForgetPassword() {
 									align="right"
 									variant="contained"
 									color="primary"
+									onClick={Login}
 									className={classes.submit}>
 									Find Username
 								</Button>

@@ -11,7 +11,7 @@ body {
 	color: #384047;
 }
 
-form {
+form.CreateContest_form {
 	max-width: 300px;
 	margin: 10px auto;
 	padding: 10px 20px;
@@ -19,23 +19,17 @@ form {
 	border-radius: 8px;
 }
 
-h1 {
-	margin: 0 0 30px 0;
-	text-align: center;
-}
-
-input[type='text'],
-input[type='password'],
-input[type='date'],
-input[type='datetime'],
-input[type='email'],
-input[type='number'],
-input[type='search'],
-input[type='tel'],
-input[type='time'],
-input[type='url'],
-textarea,
-select {
+.input[type='text'],
+.input[type='password'],
+.input[type='date'],
+.input[type='datetime'],
+.input[type='email'],
+.input[type='number'],
+.input[type='search'],
+.input[type='tel'],
+.input[type='time'],
+.input[type='url'],
+.CreateContest_Select {
 	background: rgba(255, 255, 255, 0.1);
 	border: none;
 	font-size: 16px;
@@ -50,18 +44,18 @@ select {
 	margin-bottom: 30px;
 }
 
-input[type='radio'],
+/* input[type='radio'],
 input[type='checkbox'] {
 	margin: 0 4px 8px 0;
-}
+} */
 
-select {
+.CreateContest_Select {
 	padding: 6px;
 	height: 32px;
 	border-radius: 2px;
 }
 
-button {
+.submit_btn {
 	padding: 19px 39px 18px 39px;
 	color: #fff;
 	background-color: #4bc970;
@@ -73,16 +67,6 @@ button {
 	border: 1px solid #3ac162;
 	border-width: 1px 1px 3px;
 	box-shadow: 0 -1px 0 rgba(255, 255, 255, 0.1) inset;
-	margin-bottom: 10px;
-}
-
-fieldset {
-	margin-bottom: 30px;
-	border: none;
-}
-
-legend {
-	font-size: 1.4em;
 	margin-bottom: 10px;
 }
 
@@ -111,7 +95,7 @@ label.light {
 }
 
 @media screen and (min-width: 480px) {
-	form {
+	form.CreateContest_form {
 		max-width: 480px;
 	}
 }

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { forpost } from '../utils/Auth';
+import Auth, { forpost } from '../utils/Auth';
 import qs from 'qs';
 import axios from 'axios';
 import {
@@ -100,6 +100,25 @@ function EnterContest(props) {
 	const [imgsrc, setImgsrc] = useState('');
 	const [imgsdb, setImgsrcdb] = useState([]);
 
+	function checkusertype() {
+		axios
+			.get(global.config.apiurl + `uploadimg/countimgs`, {
+				headers: Auth(),
+			})
+			.then((res) => {
+				let alldata = res.data;
+				alert(alldata[0].totalimgs);
+				if (
+					localStorage.getItem('usertype') === '1' &&
+					alldata[0].totalimgs < 1
+				) {
+					upload();
+				} else {
+					alert('Please Upgrade your account to part........');
+				}
+			});
+	}
+
 	function upload() {
 		alert('upload clicked');
 		UploaderWindow('my-uploader-12')
@@ -109,6 +128,7 @@ function EnterContest(props) {
 				setImgsrc(alldata);
 			});
 	}
+
 	function useQuery() {
 		return new URLSearchParams(useLocation().search);
 	}
@@ -160,6 +180,7 @@ function EnterContest(props) {
 				setImgsrcdb(imgsdata);
 			});
 	}
+	FetchImage();
 
 	return (
 		<>
@@ -331,7 +352,9 @@ function EnterContest(props) {
 																color: '#fff',
 															}}
 															component="span"
-															onClick={upload}>
+															onClick={
+																checkusertype
+															}>
 															upload
 														</Button>
 													) : (

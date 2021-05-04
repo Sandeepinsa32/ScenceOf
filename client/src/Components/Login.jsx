@@ -151,9 +151,10 @@ const Login = () => {
 					console.log(response.data);
 					localStorage.setItem('user', true);
 					localStorage.setItem('username', response.data.user);
+					localStorage.setItem('usertype', response.data.usertype);
 					localStorage.setItem('token', response.data.token);
 					if (window.location.pathname === '/login') {
-						history.push('/');
+						// history.push('/');
 					} else {
 						window.location.reload();
 					}
