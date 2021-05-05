@@ -232,19 +232,28 @@ function AboutUs() {
 						gutterBottom>
 						We believe in the power of creativity
 					</Typography>
-					<Grid spacing={2}>
-						<Grid item>
+					<Grid container spacing={2}>
+						<Grid item xs md={6}>
 							<img
 								src="./png/img.jpg"
 								md={6}
 								alt="img"
 								className={classes.img}
 							/>
+						</Grid>
+						<Grid item xs md={6}>
 							<Typography
 								component="p"
+								xs
 								md={6}
 								variant="subtitle1"
-								style={{ color: '#212121' }}>
+								style={{
+									color: '#212121',
+									padding: '0px 5vh',
+									lineHeight: '2',
+									fontSize: '1.3rem',
+									fontWeight: '900',
+								}}>
 								We connect millions of visual creators in a
 								community with photography tools to help them
 								explore and grow their craft.Photographs are the

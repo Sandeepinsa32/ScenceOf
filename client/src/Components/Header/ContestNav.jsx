@@ -1,5 +1,5 @@
 import React from 'react';
-import { useHistory, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 // framework
 import { makeStyles } from '@material-ui/core/styles';
@@ -46,7 +46,7 @@ export default function UserNav(props) {
 					aria-haspopup="true"
 					onClick={handleMenu}
 					color="inherit">
-					Explore
+					Directory
 					<ExpandMoreIcon />
 				</span>
 

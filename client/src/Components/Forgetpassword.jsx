@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import qs from 'qs';
 import axios from 'axios';
-// import { useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import {
 	CssBaseline,
 	Grid,
@@ -14,21 +14,20 @@ import { makeStyles } from '@material-ui/core/styles';
 
 //Import diff components
 import Navbar from './Header/Navbar';
-// const BackgroundImg = '../png/img_black_grey.jpg';
+const BackgroundImg = '../png/img_black_grey.jpg';
 
 const useStyles = makeStyles((theme) => ({
 	mainDiv: {
 		minHeight: '100vh',
 		padding: '25px 5px',
-		// backgroundImage: `url('${BackgroundImg}')`,
-
-		// backgroundColor: '#212121',
+		background: `url('${BackgroundImg}') #212121`,
 	},
 	outterDiv: {
 		borderRadius: '15px',
 		boxShadow: '0px 0px 8px 0px rgba(0,0,0,0.51)',
 		margin: 0,
 		height: '80vh',
+		background: '#fff',
 	},
 	SectionHeadingDiv: {
 		margin: '20px',
@@ -49,6 +48,7 @@ const useStyles = makeStyles((theme) => ({
 		flexDirection: 'column',
 		alignItems: 'center',
 		margin: '15px',
+		background: '#fff !important',
 	},
 	avatar: {
 		margin: theme.spacing(1),
@@ -59,12 +59,17 @@ const useStyles = makeStyles((theme) => ({
 		marginTop: theme.spacing(1),
 	},
 	submit: {
+		backgroundColor: '#ffae42',
+		color: '#fff',
 		margin: theme.spacing(3, 0, 2),
+		'&:hover': {
+			backgroundColor: 'rgb(255, 174, 66,0.8)',
+		},
 	},
 	imgForget: {
-		height: '300px',
-		// margin: '0 auto',
+		height: '200px',
 	},
+	Warpper_paper: {},
 }));
 
 function ForgetPassword() {
@@ -73,7 +78,7 @@ function ForgetPassword() {
 	const [usernameLog, SetUsernameLog] = useState('');
 	const [passwordLog, SetPasswordLog] = useState('');
 
-	// const history = useHistory();
+	const history = useHistory();
 
 	const [values, setValues] = useState({
 		amount: '',
@@ -95,7 +100,7 @@ function ForgetPassword() {
 		setValues({ ...values, showPassword: !values.showPassword });
 	};
 
-	const Login = () => {
+	const Reset = () => {
 		axios({
 			method: 'post',
 			url: global.config.apiurl + 'users/forgetpass',
@@ -110,9 +115,7 @@ function ForgetPassword() {
 			.then((response) => {
 				console.log(response);
 				alert(response.data.msg);
-				if ('Login Success' === response.data.msg) {
-					console.log(response.data);
-				}
+				history.push('/reset?email=' + usernameLog);
 			})
 			.catch((err) => {
 				console.log(err);
@@ -125,27 +128,31 @@ function ForgetPassword() {
 			{/* header */}
 			<Navbar />
 			<main className={classes.mainDiv}>
-				<Grid container>
-					<Grid item md={4}>
-						<div className={classes.innerDiv}></div>
-					</Grid>
-					<Grid item md={8}>
+				<Grid
+					container
+					alignContent="center"
+					alignItems="center"
+					justify="center">
+					<Grid item>
 						<Container maxWidth="xs" className={classes.outterDiv}>
 							<div className={classes.paper}>
+								<Typography component="h1" variant="h5">
+									Forgot your password?
+								</Typography>
 								<img
-									src="../png/forget_password.png"
+									src="../png/forget_pass.png"
 									alt="forget password"
 									className={classes.imgForget}
 								/>
 								<Typography component="h1" variant="h5">
-									Find your Username
+									Don't Worry!
 								</Typography>
 								{/* <form className={classes.form} noValidate> */}
 								<TextField
 									margin="normal"
 									required
 									fullWidth
-									label="Enter Email Id"
+									label="Email"
 									autoComplete="email"
 									autoFocus
 									onChange={(e) => {
@@ -156,11 +163,10 @@ function ForgetPassword() {
 								<Button
 									type="submit"
 									align="right"
-									variant="contained"
-									color="primary"
-									onClick={Login}
+									variant="contained	"
+									onClick={Reset}
 									className={classes.submit}>
-									Find Username
+									Send My Password
 								</Button>
 
 								{/* </form> */}

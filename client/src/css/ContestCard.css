@@ -36,7 +36,10 @@
 	vertical-align: top;
 	width: 100%;
 	backface-visibility: hidden;
+	height: 315px;
+	object-fit: cover;
 }
+
 .snip1584 figcaption {
 	position: absolute;
 	top: 0;
@@ -107,15 +110,17 @@
 	-webkit-transition-delay: 0.2s;
 	transition-delay: 0.2s;
 }
-/* 
-body {
-	background-color: #212121 !important;
-	text-align: center;
-	color: white !important;
-} */
-/* .app {
-	width: 1200px;
-	margin: auto;
-	font-family: 'Raleway';
-	font-size: 24px;
-} */
+.user_img {
+	height: auto !important;
+	width: 100px !important;
+	border-radius: 50%;
+	z-index: 1;
+	-webkit-transform: translateY(-180%);
+	transform: translateY(-180%);
+	-webkit-transition-delay: 0s;
+	transition-delay: 0s;
+}
+.snip1584:hover .user_img {
+	-webkit-transform: translateY(-40%);
+	transform: translateY(-40%);
+}

@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
-import qs from 'qs';
 import axios from 'axios';
-// import { useHistory } from 'react-router-dom';
+import qs from 'qs';
 import {
 	CssBaseline,
+	Grid,
 	Typography,
 	Input,
+	TextField,
+	Link,
 	InputAdornment,
 	FormControl,
 	InputLabel,
@@ -15,6 +17,8 @@ import {
 	Container,
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import { useHistory, useLocation } from 'react-router-dom';
+import OtpInput from 'react-otp-input';
 
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
@@ -29,13 +33,9 @@ const useStyles = makeStyles((theme) => ({
 		padding: '25px 5px',
 		backgroundImage: ` url('../png/trans_png.png'),url('${BackgroundImg}')`,
 		backgroundColor: '#212121',
-		// backgroundPosition: 'center',
-		// backgroundSize: 'cover',
-		// backgroundColor: '#fff',
 	},
 	outterDiv: {
 		background: "url('../png/brush.png')",
-		// backgroundColor: '#fff',
 		color: '#111x',
 		borderRadius: '15px',
 		boxShadow: '0px 0px 8px 0px rgba(0,0,0,0.51)',
@@ -49,15 +49,12 @@ const useStyles = makeStyles((theme) => ({
 	SectionHeading: {
 		color: '#fff',
 		fontStyle: 'italic',
-		//color: '#212121',
-		// backgroundColor: '#212121',
 	},
 	innerDiv: {
 		padding: '0',
 		marginTop: '10vh',
 	},
 	paper: {
-		marginTop: theme.spacing(8),
 		display: 'flex',
 		flexDirection: 'column',
 		alignItems: 'center',
@@ -74,14 +71,20 @@ const useStyles = makeStyles((theme) => ({
 	submit: {
 		margin: theme.spacing(3, 0, 2),
 	},
+	OtpInput: {
+		width: '2.5em !important',
+		height: '2em',
+		color: '#212121',
+		borderRadius: '2px',
+	},
 }));
 
-function SignIn() {
+export default function SignIn() {
 	const classes = useStyles();
 
-	const [usernameLog, SetUsernameLog] = useState('');
 	const [passwordLog, SetPasswordLog] = useState('');
-	const [otp, SetOtp] = useState('');
+	const [OTP, setOTP] = useState('');
+	const history = useHistory();
 
 	const [values, setValues] = useState({
 		amount: '',
@@ -102,36 +105,58 @@ function SignIn() {
 		setValues({ ...values, showPassword: !values.showPassword });
 	};
 
-	const SubmitForm = () => {
+	function useQuery() {
+		return new URLSearchParams(useLocation().search);
+	}
+	const query = useQuery();
+	const useremail = query.get('email');
+	function submitForm() {
+		console.log(useremail);
+		// axios({
+		// 	method: 'post',
+		// 	url: global.config.apiurl + 'users/newpassword',
+		// 	data: qs.stringify({
+		// 		email: useremail,
+		// 		otp: OTP,
+		// 		newpass: passwordLog,
+		// 	}),
+		// 	headers: {
+		// 		'content-type':
+		// 			'application/x-www-form-urlencoded;charset=utf-8',
+		// 	},
+		// })
+		// 	.then((response) => {
+		// 		console.log(response);
+		// 		alert(response.data.msg);
+		// 		history.push('/reset');
+		// 	})
+		// 	.catch((err) => {
+		// 		console.log(err);
+		// 	});
+
 		axios({
 			method: 'post',
 			url: global.config.apiurl + 'users/newpassword',
 			data: qs.stringify({
-				email: usernameLog,
-				otp: otp,
-				password: passwordLog,
+				email: useremail,
+				otp: OTP,
+				newpass: passwordLog,
 			}),
 			headers: {
 				'content-type':
 					'application/x-www-form-urlencoded;charset=utf-8',
 			},
-			withCredentials: true,
 		})
 			.then((response) => {
 				console.log(response);
 				alert(response.data.msg);
-				if ('Login Success' === response.data.msg) {
-					console.log(response.data);
-					localStorage.setItem('user', true);
-					localStorage.setItem('username', response.data.user);
-					localStorage.setItem('token', response.data.token);
-					// history.push('/');
-				}
+				// 		history.push('/reset');
 			})
 			.catch((err) => {
 				console.log(err);
 			});
-	};
+		// e.preventDefault();
+	}
 
 	return (
 		<>
@@ -139,29 +164,44 @@ function SignIn() {
 			{/* header */}
 			<Navbar />
 			<main className={classes.mainDiv}>
-				<div align="center" xs={12}>
-					<Container
-						maxWidth="xs"
-						justify="center"
-						className={classes.outterDiv}>
-						<div className={classes.paper}>
-							<Avatar className={classes.avatar}></Avatar>
-							<Typography
-								component="h1"
-								variant="h5"
-								style={{ marginBottom: '5vh' }}>
-								Change your Password
-							</Typography>
-							<form className={classes.form} noValidate>
+				<Container component="div" className={classes.innerDiv}>
+					<Typography
+						component="h4"
+						variant="h4"
+						color="textSecondary"
+						className={classes.SectionHeading}
+						style={{ marginTop: '15vh' }}
+						gutterBottom>
+						Change Your Password
+					</Typography>
+					{/* main content */}
+					<div align="center" xs={12}>
+						<Container
+							maxWidth="xs"
+							justify="center"
+							className={classes.outterDiv}>
+							<div className={classes.paper}>
+								<Avatar className={classes.avatar}></Avatar>
+								<Typography component="h1" variant="h5">
+									Enter your One Time Password
+								</Typography>
+
+								<OtpInput
+									onChange={setOTP}
+									value={OTP}
+									inputStyle={classes.OtpInput}
+									numInputs={4}
+									separator={<span>-</span>}
+								/>
+
 								<FormControl
 									style={{ width: '100%', color: '#fff' }}>
 									<InputLabel htmlFor="standard-adornment-password">
-										Re-enter Password
+										Password
 									</InputLabel>
 									<Input
 										required
 										fullWidth
-										style={{ marginBottom: '5vh' }}
 										label="Password"
 										id="standard-adornment-password"
 										onChange={handleChange('password')}
@@ -198,16 +238,27 @@ function SignIn() {
 									variant="contained"
 									color="primary"
 									className={classes.submit}
-									onClick={SubmitForm}>
-									Change Password
+									onClick={submitForm}>
+									Reset Password
 								</Button>
-							</form>
-						</div>
-					</Container>
-				</div>
+								<Grid
+									container
+									justify="center"
+									m="10px"
+									gutterBottom>
+									<Grid item xs gutterBottom>
+										<Link href="/login" variant="body2">
+											Remeber password?
+										</Link>
+									</Grid>
+								</Grid>
+								{/* </form> */}
+							</div>
+						</Container>
+					</div>
+					{/* end here */}
+				</Container>
 			</main>
 		</>
 	);
 }
-
-export default SignIn;

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import qs from 'qs';
 import axios from 'axios';
-import { useHistory } from 'react-router-dom';
+// import { useHistory } from 'react-router-dom';
 import {
 	CssBaseline,
 	Grid,
@@ -109,7 +109,7 @@ const Login = () => {
 	const [usernameLog, SetUsernameLog] = useState('');
 	const [passwordLog, SetPasswordLog] = useState('');
 
-	const history = useHistory();
+	// const history = useHistory();
 
 	const [values, setValues] = useState({
 		amount: '',
@@ -233,12 +233,12 @@ const Login = () => {
 						</Button>
 						<Grid container justify="center" m="10px" gutterBottom>
 							<Grid item xs gutterBottom>
-								<Link href="#" variant="body2">
+								<Link href="/Forgetpassword" variant="body2">
 									Forgot password?
 								</Link>
 							</Grid>
 							<Grid item gutterBottom>
-								<Link href="#" variant="body2">
+								<Link href="/join" variant="body2">
 									{"Don't have an account? Sign Up"}
 								</Link>
 							</Grid>

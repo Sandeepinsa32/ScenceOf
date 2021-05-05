@@ -12,10 +12,11 @@ import Portfolio from './Components/Gallery/Gallery';
 import EnterContest from './Components/Contest/EnterContest';
 import ReadBlog from './Components/Blog/ReadBlog';
 import ForgetPassword from './Components/Forgetpassword';
+import ResetPass from './Components/ResetPass';
 import ChangePassword from './Components/ChangePassword';
 import Payment from './Components/Payment';
 import Pricing from './Components/Pricing';
-import Winner from './Components/WinnerList';
+import { WinnerPage } from './Components/Cards/WinnerList';
 import Demo from './Components/NavTab';
 import Notfound from './Components/404.jsx';
 import { Contest } from './Components/Contest/Contest';
@@ -33,27 +34,21 @@ function App() {
 					<Route path="/" exact>
 						<Homepage />
 					</Route>
-
 					<Route path="/calendar" exact>
 						<NewCalendar />
 					</Route>
-
 					<Route path="/about-us" exact>
 						<AboutUs />
 					</Route>
-
 					<Route path="/blog" exact>
 						<Blog />
 					</Route>
-
 					<Route path="/portfolio" exact>
 						<Portfolio />
 					</Route>
-
 					<Route path="/join" exact>
 						<SignUp />
 					</Route>
-
 					<Route path="/login" exact>
 						<SignIn />
 					</Route>
@@ -66,36 +61,30 @@ function App() {
 					<Route path="/blog/readblog/" exact>
 						<ReadBlog />
 					</Route>
-
 					<Route
 						path="/Forgetpassword"
 						component={ForgetPassword}
 						exact
 					/>
-
 					<Route
 						path="/Changepassword"
 						component={ChangePassword}
 						exact
 					/>
-
 					{/* for Contest */}
-
 					<Route path="/active-contest/" component={Contest} exact />
-
 					{/* For Admin Panel */}
-
 					<Route path="/admin" component={AdminLogin} exact />
 					<Route
 						path="/admin/dashboard"
 						component={Dashboard}
 						exact
 					/>
-
 					<Route path="/payment" component={Payment} exact />
 					<Route path="/pricing" component={Pricing} exact />
-					<Route path="/winner" component={Winner} exact />
+					<Route path="/winner" component={WinnerPage} exact />
 					<Route path="/test" component={Demo} exact />
+					<Route path="/reset" component={ResetPass} exact />
 					<Route component={Notfound} exact />
 				</Switch>
 			</Router>

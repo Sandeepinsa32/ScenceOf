@@ -118,10 +118,7 @@ function Navbar(props) {
 								Contest
 							</NavLink>
 						</li>
-						{/* explore more */}
-						<li>
-							<ContestNav />
-						</li>
+
 						<li>
 							<NavLink
 								to="/about-us"
@@ -179,7 +176,10 @@ function Navbar(props) {
 								<i className="fa fa-linkedin"></i>
 							</NavLink>
 						</li>
-
+						{/* explore more */}
+						<li>
+							<ContestNav />
+						</li>
 						{/* in desktop mode   it show UserIcon */}
 
 						{auth && (

@@ -2,15 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 
-import { Free, Premium, Sponsored } from './Contest/Contest';
-import {
-	Container,
-	Paper,
-	Tabs,
-	Tab,
-	Typography,
-	Box,
-} from '@material-ui/core';
+// import { Free, Premium, Sponsored } from './Contest/Contest';
+import { Tabs, Tab, Typography, Box } from '@material-ui/core';
 
 function TabPanel(props) {
 	const { children, value, index, ...other } = props;

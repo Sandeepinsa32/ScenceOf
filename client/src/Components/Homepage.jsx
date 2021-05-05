@@ -7,7 +7,7 @@ import axios from 'axios';
 import Navbar from './Header/Navbar';
 import ContentSection from './Header/ContentSection';
 import ContestCard from './Contest/ContestCard';
-import WinnerCards from './Cards/WinnerCards';
+import { WinnerCard } from './Cards/WinnerList';
 import TestimononialCard from './Cards/TestimonialCard';
 import Footer from './Footer/Footer';
 
@@ -39,7 +39,7 @@ function Homepage() {
 	const [contest, setContest] = useState([]);
 	useEffect(() => {
 		axios
-			.get(global.config.apiurl + 'contest/limit?limit=10&start=0')
+			.get(global.config.apiurl + 'contest/limit?limit=8&start=0')
 			.then((res) => {
 				const alldata = res.data;
 				setContest(alldata);
@@ -79,17 +79,25 @@ function Homepage() {
 					}}>
 					{/* testimonial */}
 					<TestimononialCard />
-					<Container maxWidth="lg">
-						<Grid>
-							{/* Winner card */}
-							<WinnerCards />
-						</Grid>
-					</Container>
 				</div>
 
 				<div maxWidth="md">
 					<Container maxWidth="lg">
-						<Grid></Grid>
+						<Grid>
+							<Typography
+								gutterBottomContainer
+								variant="h4"
+								component="h4"
+								align="center"
+								style={{
+									// color: '#efefef',
+
+									marginBottom: '10vh',
+								}}>
+								Contest Winner
+							</Typography>
+							<WinnerCard />
+						</Grid>
 					</Container>
 				</div>
 			</main>

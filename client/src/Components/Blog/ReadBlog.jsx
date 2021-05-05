@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { CssBaseline, Grid, Link } from '@material-ui/core';
+import { CssBaseline, Grid, Link, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import axios from 'axios';
-import '../../css/Blog.css';
+import '../../css/Blog.module.css';
 
 //Import diff components
 import Navbar from '../Header/Navbar';
@@ -27,6 +27,8 @@ const useStyles = makeStyles((theme) => ({
 		height: '50vh',
 	},
 }));
+const BackgroundImg =
+	'https://images.unsplash.com/photo-1564475228765-f0c3292f2dec?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1956&q=80';
 
 function ReadBlog() {
 	const classes = useStyles();
@@ -35,6 +37,20 @@ function ReadBlog() {
 		<>
 			<CssBaseline />
 			<Navbar />
+			<div
+				style={{
+					background: `url('${BackgroundImg}')`,
+					padding: '15vh 0',
+					color: '#fff',
+				}}>
+				<Grid justify="center">
+					<Grid item>
+						<Typography gutterBottom variant="h4" component="h4">
+							Blog
+						</Typography>
+					</Grid>
+				</Grid>
+			</div>
 			<main className={classes.mainDiv}>
 				<div maxWidth="md" className={classes.BlogWrapper}>
 					<Blog />
@@ -60,13 +76,12 @@ function Blog(props) {
 
 	return (
 		<>
-			{/* <Grid container md sm xs spacing={2}> */}
 			{/* Articles  */}
 
 			{blog.map((Blog) => (
 				<Grid component="div" key={Blog.id}>
 					<article>
-						<div className="card">
+						<div className={classes.card}>
 							<div className={classes.WrapperImage}>
 								<img
 									src={Blog.thumbnail}

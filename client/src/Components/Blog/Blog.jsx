@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { CssBaseline, Grid, Typography } from '@material-ui/core';
+import { Container, CssBaseline, Grid, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
-import '../../css/Blog.css';
-
+import classes from '../../css/Blog.module.css';
+import clsx from 'clsx';
 //Import diff components
 import Navbar from '../Header/Navbar';
 import Footer from '../Footer/Footer';
@@ -50,6 +50,7 @@ function Blog() {
 		</>
 	);
 }
+
 function BlogPost(props) {
 	const [blogsdata, setBlogsdata] = useState([]);
 	useEffect(() => {
@@ -69,46 +70,69 @@ function BlogPost(props) {
 
 	return (
 		<>
-			<Grid container md sm xs spacing={2}>
-				{/* Articles  */}
-
-				{blogsdata.map((Blog) => (
-					<Grid item key={Blog.id} xs={12} sm={3} md={4}>
-						<article className="article">
-							<div className="card">
-								<div className="overflow-img">
-									<Link
-										to={'/blog/readblog?blogid=' + Blog.id}
-										exact>
+			<Container>
+				<Grid container md sm xs spacing={3}>
+					{blogsdata.map((Blog) => (
+						<Grid item key={Blog.id} xs={12} sm={3} md={4}>
+							<div className={classes.wrapper}>
+								<article className={classes.card}>
+									<div className={classes.card__img}>
 										<img
+											alt="blog_img"
 											src={Blog.thumbnail}
-											alt=""
-											className="img-fluid"
 										/>
-									</Link>
-								</div>
-								<div className="card-body text-center px-1">
-									<Link
-										to={'/blog/readblog?blogid=' + Blog.id}
-										exact
-										className="text-title display-1
-										text-dark">
-										{Blog.title}
-									</Link>
+									</div>
+									<div className={classes.card__content}>
+										<Link
+											to={
+												'/blog/readblog?blogid=' +
+												Blog.id
+											}
+											exact
+											className={clsx(
+												classes.text_title
+												// classes.display - 1,
+												// classes.text - dark
+											)}>
+											{Blog.title}
+										</Link>
+										<p>
+											This is a preview text from a super
+											interesting article about a topic.
+											There are many good reasons to read
+											this article. It is a Crazy Story
+											placeholder
+										</p>
 
-									<p className="secondary-title text-secondary display-3">
-										<span>
-											<i className="far fa-clock text-primary"></i>
-											{Blog.posttime}
+										<span className={classes.card_link}>
+											<Link
+												to={
+													'/blog/readblog?blogid=' +
+													Blog.id
+												}
+												exact>
+												<button
+													className={
+														classes.modalButton
+													}
+													data-popup="accept"
+													style={{
+														width: '70%',
+														margin: ' 2vh 0',
+													}}>
+													Read more
+												</button>
+											</Link>
+
+											{/* <a href="#">Read more</a> */}
 										</span>
-									</p>
-								</div>
+									</div>
+								</article>
 							</div>
-						</article>
-					</Grid>
-				))}
-				{/* Articles  */}
-			</Grid>
+						</Grid>
+					))}
+				</Grid>
+			</Container>
 		</>
 	);
 }

@@ -7,7 +7,7 @@ import {
 	// InputBase,
 	// Paper,
 } from '@material-ui/core';
-import Typewriter from 'react-simple-typewriter';
+// import Typewriter from 'react-simple-typewriter';
 // import 'react-simple-typewriter/dist/index.css';
 import { makeStyles } from '@material-ui/core/styles';
 // import SearchIcon from '@material-ui/icons/Search';
