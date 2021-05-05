@@ -23,6 +23,7 @@ import { Contest } from './Components/Contest/Contest';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Dashboard from './Admin/Dashboard';
 import AdminLogin from './Admin/Login';
+import ImageList from './Admin/Contest/ImagelistPage';
 
 // console.clear();
 function App() {
@@ -80,6 +81,7 @@ function App() {
 						component={Dashboard}
 						exact
 					/>
+					<Route path="/admin/imglist" component={ImageList} exact />
 					<Route path="/payment" component={Payment} exact />
 					<Route path="/pricing" component={Pricing} exact />
 					<Route path="/winner" component={WinnerPage} exact />

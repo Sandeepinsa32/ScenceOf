@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Profile = (props) => {
 	const classes = useStyles();
-
+	const [check, setCheck] = useState(0);
 	const [totalimgs, setTotalimgs] = useState(0);
 	const [totalcontests, setTotalcontests] = useState(0);
 	const [imgsdb, setImgsrcdb] = useState([]);
@@ -93,16 +93,35 @@ const Profile = (props) => {
 						</div>
 					</header>
 					<main className="card-main">
-						<div className="activity">
+						<div
+							className="activity"
+							onClick={() => {
+								setCheck(0);
+							}}>
 							<i className="material-icons">access_time</i>
 							<span className="activity-name">Photos</span>
 							<span className="index">{totalimgs}</span>
 						</div>
-						<div className="activity">
+						<div
+							className="activity"
+							onClick={() => {
+								setCheck(1);
+							}}>
 							<i className="material-icons">mode_comment</i>
 							<span className="activity-name">Contest</span>
 							<span className="index">{totalcontests}</span>
 						</div>
+					</main>
+					{check ? (
+						<>
+							<span
+								className="index"
+								style={{ marginTop: '5vh' }}>
+								you are participated in {totalcontests} contest
+								only
+							</span>
+						</>
+					) : (
 						<Gallery
 							images={imgsdb}
 							backdropClosesModal={true}
@@ -110,7 +129,7 @@ const Profile = (props) => {
 							enableImageSelection={false}
 							style={{ marginTop: '20vh' }}
 						/>
-					</main>
+					)}
 				</div>
 			</div>
 		</>

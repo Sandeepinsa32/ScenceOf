@@ -77,7 +77,7 @@ export default function UserNav(props) {
 							My Account
 						</NavLink>
 					</MenuItem>
-					<MenuItem>
+					{/* <MenuItem>
 						<NavLink
 							to="/myaccount"
 							exact
@@ -100,7 +100,7 @@ export default function UserNav(props) {
 							className={classes.popupMenu}>
 							Notificaiton
 						</NavLink>
-					</MenuItem>
+					</MenuItem> */}
 
 					<MenuItem>
 						<li>

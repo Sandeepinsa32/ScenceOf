@@ -78,6 +78,7 @@ Wrapper-div-main {
 	width: 130px;
 	border: 1px solid #fff;
 	height: auto;
+	margin: 0 auto !important;
 }
 .card-main {
 	display: flex;

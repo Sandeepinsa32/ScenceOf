@@ -109,7 +109,7 @@ export default function CreateContest() {
 					name="user_job"
 					onChange={(e) => setType(e.target.value)}>
 					{contesttype.map((val, ind, arr) => (
-						<option>{val.type}</option>
+						<option value={val.id}>{val.type}</option>
 					))}
 
 					{/* <option value="1">Free</option>

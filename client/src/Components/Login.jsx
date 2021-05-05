@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import qs from 'qs';
 import axios from 'axios';
-// import { useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import {
 	CssBaseline,
 	Grid,
@@ -109,7 +109,7 @@ const Login = () => {
 	const [usernameLog, SetUsernameLog] = useState('');
 	const [passwordLog, SetPasswordLog] = useState('');
 
-	// const history = useHistory();
+	const history = useHistory();
 
 	const [values, setValues] = useState({
 		amount: '',
@@ -154,7 +154,7 @@ const Login = () => {
 					localStorage.setItem('usertype', response.data.usertype);
 					localStorage.setItem('token', response.data.token);
 					if (window.location.pathname === '/login') {
-						// history.push('/');
+						history.push('/myaccount');
 					} else {
 						window.location.reload();
 					}

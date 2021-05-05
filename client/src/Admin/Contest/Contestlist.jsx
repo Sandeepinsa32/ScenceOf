@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
 import Table from '../Component/Table/table';
+import { Link } from 'react-router-dom';
 
 export default function Contestlist() {
 	const [contest, setContest] = useState([]);
@@ -22,6 +23,15 @@ export default function Contestlist() {
 					val.sponser,
 					val.catname,
 					val.type,
+					<div className="button-wrapper">
+						<Link to={'/admin/imglist?contid=' + val.id} exact>
+							<button
+								className="modalButton join-btn"
+								data-popup="accept">
+								Join
+							</button>
+						</Link>
+					</div>,
 				]);
 			});
 			setContest(rows);
@@ -34,7 +44,14 @@ export default function Contestlist() {
 			<h1> Contest List</h1>
 			<Table
 				tableHeaderColor="primary"
-				tableHead={['Image', 'Name', 'Sponser', 'Category', 'Type']}
+				tableHead={[
+					'Image',
+					'Name',
+					'Sponser',
+					'Category',
+					'Type',
+					'action',
+				]}
 				tableData={contest}
 			/>
 		</div>

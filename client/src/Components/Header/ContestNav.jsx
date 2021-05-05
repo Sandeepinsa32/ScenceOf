@@ -96,7 +96,7 @@ export default function UserNav(props) {
 							Admin Dashboard
 						</NavLink>
 					</MenuItem>
-					<MenuItem>
+					{/* <MenuItem>
 						<NavLink
 							to="/Forgetpassword"
 							exact
@@ -113,7 +113,7 @@ export default function UserNav(props) {
 							className={classes.ContestLink}>
 							Change Password
 						</NavLink>
-					</MenuItem>
+					</MenuItem> */}
 				</Menu>
 			</span>
 		</>
