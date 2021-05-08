@@ -116,7 +116,7 @@ const Profile = (props) => {
 						<>
 							<span
 								className="index"
-								style={{ marginTop: '5vh' }}>
+								style={{ marginTop: '5vhs' }}>
 								you are participated in {totalcontests} contest
 								only
 							</span>

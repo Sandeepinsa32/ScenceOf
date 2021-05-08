@@ -56,12 +56,10 @@ function WinnerCard() {
 	const classes = useStyles();
 	const [contest, setContest] = useState([]);
 	useEffect(() => {
-		axios
-			.get(global.config.apiurl + 'contest/contestfree?limit=4&start=0')
-			.then((res) => {
-				const alldata = res.data;
-				setContest(alldata);
-			});
+		axios.get(global.config.apiurl + 'uploadimg/getwinner').then((res) => {
+			const alldata = res.data;
+			setContest(alldata);
+		});
 	}, []);
 	return (
 		<>
@@ -75,12 +73,12 @@ function WinnerCard() {
 								<div
 									class="card"
 									style={{
-										background: `url('${figure.image}')`,
+										background: `url('${figure.url}')`,
 									}}>
 									<div class="content">
-										<h2 class="title">John Doe</h2>
-										<p class="copy">{figure.name}</p>
-										<button class="btn">See Winnner</button>
+										<h2 class="title">{figure.username}</h2>
+										<p class="copy">{figure.contestname}</p>
+										{/* <button class="btn">See Winnner</button> */}
 									</div>
 								</div>
 							</main>

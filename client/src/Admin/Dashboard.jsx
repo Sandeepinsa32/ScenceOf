@@ -1,28 +1,31 @@
 import React, { useState } from 'react';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
-
+import { useHistory } from 'react-router-dom';
 import {
 	CssBaseline,
 	Drawer,
 	Paper,
 	Grid,
 	Container,
-	Badge,
 	IconButton,
-	Divider,
 	Typography,
 	List,
 	Toolbar,
 	AppBar,
+	Collapse,
 } from '@material-ui/core';
-
-import ContestList from './Contest/Contestlist';
-import ContestType from './Contest/ContestType';
-import ContestCategory from './Contest/ContestCategory';
-// import ImagesList from './Contest/ImagesList';
-import CreateContest from './Contest/CreateContest';
-import UserList from './Contest/UserList';
+import ContestList from './Component/Contest/Contestlist';
+import ContestType from './Component/Contest/ContestType';
+import ContestCategory from './Component/Contest/ContestCategory';
+import CreateContest from './Component/Contest/CreateContest';
+//other component
+import UserList from './Component/Other/UserList';
+import BlogList from './Component/Other/BlogList';
+import CreateBlog from './Component/Other/CreateBlog';
+import CreateEvents from './Component/Other/CreateBlog';
+import CreateAdmin from './Component/Other/CreateAdmin';
+import ChangePassword from './Component/Other/ChangePassword';
 
 //menulist
 import { ListItemText, ListItemIcon, ListItem } from '@material-ui/core';
@@ -30,9 +33,16 @@ import { ListItemText, ListItemIcon, ListItem } from '@material-ui/core';
 //Icons
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import NotificationsIcon from '@material-ui/icons/Notifications';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import LayersIcon from '@material-ui/icons/Layers';
+import AddBoxIcon from '@material-ui/icons/AddBox';
+import CategoryIcon from '@material-ui/icons/Category';
+import FormatListNumberedIcon from '@material-ui/icons/FormatListNumbered';
+import DescriptionIcon from '@material-ui/icons/Description';
+import PostAddIcon from '@material-ui/icons/PostAdd';
+import SubdirectoryArrowRightIcon from '@material-ui/icons/SubdirectoryArrowRight';
+import ExpandLess from '@material-ui/icons/ExpandLess';
+import ExpandMore from '@material-ui/icons/ExpandMore';
 
 const drawerWidth = 260;
 
@@ -52,6 +62,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 	appBar: {
 		zIndex: theme.zIndex.drawer + 1,
+		background: theme.palette.info.main,
 		transition: theme.transitions.create(['width', 'margin'], {
 			easing: theme.transitions.easing.sharp,
 			duration: theme.transitions.duration.leavingScreen,
@@ -113,31 +124,49 @@ const useStyles = makeStyles((theme) => ({
 	fixedHeight: {
 		height: 240,
 	},
+	welcome_title: {
+		color: theme.palette.info.main,
+		alignItems: 'center',
+		fontSize: 32,
+		textTransform: 'capitalize',
+	},
 }));
-
-const welcome = (
-	<Typography
-		component="h3"
-		variant="h3"
-		p={1}
-		align="center"
-		color="textPrimary"
-		gutterBottom>
-		Welcome to Admin Panel
-	</Typography>
-);
 
 export default function Dashboard() {
 	const classes = useStyles();
 	const [open, setOpen] = useState(true);
-	const [component, setComponent] = useState(welcome);
+	const [contest, setContest] = useState(false);
+	const [other, setOther] = useState(false);
+	const [component, setComponent] = useState(<Welcome />);
+
+	const handleContest = () => {
+		setContest(!contest);
+	};
+	const handleOther = () => {
+		setOther(!other);
+	};
+
 	const handleDrawerOpen = () => {
 		setOpen(true);
 	};
 	const handleDrawerClose = () => {
 		setOpen(false);
 	};
-	const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
+	const history = useHistory();
+	const requireAuth = () => {
+		if (!localStorage.getItem('admin')) {
+			alert('Please Login ');
+			return history.push('/admin');
+		}
+	};
+	requireAuth();
+
+	const logout = () => {
+		localStorage.removeItem('admin');
+		window.location.reload();
+	};
+
+	// const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
 	return (
 		<div className={classes.root}>
@@ -166,9 +195,12 @@ export default function Dashboard() {
 						Dashboard
 					</Typography>
 					<IconButton color="inherit">
-						<Badge badgeContent={0} color="secondary">
+						<Typography component="h6" variant="h6" color="inherit">
+							<span onClick={logout}>Logout</span>
+						</Typography>
+						{/* <Badge badgeContent={0} color="secondary">
 							<NotificationsIcon />
-						</Badge>
+						</Badge> */}
 					</IconButton>
 				</Toolbar>
 			</AppBar>
@@ -186,86 +218,165 @@ export default function Dashboard() {
 						<ChevronLeftIcon />
 					</IconButton>
 				</div>
-				<Divider />
 				<List>
-					<div>
-						<ListItem
-							button
-							onClick={() => {
-								setComponent(<UserList />);
-							}}>
-							<ListItemIcon>
-								<DashboardIcon />
-							</ListItemIcon>
-							<ListItemText primary="Dashboard" />
-						</ListItem>
+					<ListItem
+						button
+						onClick={() => {
+							setComponent(<UserList />);
+						}}>
+						<ListItemIcon>
+							<DashboardIcon />
+						</ListItemIcon>
+						<ListItemText primary="Dashboard" />
+					</ListItem>
+					<ListItem onClick={handleContest}>
+						<ListItemIcon>
+							<SubdirectoryArrowRightIcon />
+						</ListItemIcon>
+						<ListItemText primary="Contest" />
+						{contest ? <ExpandLess /> : <ExpandMore />}
+					</ListItem>
+					<Collapse in={contest}>
+						<List component="div" disablePadding>
+							<div>
+								<ListItem
+									button
+									onClick={() => {
+										setComponent(<ContestList />);
+									}}>
+									<ListItemIcon>
+										<FormatListNumberedIcon />
+									</ListItemIcon>
 
-						<ListItem
-							button
-							onClick={() => {
-								setComponent(<ContestList />);
-							}}>
-							<ListItemIcon>
-								<LayersIcon />
-							</ListItemIcon>
+									<ListItemText primary="Contest List" />
+								</ListItem>
 
-							<ListItemText primary="Contest" />
-						</ListItem>
+								<ListItem
+									button
+									onClick={() => {
+										setComponent(<ContestCategory />);
+									}}>
+									<ListItemIcon>
+										<CategoryIcon />
+									</ListItemIcon>
+									<ListItemText primary="Contest Category" />
+								</ListItem>
 
-						<ListItem
-							button
-							onClick={() => {
-								setComponent(<ContestCategory />);
-							}}>
-							<ListItemIcon>
-								<LayersIcon />
-							</ListItemIcon>
-							<ListItemText primary="Contest Category" />
-						</ListItem>
-
-						<ListItem
-							button
-							onClick={() => {
-								setComponent(<ContestType />);
-							}}>
-							<ListItemIcon>
-								<LayersIcon />
-							</ListItemIcon>
-							<ListItemText primary="Contest Type" />
-						</ListItem>
-						<ListItem
-							button
-							onClick={() => {
-								setComponent(<CreateContest />);
-							}}>
-							<ListItemIcon>
-								<LayersIcon />
-							</ListItemIcon>
-							<ListItemText primary="Create Contest" />
-						</ListItem>
-					</div>
+								<ListItem
+									button
+									onClick={() => {
+										setComponent(<ContestType />);
+									}}>
+									<ListItemIcon>
+										<LayersIcon />
+									</ListItemIcon>
+									<ListItemText primary="Contest Type" />
+								</ListItem>
+								<ListItem
+									button
+									onClick={() => {
+										setComponent(<CreateContest />);
+									}}>
+									<ListItemIcon>
+										<AddBoxIcon />
+									</ListItemIcon>
+									<ListItemText primary="Create Contest" />
+								</ListItem>
+							</div>
+						</List>
+					</Collapse>
 				</List>
-				<Divider />
+
+				<List>
+					<ListItem onClick={handleOther}>
+						<ListItemIcon>
+							<SubdirectoryArrowRightIcon />
+						</ListItemIcon>
+						<ListItemText primary="Other" />
+						{other ? <ExpandLess /> : <ExpandMore />}
+					</ListItem>
+					<Collapse in={other}>
+						<List component="div" disablePadding>
+							<div>
+								<ListItem
+									button
+									onClick={() => {
+										setComponent(<BlogList />);
+									}}>
+									<ListItemIcon>
+										<DescriptionIcon />
+									</ListItemIcon>
+									<ListItemText primary="List Of Blog" />
+								</ListItem>
+								<ListItem
+									button
+									onClick={() => {
+										setComponent(<CreateBlog />);
+									}}>
+									<ListItemIcon>
+										<PostAddIcon />
+									</ListItemIcon>
+									<ListItemText primary="Create New Blog" />
+								</ListItem>
+								<ListItem
+									button
+									onClick={() => {
+										setComponent(<CreateEvents />);
+									}}>
+									<ListItemIcon>
+										<PostAddIcon />
+									</ListItemIcon>
+									<ListItemText primary="Calender Events" />
+								</ListItem>
+								<ListItem
+									button
+									onClick={() => {
+										setComponent(<CreateAdmin />);
+									}}>
+									<ListItemIcon>
+										<PostAddIcon />
+									</ListItemIcon>
+									<ListItemText primary="Create Admin" />
+								</ListItem>
+								<ListItem
+									button
+									onClick={() => {
+										setComponent(<ChangePassword />);
+									}}>
+									<ListItemIcon>
+										<PostAddIcon />
+									</ListItemIcon>
+									<ListItemText primary="Change Password" />
+								</ListItem>
+							</div>
+						</List>
+					</Collapse>
+				</List>
 			</Drawer>
 			<main className={classes.content}>
 				<div className={classes.appBarSpacer} />
 				<Container maxWidth="lg" className={classes.container}>
 					<Grid container spacing={3}>
 						<Grid item xs={12}>
-							<Paper className={classes.paper}>
-								{component}
-
-								{/* <ContestList />	 */}
-								{/* <ContestType /> */}
-								{/* <ContestCategory /> */}
-								{/* <UserList /> */}
-								{/* <ImagesList /> */}
-							</Paper>
+							<Paper className={classes.paper}>{component}</Paper>
 						</Grid>
 					</Grid>
-					{/* <Box pt={4}></Box> */}
 				</Container>
 			</main>
 		</div>
 	);
 }
+
+const Welcome = () => {
+	const classes = useStyles();
+	return (
+		<Typography
+			component="h3"
+			variant="h3"
+			align="center"
+			className={classes.welcome_title}
+			gutterBottom>
+			Welcome to the Admin Panel
+		</Typography>
+	);
+};

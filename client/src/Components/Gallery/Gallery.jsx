@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { CssBaseline, Grid, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import axios from 'axios';
 
 //Import diff components
 import Navbar from '../Header/Navbar';
@@ -22,6 +23,28 @@ const useStyles = makeStyles((theme) => ({
 
 function ImgGallery() {
 	const classes = useStyles();
+	// const [imgsrc, setImgsrc] = useState('');
+	const [imgsdb, setImgsrcdb] = useState([]);
+
+	function FetchImage() {
+		const imgsdata = [];
+		axios
+			.get(global.config.apiurl + 'uploadimg/limit?limit=10&start=0')
+			.then((res) => {
+				let alldata = res.data;
+				alldata.map(function (val, i, arr) {
+					return imgsdata.push({
+						src: val.url,
+						thumbnail: val.url,
+						thumbnailWidth: 640,
+						thumbnailHeight: 320,
+					});
+				});
+				console.log(imgsdata);
+				setImgsrcdb(imgsdata);
+			});
+	}
+	FetchImage();
 
 	return (
 		<>
@@ -45,7 +68,7 @@ function ImgGallery() {
 				<Grid justify="center">
 					<Grid item>
 						<Gallery
-							images={Imageapi}
+							images={imgsdb}
 							margin={3}
 							backdropClosesModal={true}
 							enableKeyboardInput={true}

@@ -11,7 +11,8 @@ export default function ImageList() {
 	const contestid = query.get('contid');
 
 	function Changestatus(id, flag) {
-		console.log(id, flag);
+		console.log('FUNCTION ', id, flag);
+		console.log('button press');
 
 		axios({
 			method: 'post',
@@ -27,6 +28,8 @@ export default function ImageList() {
 		})
 			.then((response) => {
 				console.log(response);
+				alert('done');
+				window.location.reload();
 			})
 			.catch((err) => {
 				console.log(err);
@@ -39,23 +42,24 @@ export default function ImageList() {
 		// axios.get(global.config.apiurl + 'admin/imageslist')
 		axios
 			.get(
-				global.config.apiurl +
-					'uploadimg/byContest?contesid=' +
-					contestid
+				global.config.apiurl + 'admin/imageslist?contesid=' + contestid
 			)
 			.then((res) => {
 				const alldata = res.data;
 				console.log(alldata);
 				alldata.map((val, ind, arr) => {
+					console.log(val.winner);
 					var win = val.winner === '0' ? '1' : '0';
 					rows.push([
 						ind + 1,
 						<img
-							src={val.url}
+							src={val.images}
 							alt="img"
 							height="100px"
 							width="100px"
 						/>,
+						val.username,
+						val.useremail,
 						<>
 							<button
 								className="modalButton join-btn"
@@ -81,7 +85,13 @@ export default function ImageList() {
 			<h1> Images Uploaded List</h1>
 			<Table
 				tableHeaderColor="primary"
-				tableHead={['Sr. ', 'Image', 'Action']}
+				tableHead={[
+					'Sr. ',
+					'Image',
+					'User Name',
+					'User Email',
+					'Action',
+				]}
 				tableData={imageslist}
 			/>
 		</div>

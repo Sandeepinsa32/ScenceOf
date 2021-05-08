@@ -78,7 +78,7 @@ export default function UserNav(props) {
 						</NavLink>
 					</MenuItem>
 
-					<MenuItem>
+					{/* <MenuItem>
 						<NavLink
 							to="/admin"
 							exact
@@ -95,7 +95,7 @@ export default function UserNav(props) {
 							className={classes.ContestLink}>
 							Admin Dashboard
 						</NavLink>
-					</MenuItem>
+					</MenuItem> */}
 					{/* <MenuItem>
 						<NavLink
 							to="/Forgetpassword"
