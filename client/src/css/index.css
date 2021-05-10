@@ -9,6 +9,10 @@ body {
 	color: #212121;
 	text-align: center;
 }
+a {
+	color: #fff;
+	text-decoration: none !important;
+}
 
 code {
 	font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',

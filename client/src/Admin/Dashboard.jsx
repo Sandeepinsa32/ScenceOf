@@ -23,7 +23,7 @@ import CreateContest from './Component/Contest/CreateContest';
 import UserList from './Component/Other/UserList';
 import BlogList from './Component/Other/BlogList';
 import CreateBlog from './Component/Other/CreateBlog';
-import CreateEvents from './Component/Other/CreateBlog';
+import CreateEvents from './Component/Other/CreateEvents';
 import CreateAdmin from './Component/Other/CreateAdmin';
 import ChangePassword from './Component/Other/ChangePassword';
 
@@ -328,7 +328,7 @@ export default function Dashboard() {
 									</ListItemIcon>
 									<ListItemText primary="Calender Events" />
 								</ListItem>
-								<ListItem
+								{/* <ListItem
 									button
 									onClick={() => {
 										setComponent(<CreateAdmin />);
@@ -337,7 +337,7 @@ export default function Dashboard() {
 										<PostAddIcon />
 									</ListItemIcon>
 									<ListItemText primary="Create Admin" />
-								</ListItem>
+								</ListItem> */}
 								<ListItem
 									button
 									onClick={() => {

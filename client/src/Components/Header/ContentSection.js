@@ -1,16 +1,6 @@
 import React from 'react';
-import {
-	CssBaseline,
-	// Grid,
-	Typography,
-	// IconButton,
-	// InputBase,
-	// Paper,
-} from '@material-ui/core';
-// import Typewriter from 'react-simple-typewriter';
-// import 'react-simple-typewriter/dist/index.css';
+import { CssBaseline, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-// import SearchIcon from '@material-ui/icons/Search';
 
 const useStyles = makeStyles((theme) => ({
 	SectionHeadingDiv: {

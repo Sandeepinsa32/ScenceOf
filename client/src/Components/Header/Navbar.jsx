@@ -71,25 +71,27 @@ function Navbar(props) {
 						// filter: 'saturate(0.9)',
 					}
 				}>
-				<button className="menu">
-					<i
-						className="hamburger"
-						onClick={() => {
-							burgerToggle();
-							handleToggle();
-						}}></i>
-				</button>
-				<div className="brand">
-					<NavLink to="/" exact>
-						<img
-							src={logoImg}
-							alt="image_logo"
-							className="headerLogo"
-						/>
-					</NavLink>
+				<div className="nav_section">
+					<button className="menu">
+						<i
+							className="hamburger"
+							onClick={() => {
+								burgerToggle();
+								handleToggle();
+							}}></i>
+					</button>
+					<div className="brand">
+						<NavLink to="/" exact>
+							<img
+								src={logoImg}
+								alt="image_logo"
+								className="headerLogo"
+							/>
+						</NavLink>
+					</div>
+					{/* in mobile mode */}
+					{auth && <UserNav NameOfClass="menu" username={Username} />}
 				</div>
-				{/* in mobile mode */}
-				{auth && <UserNav NameOfClass="menu" username={Username} />}
 				<div className="narrowLinks">
 					<ul className="navbar">
 						<li>

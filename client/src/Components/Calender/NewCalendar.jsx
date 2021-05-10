@@ -56,7 +56,7 @@ function NewCalendar() {
 								id: 1,
 								date: Date.now(),
 								time: '17:55- 17:56',
-								title: 'Call John',
+								title: 'Nature contest',
 							},
 							{
 								id: 2,

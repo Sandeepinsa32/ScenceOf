@@ -130,11 +130,12 @@ export default function CreateContest() {
 					<option value="6">Sports</option>
 				</select>
 				{/* desc */}
-				<label for="bio">Contest Description:</label>
+				<label for="contest_desc">Contest Description:</label>
 				<textarea
-					id="bio"
+					id="contest_desc"
+					rows="5"
 					className="input"
-					name="user_bio"
+					name="user_contest_desc"
 					onChange={(e) => setDesc(e.target.value)}></textarea>
 				{/* date */}
 				<label for="Contest Start date">Contest Start date:</label>
@@ -152,16 +153,17 @@ export default function CreateContest() {
 					className="input"
 					name="Contest end date"
 				/>
-
-				<button
-					className="submit_btn upoad_btn"
-					type="button"
-					onClick={upload}>
-					Upload Image
-				</button>
-				<button className="submit_btn " type="submit">
-					Create Contest
-				</button>
+				<div>
+					<button
+						className="submit_btn upoad_btn"
+						type="button"
+						onClick={upload}>
+						Upload
+					</button>
+					<button className="submit_btn " type="submit">
+						Create
+					</button>
+				</div>
 			</form>
 		</div>
 	);

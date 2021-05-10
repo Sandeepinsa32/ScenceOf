@@ -30,8 +30,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function NewCalendar() {
-	const classes = useStyles();
-
 	const localizer = momentLocalizer(moment);
 	console.log(localizer);
 

@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
 	mainDiv: {
 		minHeight: '100vh',
 		padding: '25px 40px',
-		background: `url('${BackgroundImg}')   fixed #212121`,
+		background: `url('${BackgroundImg}')  no-repeat fixed #212121`,
 	},
 	cards: {
 		background: 'url()  #efefef',

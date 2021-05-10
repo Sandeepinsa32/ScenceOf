@@ -1,4 +1,4 @@
-import Typewriter from 'react-simple-typewriter';
+// import Typewriter from 'react-simple-typewriter';
 const imageapi = [
 	{
 		src: 'https://c2.staticflickr.com/9/8817/28973449265_07e3aa5d2e_b.jpg',
@@ -6,20 +6,7 @@ const imageapi = [
 			'https://c2.staticflickr.com/9/8817/28973449265_07e3aa5d2e_n.jpg',
 		thumbnailWidth: 640,
 		thumbnailHeight: 320,
-		customOverlay: [
-			<Typewriter
-				loop
-				cursor
-				cursorStyle="_"
-				typeSpeed={120}
-				deleteSpeed={100}
-				delaySpeed={1000}
-				words={['Capture .', 'Share .', 'Explore .']}
-				onLoop={(loopCount) =>
-					console.log(`Just completed loop ${loopCount}`)
-				}
-			/>,
-		],
+		customOverlay: ['hello'],
 
 		tags: [{ value: 'Nature', title: 'Nature' }],
 		caption: 'After Rain (Jeshu John - designerspics.com)',
