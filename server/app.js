@@ -9,14 +9,14 @@ var session = require('express-session');
 var cors = require('cors');
 
 var indexRouter = require('./routes/index');
-var blogRouter = require('./routes/blog');
-var contesttypeRouter = require('./routes/contesttype');
-var contestRouter = require('./routes/contest');
-var contestcategoryRouter = require('./routes/contestcat');
-var testimonialRouter = require('./routes/testimonial');
-var usersRouter = require('./routes/users');
-var uploadimgRouter = require('./routes/uploadimg');
-var productsRouter = require('./routes/product');
+// var blogRouter = require('./routes/blog');
+// var contesttypeRouter = require('./routes/contesttype');
+// var contestRouter = require('./routes/contest');
+// var contestcategoryRouter = require('./routes/contestcat');
+// var testimonialRouter = require('./routes/testimonial');
+// var usersRouter = require('./routes/users');
+// var uploadimgRouter = require('./routes/uploadimg');
+// var productsRouter = require('./routes/product');
 
 // admin
 
@@ -55,17 +55,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/products', productsRouter);
-app.use('/blog', blogRouter);
-app.use('/contest', contestRouter);
-app.use('/contestcategory', contestcategoryRouter);
-app.use('/contesttype', contesttypeRouter);
-app.use('/testimonial', testimonialRouter);
-app.use('/users', usersRouter);
-app.use('/uploadimg', uploadimgRouter);
 
 // admin
-app.use('/admin', adminRouter);
 
 // end admin
 
