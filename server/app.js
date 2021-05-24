@@ -24,7 +24,7 @@ var adminRouter = require('./routes/admin/admin');
 
 // end admin router
 
-const port = process.env.PORT || 3000;
+const port = process.env.YOUR_PORT || process.env.PORT || 3000;
 var app = express();
 
 const corsOptions = {
@@ -76,7 +76,7 @@ app.use(function (err, req, res, next) {
 	res.render('error');
 });
 
-app.listen(process.env.PORT, () => {
+app.listen(port, () => {
 	console.log('server running ');
 });
 
