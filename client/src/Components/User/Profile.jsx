@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
 const Profile = (props) => {
 	const classes = useStyles();
 	const [check, setCheck] = useState(0);
-	const [totalimgs, setTotalimgs] = useState(0);
+	const [totalimgs, setTotalimgs] = useState([]);
 	const [totalcontests, setTotalcontests] = useState(0);
 	const [imgsdb, setImgsrcdb] = useState([]);
 

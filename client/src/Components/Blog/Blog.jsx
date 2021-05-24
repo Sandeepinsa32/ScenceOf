@@ -96,13 +96,7 @@ function BlogPost(props) {
 											)}>
 											{Blog.title}
 										</Link>
-										<p>
-											This is a preview text from a super
-											interesting article about a topic.
-											There are many good reasons to read
-											this article. It is a Crazy Story
-											placeholder
-										</p>
+										<p>{Blog.shortdescription}</p>
 
 										<span className={classes.card_link}>
 											<Link

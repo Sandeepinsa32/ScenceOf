@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import {
 	Grid,
 	CssBaseline,
@@ -43,44 +44,19 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-const data = [
-	{
-		id: 1,
-		name: 'Pelican Steve',
-		role: 'LittleSnippets',
-		img:
-			'https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sq-sample1.jpg',
-		text: `Calvin: Sometimes when I'm talking with others, my words
-						can't keep up with my thoughts. I wonder why we think
-						faster than we speak. Hobbes: Probably so we can think
-						twice.`,
-	},
-	{
-		id: 2,
-		name: 'Max Conversion',
-		role: 'LittleSnippets',
-		img:
-			'https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sq-sample24.jpg',
-		text: `Thank you. before I begin, I'd like everyone to notice
-						that my report is in a professional, clear plastic
-						binder...When a report looks this good, you know it'll
-						get an A. That's a tip kids. Write it down.`,
-	},
-	{
-		id: 3,
-		name: 'Eleanor Faint',
-		role: 'LittleSnippets',
-		img:
-			'https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sq-sample29.jpg',
-		text: `My behaviour is addictive functioning in a disease
-						process of toxic co-dependency. I need holistic healing
-						and wellness before I'll accept any responsibility for
-						my actions.`,
-	},
-];
-
 export default function TestimononialCard() {
 	const classes = useStyles();
+	const [testimonialdata, setTestimonialdata] = useState([]);
+
+	useEffect(() => {
+		axios
+			.get(global.config.apiurl + `testimonial//limit?limit=3&start=0`)
+			.then((res) => {
+				let alldata = res.data;
+				console.log(alldata);
+				setTestimonialdata(alldata);
+			});
+	});
 
 	return (
 		<>
@@ -92,15 +68,19 @@ export default function TestimononialCard() {
 					component="h4"
 					align="center"
 					style={{
-						color: '#efefef',
+						color: '#e5e5e5',
+						fontWeight: 'bold',
+						borderBottom: ' 3px solid #ffae42',
+						width: '40%',
+						margin: ' 0 auto',
 					}}>
-					Let us know what you think!
+					Our Reviews
 				</Typography>
-				{data.map((data) => (
+				{testimonialdata.map((data) => (
 					<figure class="snip1192">
 						<blockquote>{data.text}</blockquote>
 						<div class="author">
-							<img src={data.img} alt="sq-sample1" />
+							<img src={data.userimg} alt="sq-sample1" />
 							<h5>
 								{data.name} <span> {data.role}</span>
 							</h5>
@@ -160,51 +140,6 @@ export default function TestimononialCard() {
 						</h5>
 					</div>
 				</figure> */}
-				{/* <Grid container>
-					{NoOfCard.map((card) => (
-						<Card
-							className={classes.CardMainDiv}
-							key={card}
-							xs={12}
-							sm={4}
-							md={3}>
-							<CardActionArea>
-								<CardContent>
-									<Grid
-										container
-										spacing={2}
-										justify="center">
-										<Grid item>
-											<CardMedia
-												className={classes.CardMedia}
-												image="../png/img_avatar.png"
-											/>
-										</Grid>
-
-										<Grid item>
-											<Typography
-												variant="body2"
-												color="textSecondary"
-												component="blockquote">
-												"I love this site, so many
-												amazing photos that inspired me
-												every single day"
-											</Typography>
-
-											<Typography
-												variant="subtitle1"
-												component="h6"
-												align="right"
-												style={{ color: '#efefef' }}>
-												-John Kei
-											</Typography>
-										</Grid>
-									</Grid>
-								</CardContent>
-							</CardActionArea>
-						</Card>
-					))}
-				</Grid> */}
 			</Container>
 		</>
 	);
