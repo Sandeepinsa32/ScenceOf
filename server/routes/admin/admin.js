@@ -2,6 +2,8 @@ var express = require('express');
 var router = express.Router();
 var db = require('../../db');
 
+var verifyToken = require('../../middleware/admin');
+var jwt = require('jsonwebtoken');
 
 /* logout users listing. */
 router.get('/logout', function (req, res, next) {
@@ -44,33 +46,31 @@ router.get('/contesttable', function (req, res, next) {
   })
 });
 
-// ----------------------------------------------
-// contest category
-// -----------------------------------------------
+router.get('/contestdel', function (req, res, next) {
 
-// http://localhost:3000/admin/contestcategory
-router.get('/contestcategory', function (req, res, next) {
-  var sql = `SELECT * FROM contestcategory`;
+  var id = req.query.id;
+  var sql = `DELETE FROM contest WHERE id=${id}`;
   db.query(sql, function (err, result) {
     if (err) {
       res.status(500).send({ error: err })
     }
     res.json(result);
   })
-})
+});
 
-// ----------------------------------------------
-// contest type
-// -----------------------------------------------
 
-// http://localhost:3000/admin/contestcategory
-router.get('/contesttype', function (req, res, next) {
-  var sql = `SELECT * FROM contesttype`;
+// create
+// http://localhost:3000/admin/createcontestcategory
+router.post('/createcontestcategory', function (req, res, next) {
+  var catname = req.body.categoryname;
+  var background = req.body.background;
+
+  var sql = `INSERT INTO  contestcategory (name, 	background) VALUES ("${catname}", "${background}")`;
   db.query(sql, function (err, result) {
     if (err) {
       res.status(500).send({ error: err })
     }
-    res.json(result);
+    res.json({ status: 'Success', result: result, 'msg': 'Category Created' });
   })
 })
 
@@ -80,7 +80,7 @@ router.get('/contesttype', function (req, res, next) {
 
 // http://localhost:3000/admin/imageslist
 router.get('/imageslist', function (req, res, next) {
-  var sql = `SELECT imgupload.url as images, contest.name as contestname, contest.sponser as sponser, users.email as useremail, users.username as username FROM imgupload LEFT JOIN contest on contest.id=imgupload.contest LEFT JOIN users on users.id=imgupload.user`;
+  var sql = `SELECT imgupload.url as images, users.email as useremail, users.username as username FROM imgupload WHERE contest=${req.query.contesid} LEFT JOIN users on users.id=imgupload.user`;
   db.query(sql, function (err, result) {
     if (err) {
       res.status(500).send({ error: err })

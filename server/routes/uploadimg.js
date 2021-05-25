@@ -84,5 +84,33 @@ router.get('/limit', function (req, res, next) {
     })
 });
 
+// deside winner
+
+/*put method for update product*/
+router.post('/setwinner', function(req, res, next) {
+    var id = req.params.id;
+    var winner = req.body.winner;
+  
+    var sql = `UPDATE imgupload SET winner="${winner}" WHERE id=${id}`;
+    db.query(sql, function(err, result) {
+      if(err) {
+        res.status(500).send({ error: 'Something failed!' });
+      }
+      res.json({status: 'success', msg: "status changed"})
+    })
+  });
+
+  /*put method for update product*/
+router.post('/getwinner', function(req, res, next) {
+      
+    var sql = `SELECT contest.name as contestname, imgupload.url as url, users.username FROM contest LEFT JOIN imgupload ON contest.id=imgupload.contest  JOIN users ON users.id=imgupload.user WHERE imgupload.winner=1`;
+    db.query(sql, function(err, result) {
+      if(err) {
+        res.status(500).send({ error: 'Something failed!' });
+      }
+      res.json({status: 'success', msg: "status changed"})
+    })
+  });
+
 
 module.exports = router;

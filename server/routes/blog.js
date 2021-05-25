@@ -1,19 +1,11 @@
 var express = require('express');
 var router = express.Router();
 var db = require('../db');
-var bodyParser = require('body-parser');
-
-router.use(bodyParser.json());
-// Create application/x-www-form-urlencoded parser  
-router.use(bodyParser.urlencoded({
-  extended: true
-}));
 
 router.use(express.json());
 router.use(express.urlencoded({
   extended: true
 }))
-
 
 /*post method for create blog*/
 router.post('/create', function (req, res, next) {
@@ -43,11 +35,40 @@ router.get('/byId', function (req, res, next) {
   })
 });
 
+/*put method for update bllog*/
+// http://localhost:3000/blog/update
+router.put('/update', function (req, res, next) {
+  var id = req.body.id;
+  var title = req.body.title;
+  var shortdesc = req.body.shortdescription;
+  var content = req.body.content;
+  var thumbnail = req.body.thumbnail;
+
+  var sql = `UPDATE contestcategory SET title="${title}",shortdescription="${shortdesc}",content="${content},thumbnail="${thumbnail}" WHERE id=${id}`;
+  db.query(sql, function (err, result) {
+    if (err) {
+      res.status(500).send({ error: 'Something failed!' })
+    }
+    res.json({ 'status': 'success', "msg":"Blog Updated" })
+  })
+});
+
+/*delete method for delete blog*/
+// http://localhost:3000/blog/update
+router.delete('/delete', function(req, res, next) {
+  var id = req.params.id;
+  var sql = `DELETE FROM blog WHERE id=${id}`;
+  db.query(sql, function(err, result) {
+    if(err) {
+      res.status(500).send({ error: 'Something failed!' })
+    }
+    res.json({'status': 'success', "msg":"Blog Deleted"})
+  })
+})
 
 /* get method for fetch all blog. */
 /* http://localhost:3000/blog/limit?limit=10&start=10 */
 router.get('/limit', function (req, res, next) {
-
   var sql = `SELECT * FROM blog LIMIT ${req.query.limit} OFFSET ${req.query.start}`;
   db.query(sql, function (err, rows, fields) {
     if (err) {
